@@ -1,4 +1,4 @@
-## JDM-BS: An R package for A Monte Carlo Option Pricingm Algorithm for Jump Diffusion Model with Correlation Companies
+## Jdmbs: An R package for A Monte Carlo Option Pricingm Algorithm for Jump Diffusion Model with Correlation Companies
 
 ### (Now under Construction)
 
