@@ -77,7 +77,7 @@ For online help facilities or the details of a particular command (such as the f
 > help(package="JDM-BS")
 ```
 ##Method
-This pakage has only one method. And it is excused by:
+This pakage has three method. And it is excused by:
 
 ```
 > premium <- normal_bs(companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
