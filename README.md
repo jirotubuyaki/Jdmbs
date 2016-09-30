@@ -53,7 +53,14 @@ Standart Jump Diffusion model occurs jump in one stock market and it does not af
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_9.png "eque")  
 
-Where *random_i* is a *n_th* company. And *U* is discrete uniform distribution.*Output_ij* is a correration coefficacy from *i* company to *j*. it is from result of algorithm 1.  
+Where *random_i* is a *n_th* company. And *U* is discrete uniform distribution.*Output_ij* is a correration coefficacy from *i* company to *j*. it is from result of algorithm 1. 
+
+#### Simulation  
+
+![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/simulation.png "eque")  
+
+#### Acknowledgments
+This activity would not have been possible without the support of my family and friends. To my family, thank you for lots of encouragement for me and inspiring me to follow my dreams. I am especially grateful to my parents, who supported me all aspects.  
 
 
 
