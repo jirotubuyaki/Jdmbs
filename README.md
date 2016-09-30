@@ -1,4 +1,4 @@
-## JDM-BS: An R package for A Monte Carlo Option Pricingm Algorithm for Jump Diffusion Modelnwith Correlation Companies
+## JDM-BS: An R package for A Monte Carlo Option Pricingm Algorithm for Jump Diffusion Modeln with Correlation Companies
 
 ### Abstract  
 Black-Scholes model is important to calcurate option premium in stock market. And variety of jump diffusion model as
