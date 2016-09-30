@@ -42,4 +42,9 @@ under a risk-neutral measure1 P to be used for option pricing is given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_6.png "eque")
 
-where *r* is the risk-free interest rate, *σ* the volatility, *{N(t):t =0・・・}* a Poisson process with rate *λ*, *{W(t):t=0・・・}* a standard Brownian motion.  
+where *r* is the risk-free interest rate, *σ* the volatility, *{N(t):t =0・・・}* a Poisson process with rate *λ*, *{W(t):t=0・・・}* a standard Brownian motion. 
+
+#### Correlational Jumps Model
+Standart Jump Diffusion model occurs jump in one stock market and it does not affect other companies. In correlational Jumps model one jump among companies affects other stock price of a company obeying correlation coefficacies. Therefore equetions are given by  
+
+
