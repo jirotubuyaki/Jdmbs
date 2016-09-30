@@ -32,7 +32,7 @@ where $\mu$ present a draft parameter. it is a trend int the stock price.  And $
 \subsection{2.2. Poison Process}
 The Poisson Process present random phenomenons happend as time sequence. It is widely used to model random points in time and space. Poison process is given by  
 
-![equation](http://latex.codecogs.com/gif.latex?P\(X\(t+s\)-X\(t\) = k|X\(t\) =m\) = P(X\(t+s\)-X\(t\)=k\) = e^{-\\lambda_{s}}\\frac{(\\lambda s)^k}{k!})
+![equation](http://latex.codecogs.com/gif.latex?P(X(t+s)-X(t)=k) = e^{-\\lambda_{s}}\\frac{(\\lambda s)^k}{k!})
 
 where $\lambda$ is the arrival intensity. $k$ is a number something happen.
 \subsection{2.3. The Mixed-Exponential Jump Diffusion Model}
