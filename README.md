@@ -57,6 +57,58 @@ Standart Jump Diffusion model occurs jump in one stock market and it does not af
 
 Where *random_i* is a *n_th* company. And *U* is discrete uniform distribution.*Output_ij* is a correration coefficacy from *i* company to *j*. it is from result of algorithm 1. 
 
+## Installation
+If download from Github you can use devtools by the commands:
+
+```
+> library(devtools)
+> install_github("jirotubuyaki/JDM-BS")
+```
+
+Once the packages are installed, it needs to be made accessible to the current R session by the commands:
+
+```
+> library(JDM-BS)
+```
+
+For online help facilities or the details of a particular command (such as the function hmds) you can type:
+
+```
+> help(package="JDM-BS")
+```
+##Method
+This pakage has only one method. And it is excused by:
+
+```
+> premium <- normal_bs(companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
+```
+
+```
+> premium <- jdm_bs(companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
+```
+
+```
+> premium <- jdm_new_bs(data,companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
+```
+
+Let's args be
+
+* data
+* companies
+* simulation.length
+* monte_carlo
+* start_price
+* mu
+* sigma
+* K
+* k
+* col
+
+
+Then let's return be
+
+* premium
+
 #### Simulation  
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/simulation.png "eque")  
