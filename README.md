@@ -17,29 +17,29 @@ In this paper, I propose Corelational Jumps Model which have corelation of compa
 #### Black Scholes model
 There are several types of options in the stock market. Eropean call option can not excuse in duration of $T$ and its excusion price is $K$. Optin premium is calcurated under a risk-neutral probability. Eropean call option preminum is given by  
 
-![equa](https://github.con/jirotubuyaki/JDM-BS/readme_images/equation_1.png "eque")
+![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_1.png "eque")
 
 $E[x]$ express expected value of $x$. And Eropean put option premium is given by  
 
-![equa](https://github.con/jirotubuyaki/JDM-BS/readme_images/equation_2.png "eque")
+![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_2.png "eque")
 
 Black-Schole model is given by  
 
-![equa](https://github.con/jirotubuyaki/JDM-BS/readme_images/equation_3.png "eque")
+![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_3.png "eque")
 
 where $\\mu$ present a draft parameter. it is a trend int the stock price.  And $\\sigma$ is volatility. $r$ is is the risk-free interest rate.$N$ is gauss distribution.  
 #### Poison Process
 The Poisson Process present random phenomenons happend as time sequence. It is widely used to model random points in time and space. Poison process is given by    
   
-![equa](https://github.con/jirotubuyaki/JDM-BS/readme_images/equation_4.png "eque")
+![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_4.png "eque")
 
 where $\\lambda$ is the arrival intensity. $k$ is a number something happen.
 #### The Mixed-Exponential Jump Diffusion Model  
 Under the mixed-exponential jump diffusion model (MEM), the dynamics of the asset price St
 under a risk-neutral measure1 P to be used for option pricing is given by
 
-![equa](https://github.con/jirotubuyaki/JDM-BS/readme_images/equation_5.png "eque")
+![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_5.png "eque")
 
-![equa](https://github.con/jirotubuyaki/JDM-BS/readme_images/equation_6.png "eque")
+![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_6.png "eque")
 
 where $r$ is the risk-free interest rate, $\sigma$ the volatility, ${N(t):t =0\cdots}$ a Poisson process with rate $\lambda$, ${W(t):t=0\cdots}$ a standard Brownian motion.  
