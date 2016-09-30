@@ -17,7 +17,7 @@ In this paper, I propose Corelational Jumps Model which have corelation of compa
 #### Black Scholes model
 There are several types of options in the stock market. Eropean call option can not excuse in duration of $T$ and its excusion price is $K$. Optin premium is calcurated under a risk-neutral probability. Eropean call option preminum is given by  
 
-![equation](http://latex.codecogs.com/gif.latex?F = E[max(X(T)-K,0)])
+![equa](equation_1.png "eque")
 
 $E[x]$ express expected value of $x$. And Eropean put option premium is given by  
 
@@ -28,14 +28,14 @@ Black-Schole model is given by
 ![equation](http://latex.codecogs.com/gif.latex?F = e^{-rT}\\{e^{\\mu+\\frac{\\sigma^2}{2}}N(\\frac{\\mu+\\sigma^2-InK}{\\sigma})\\
 -KN(\\frac{\\mu-InK}{\\sigma})\\})
 
-where $\mu$ present a draft parameter. it is a trend int the stock price.  And $\sigma$ is volatility. $r$ is is the risk-free interest rate.$N$ is gauss distribution.
-\subsection{2.2. Poison Process}
-The Poisson Process present random phenomenons happend as time sequence. It is widely used to model random points in time and space. Poison process is given by  
+where $\\mu$ present a draft parameter. it is a trend int the stock price.  And $\\sigma$ is volatility. $r$ is is the risk-free interest rate.$N$ is gauss distribution.  
+#### Poison Process
+The Poisson Process present random phenomenons happend as time sequence. It is widely used to model random points in time and space. Poison process is given by    
   
-![equation](http://latex.codecogs.com/gif.latex?P(X(t+s)-X(t)=k)=e^{-\lambda_{s}}\frac{(\lambda s)^k}{k!})  
+![equation](http://latex.codecogs.com/gif.latex?P(X(t+s)-X(t)=k) = e^{-\lambda_{s}}\frac{(\lambda s)^k}{k!})
 
-where $\lambda$ is the arrival intensity. $k$ is a number something happen.
-\subsection{2.3. The Mixed-Exponential Jump Diffusion Model}
+where $\\lambda$ is the arrival intensity. $k$ is a number something happen.
+#### The Mixed-Exponential Jump Diffusion Model  
 Under the mixed-exponential jump diffusion model (MEM), the dynamics of the asset price St
 under a risk-neutral measure1 P to be used for option pricing is given by
 
