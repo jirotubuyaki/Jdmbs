@@ -19,7 +19,7 @@ There are several types of options in the stock market. Eropean call option can 
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_1.png "eque")
 
-$E[x]$ express expected value of *x*. And Eropean put option premium is given by  
+*E[x]* express expected value of *x*. And Eropean put option premium is given by  
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_2.png "eque")
 
