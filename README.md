@@ -17,7 +17,7 @@ In this paper, I propose Corelational Jumps Model which have corelation of compa
 #### Black Scholes model
 There are several types of options in the stock market. Eropean call option can not excuse in duration of $T$ and its excusion price is $K$. Optin premium is calcurated under a risk-neutral probability. Eropean call option preminum is given by  
 
-![equation](http://latex.codecogs.com/gif.latex?F%20%3d%20E%5bmax%28X%28T%29%2dK%2c0%29%5d)
+![equation](http://latex.codecogs.com/gif.latex?F = E[max(X(T)-K,0)])
 
 $E[x]$ express expected value of $x$. And Eropean put option premium is given by  
 
@@ -25,10 +25,7 @@ $E[x]$ express expected value of $x$. And Eropean put option premium is given by
 
 Black-Schole model is given by  
 
-```math
-F = e^{-rT}\{e^{\mu+\frac{\sigma^2}{2}}&N(\frac{\mu+\sigma^2-InK}{\sigma})\\
--K&N(\frac{\mu-InK}{\sigma})\}
-```
+![equation](http://latex.codecogs.com/gif.latex%5cF%20%3d%20e%5e%7b%2drT%7d%5c%7be%5e%7b%5cmu%2b%5cfrac%7b%5csigma%5e2%7d%7b2%7d%7d%26N%28%5cfrac%7b%5cmu%2b%5csigma%5e2%2dInK%7d%7b%5csigma%7d%29%20%2d%20KN%28%5cfrac%7b%5cmu%2dInK%7d%7b%5csigma%7d%29%5c%7d)
 
 where $\mu$ present a draft parameter. it is a trend int the stock price.  And $\sigma$ is volatility. $r$ is is the risk-free interest rate.$N$ is gauss distribution.
 \subsection{2.2. Poison Process}
