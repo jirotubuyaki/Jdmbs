@@ -17,15 +17,11 @@ In this paper, I propose Corelational Jumps Model which have corelation of compa
 #### Black Scholes model
 There are several types of options in the stock market. Eropean call option can not excuse in duration of $T$ and its excusion price is $K$. Optin premium is calcurated under a risk-neutral probability. Eropean call option preminum is given by  
 
-``` math
-F = E[max(X(T)-K,0)]
-```
+![equation](http://latex.codecogs.com/gif.latex?F%20%3d%20E%5bmax%28X%28T%29%2dK%2c0%29%5d)
 
 $E[x]$ express expected value of $x$. And Eropean put option premium is given by  
 
-```math
-F = E[max(K-X(T),0)]
-```
+![equation](http://latex.codecogs.com/gif.latex?F = E[max(K-X(T),0)])
 
 Black-Schole model is given by  
 
