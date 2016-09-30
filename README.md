@@ -46,5 +46,12 @@ where *r* is the risk-free interest rate, *σ* the volatility, *{N(t):t =0・・
 
 #### Correlational Jumps Model
 Standart Jump Diffusion model occurs jump in one stock market and it does not affect other companies. In correlational Jumps model one jump among companies affects other stock price of a company obeying correlation coefficacies. Therefore equetions are given by  
+![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_7.png "eque")  
+![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_8.png "eque")  
+![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_9.png "eque")  
+
+Where *random_i* is a *n_th* company. And *U* is discrete uniform distribution.*Output_ij* is a correration coefficacy from *i* company to *j*. it is from result of algorithm 1.  
+
+
 
 
