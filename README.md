@@ -25,16 +25,14 @@ $E[x]$ express expected value of $x$. And Eropean put option premium is given by
 
 Black-Schole model is given by  
 
-![equation](http://latex.codecogs.com/gif.latex%5cF%20%3d%20e%5e%7b%2drT%7d%5c%7be%5e%7b%5cmu%2b%5cfrac%7b%5csigma%5e2%7d%7b2%7d%7d%26N%28%5cfrac%7b%5cmu%2b%5csigma%5e2%2dInK%7d%7b%5csigma%7d%29%20%2d%20KN%28%5cfrac%7b%5cmu%2dInK%7d%7b%5csigma%7d%29%5c%7d)
+![equation](http://latex.codecogs.com/gif.latex?F = e^{-rT}\\{e^{\\mu+\\frac{\\sigma^2}{2}}N(\\frac{\\mu+\\sigma^2-InK}{\\sigma})\\
+-KN(\\frac{\\mu-InK}{\\sigma})\\})
 
 where $\mu$ present a draft parameter. it is a trend int the stock price.  And $\sigma$ is volatility. $r$ is is the risk-free interest rate.$N$ is gauss distribution.
 \subsection{2.2. Poison Process}
-The Poisson Process present random phenomenons happend as time sequence. It is widely used to model random points in time and space. Poison process is given by
+The Poisson Process present random phenomenons happend as time sequence. It is widely used to model random points in time and space. Poison process is given by  
 
-```math
-%P(X(t+s)-X(t) = k|X(t) =m) =
-P(X(t+s)-X(t)=k) = e^{-\lambda_{s}}\frac{(\lambda s)^k}{k!}
-```
+![equation](http://latex.codecogs.com/gif.latex?P\(X\(t+s\)-X\(t\) = k|X\(t\) =m\) = P(X\(t+s\)-X\(t\)=k\) = e^{-\\lambda_{s}}\\frac{(\\lambda s)^k}{k!})
 
 where $\lambda$ is the arrival intensity. $k$ is a number something happen.
 \subsection{2.3. The Mixed-Exponential Jump Diffusion Model}
