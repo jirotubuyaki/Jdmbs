@@ -31,20 +31,17 @@ Black-Schole model is given by
 where $\mu$ present a draft parameter. it is a trend int the stock price.  And $\sigma$ is volatility. $r$ is is the risk-free interest rate.$N$ is gauss distribution.
 \subsection{2.2. Poison Process}
 The Poisson Process present random phenomenons happend as time sequence. It is widely used to model random points in time and space. Poison process is given by  
-
-![equation](http://latex.codecogs.com/gif.latex?P(X(t+s)-X(t)=k) = e^{-\\lambda_{s}}\\frac{(\\lambda s)^k}{k!})
+  
+![equation](http://latex.codecogs.com/gif.latex?P(X(t+s)-X(t)=k)=e^{-\lambda_{s}}\frac{(\lambda s)^k}{k!})  
 
 where $\lambda$ is the arrival intensity. $k$ is a number something happen.
 \subsection{2.3. The Mixed-Exponential Jump Diffusion Model}
 Under the mixed-exponential jump diffusion model (MEM), the dynamics of the asset price St
 under a risk-neutral measure1 P to be used for option pricing is given by
 
-```math
-\frac{dS(t+1)}{dS(t)} &=  \mu dt + \sigma dW(t) \\ &+d(\sum_{i=1}^{N(t)}Y_{i}-1)
-```
+![equation](http://latex.codecogs.com/gif.latex?\\frac{dS(t+1)}{dS(t)} =  \\mu dt + \\sigma dW(t)+d(\\sum_{i=1}^{N(t)}Y_{i}-1))
 
-```math
-dJ_{t} = S_{t}d(\sum_{i=1}^{N(t)}V_{i}-1)
-```
+
+![equation](http://latex.codecogs.com/gif.latex?dJ_{t} = S_{t}d(\sum_{i=1}^{N(t)}V_{i}-1))
 
 where $r$ is the risk-free interest rate, $\sigma$ the volatility, ${N(t):t =0\cdots}$ a Poisson process with rate $\lambda$, ${W(t):t=0\cdots}$ a standard Brownian motion.  
