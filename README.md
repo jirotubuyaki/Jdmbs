@@ -62,19 +62,19 @@ If download from Github you can use devtools by the commands:
 
 ```
 > library(devtools)
-> install_github("jirotubuyaki/JDM-BS")
+> install_github("jirotubuyaki/Jdmbs")
 ```
 
 Once the packages are installed, it needs to be made accessible to the current R session by the commands:
 
 ```
-> library(JDM-BS)
+> library(Jdmbs)
 ```
 
 For online help facilities or the details of a particular command (such as the function hmds) you can type:
 
 ```
-> help(package="JDM-BS")
+> help(package="Jdmbs")
 ```
 ##Method
 This pakage has three method. And it is excused by:
