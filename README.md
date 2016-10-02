@@ -91,11 +91,11 @@ This pakage has three method. And it is excused by:
 > premium <- jdm_new_bs(data,companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
 ```
 
-#### Simulation  
+## Simulation  
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/simulation.png "eque")  
 
-#### Acknowledgments
+## Acknowledgments
 This activity would not have been possible without the support of my family and friends. To my family, thank you for lots of encouragement for me and inspiring me to follow my dreams. I am especially grateful to my parents, who supported me all aspects.  
 
 
