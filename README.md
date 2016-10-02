@@ -94,6 +94,8 @@ This pakage has three method. And it is excused by:
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/simulation.png "eque")  
 
+## Conclusions
+New algorithm for option price is described and explain how to use. This package can produce a option price with related companies. And several improvements are planed. Please send suggenstion and report bugs to okadaalgorithm@gmail.com.
 ## Acknowledgments
 This activity would not have been possible without the support of my family and friends. To my family, thank you for lots of encouragement for me and inspiring me to follow my dreams. I am especially grateful to my parents, who supported me all aspects.  
 
