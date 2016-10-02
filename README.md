@@ -91,24 +91,6 @@ This pakage has three method. And it is excused by:
 > premium <- jdm_new_bs(data,companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
 ```
 
-Let's args be
-
-* data
-* companies
-* simulation.length
-* monte_carlo
-* start_price
-* mu
-* sigma
-* K
-* k
-* col
-
-
-Then let's return be
-
-* premium
-
 #### Simulation  
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/simulation.png "eque")  
