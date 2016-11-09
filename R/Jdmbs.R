@@ -231,15 +231,12 @@ jdm_new_bs<- function(data, companies,simulation.length=180,monte_carlo=1000,sta
   }
   for(count in 1:monte_carlo){
     n <- qpois(1 - 1e-8, lambda = lambda * simulation.length)
-    ## simulate exponential interarrivals
     X <- rexp(n = n, rate = lambda)
     S <- c(0, cumsum(X))
     plot(x = S, y = 0:n, type = "s", xlim = c(0, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="") 
     par(new=T) 
     nSamp <- 1
-    ## simulate exponential interarrivals
     X <- matrix(rexp(n * nSamp, rate = lambda), ncol = nSamp, dimnames = list(paste("S", 1:n, sep = ""), paste("samp", 1:nSamp)))
-    # compute arrivals, and add a fictive arrival 'T0' for t = 0
     S <- apply(X, 2, cumsum)
     S <- rbind("T0" = rep(0, nSamp), S)
     head(S)
