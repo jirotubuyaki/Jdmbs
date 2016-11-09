@@ -1,4 +1,4 @@
-## Jdmbs: An R package for A Monte Carlo Option Pricingm Algorithm for Jump Diffusion Model with Correlation Companies
+## Jdmbs: An R package for A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
 
 
 ### Abstract  
@@ -46,7 +46,7 @@ under a risk-neutral measure1 P to be used for option pricing is given by
 where *r* is the risk-free interest rate, *σ* the volatility, *{N(t):t =0・・・}* a Poisson process with rate *λ*, *{W(t):t=0・・・}* a standard Brownian motion. 
 
 #### Correlational Jumps Model
-Standart Jump Diffusion model occurs jump in one stock market and it does not affect other companies. In correlational Jumps model one jump among companies affects other stock price of a company obeying correlation coefficacies. Therefore equetions are given by  
+Standard Jump Diffusion model occurs jump in one stock market and it does not affect other companies. In correlational Jumps model one jump among companies affects other stock price of a company obeying correlation coefficacies. Therefore equetions are given by  
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_7.png "eque")  
 
