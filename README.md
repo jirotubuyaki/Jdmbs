@@ -58,14 +58,16 @@ Where *random_i* is a *n_th* company. And *U* is discrete uniform distribution.*
 
 ### Correlation Companies Algorithm
 This package includes a Perl program in order to calulate a correlations of companies.  
-Please change $connect_companies parameters and use like below.  
+Please change $connect_companies parameters and use like below. output data is "data.csv" 
 
 ```
 > perl path.pl
 ```
 
-![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/companies.png "eque") 
-Figure 1. a correlations of companies
+<div style="text-align: center">
+![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/companies.png "eque")
+</div>
+<center>Figure 1. a correlations of companies</center>
 ### Installation
 If download from Github you can use devtools by the commands:
 
@@ -101,10 +103,10 @@ This pakage has three method. And it is excused by:
 ```
 
 ## Simulation  
-
+<div style="text-align: center;">
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/simulation.png "eque")  
-Figure 2. stock prices of companies
-
+</div>
+<center>Figure 2. stock prices of companies</center>
 ## Conclusions
 New algorithm for option price is described and explain how to use. This package can produce a option price with related companies. And several improvements are planed. Please send suggenstion and report bugs to okadaalgorithm@gmail.com.
 ## Acknowledgments
