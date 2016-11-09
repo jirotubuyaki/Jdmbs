@@ -68,9 +68,6 @@ Please change $connect_companies parameters and use like below. output data is "
   <div style="text-align: center">
   <img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/companies.png" height=350px>
   </div>
-   <div style="text-align: center">
-  <img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/companies.png" height=350px>
-  </div>
 </div>
 Figure 1. a correlations of companies 
 
