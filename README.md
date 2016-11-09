@@ -65,9 +65,10 @@ Please change $connect_companies parameters and use like below. output data is "
 ```
 
 <div style="text-align: center">
-![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/companies.png "eque")
+<img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/companies.png" height=300px>
 </div>
-<center>Figure 1. a correlations of companies</center>
+Figure 1. a correlations of companies  
+
 ### Installation
 If download from Github you can use devtools by the commands:
 
@@ -104,9 +105,10 @@ This pakage has three method. And it is excused by:
 
 ## Simulation  
 <div style="text-align: center;">
-![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/simulation.png "eque")  
+<img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/simulation.png" height="400px"><br>
 </div>
-<center>Figure 2. stock prices of companies</center>
+Figure 2. stock prices of companies  
+
 ## Conclusions
 New algorithm for option price is described and explain how to use. This package can produce a option price with related companies. And several improvements are planed. Please send suggenstion and report bugs to okadaalgorithm@gmail.com.
 ## Acknowledgments
