@@ -57,8 +57,8 @@ Standard Jump Diffusion model occurs jump in one stock market and it does not af
 Where *random_i* is a *n_th* company. And *U* is discrete uniform distribution.*Output_ij* is a correration coefficacy from *i* company to *j*. it is from result of algorithm 1. 
 
 ### Correlation Companies Algorithm
-In order to calculate correlation coefficiens　between all pair companies, all paths must be　enumerated in graph structure.　And variety of　algorithms to find paths are proposed. we propose　algorithm for enumeration correlations in
-a given circulation graph.　This program code produce a matrix of correlationcoefficients between all pair comapnies。
+In order to calculate correlation coefficiens between all pair companies, all paths must be enumerated in graph structure.　And variety of algorithms to find paths are proposed. We propose algorithm for enumeration correlations in
+a given circulation graph. This program code produce a matrix of correlationcoefficients between all pair comapnies.
 This package includes a Perl program in order to calulate a correlations of companies.  
 Please change $connect_companies parameters and use like below. output data is "data.csv" 
 
