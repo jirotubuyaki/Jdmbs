@@ -91,14 +91,15 @@ For online help facilities or the details of a particular command (such as the f
 ##Method
 This pakage has three method. And it is excused by:
 
+It is normal model for monte carlo:
 ```
 > premium <- normal_bs(companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
 ```
-
+Jump Diffusion for monte carlo:
 ```
 > premium <- jdm_bs(companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
 ```
-
+It is a proposed method for monte carlo. data.csv must be required:
 ```
 > premium <- jdm_new_bs(data,companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
 ```
