@@ -64,11 +64,28 @@ Please change $connect_companies parameters and use like below. output data is "
 ```
 > perl path.pl
 ```
-
-<div style="text-align: center">
-<img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/companies.png" height=350px>
+<div>
+  <div style="text-align: center">
+  <img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/companies.png" height=350px>
+  </div>
+   <div style="text-align: center">
+  <img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/companies.png" height=350px>
+  </div>
 </div>
-Figure 1. a correlations of companies  
+Figure 1. a correlations of companies 
+
+
+Table 1: Result for correlation coefficents of companies  
+
+| | 1 | 2 | 3 | 4 | 5 | 6 |
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+1 | 1 | 0.98 | 0.49 | -0.8 | 0.92 | -0.184|
+2 | 0.24 | 1 | 0.5 | -0.192 | 0.52 | -0.104|
+3 | 0.144 | 0.6 | 1 | -0.1152 | 0.312 | -0.0624|
+4 | -0.8 | -0.784 | -0.392 | 1 | -0.736 | 0.1472|
+5 | 0.16 | 0.38 | 0.19 | -0.128 | 1 | -0.2 |
+6 | -0.032 | -0.076 | -0.038 | 0.0256 | -0.2 | 1 |
+ 
 
 ### Installation
 If download from Github you can use devtools by the commands:
