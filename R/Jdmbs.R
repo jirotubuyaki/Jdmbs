@@ -8,7 +8,7 @@ normal_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_pric
   #k <- 5;
   #companies <- 6;
   #col <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
-  
+
   lambda <- 1 / simulation.length
   dt <-  1 / simulation.length
   timeline <- seq(0,simulation.length-1,1)
@@ -28,32 +28,32 @@ normal_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_pric
     for(i in 2:simulation.length){
       for(number in 1:companies){
         f[number,i] <- f[number,i-1]+sqrt(dt)*rnorm(1)
-        g[number,i] <- g[number,1]*exp((mu[number]-lambda * k-(sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i])	
+        g[number,i] <- g[number,1]*exp((mu[number]-lambda * k-(sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i])
         if(g[number,i] > price_limit){price_limit <- g[number,i];}
       }
     }
     for (j in 1:companies){
-      price_sim[j,count] <- g[j,simulation.length];		
+      price_sim[j,count] <- g[j,simulation.length];
     }
     if(count == 1){
       plot(timeline,g[1,],xlab="t",ylab="price", ylim=c(-1000,price_limit),xlim=c(0,simulation.length),xaxp=c(0,simulation.length,simulation.length/10),type="l", col="black",lwd = 0.10,cex.axis = 0.6,cex.lab = 0.8);
-      par(new=T) 
+      par(new=T)
       for (i in 1:companies){
-        plot(timeline,g[i,], ylim=c(0,price_limit),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);	  	
-        par(new=T)		
-      }		
+        plot(timeline,g[i,], ylim=c(0,price_limit),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
+        par(new=T)
+      }
     }
     else{
       for (i in 1:companies){
         plot(timeline,g[i,], ylim=c(0,price_limit),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
-        par(new=T)		
-      }		
+        par(new=T)
+      }
     }
   }
-  par(new=T) 
+  par(new=T)
   title(main="Geometric Brownian Motion", col.main="black", font.main=1,cex.main = 0.8)
   #legend(1,8000, c("mu = 0.7,  sigma = 0.5"), cex=0.8, col=c("black"), pch=1, lty=1);
-  
+
   call_premium <- numeric(companies);
   put_premium <- numeric(companies);
   for(i in 1:companies){
@@ -81,7 +81,7 @@ normal_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_pric
   print("Call Option Price:");
   print(call_premium);
   print("Put Option Price:");
-  print(put_premium);	
+  print(put_premium);
   names(call_premium) <- "Call Option Price";
   names(put_premium) <- "Put Option Price";
   premium <- list(call_premium,put_premium);
@@ -97,7 +97,7 @@ jdm_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_price,m
   #k <- 5;
   #companies <- 6;
   #col <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
-  
+
   lambda <- 1 / simulation.length
   dt <-  1 / simulation.length
   timeline <- seq(0,simulation.length-1,1)
@@ -114,8 +114,8 @@ jdm_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_price,m
     n <- qpois(1 - 1e-8, lambda = lambda * simulation.length)
     X <- rexp(n = n, rate = lambda)
     S <- c(0, cumsum(X))
-    plot(x = S, y = 0:n, type = "s", xlim = c(0, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="") 
-    par(new=T) 
+    plot(x = S, y = 0:n, type = "s", xlim = c(0, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="")
+    par(new=T)
     nSamp <- 1
     X <- matrix(rexp(n * nSamp, rate = lambda), ncol = nSamp, dimnames = list(paste("S", 1:n, sep = ""), paste("samp", 1:nSamp)))
     S <- apply(X, 2, cumsum)
@@ -141,38 +141,38 @@ jdm_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_price,m
         }
         else{
           f[number,i] <- f[number,i-1]+sqrt(dt)*rnorm(1)
-          g[number,i] <- g[number,1]*exp((mu[number]-lambda * k-(sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)	
+          g[number,i] <- g[number,1]*exp((mu[number]-lambda * k-(sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
         }
         if(g[number,i] > price_limit){price_limit <- g[number,i];}
-        
+
       }
       if(flag_jump == "on"){jump_count <- jump_count + 1}
     }
     for (j in 1:companies){
-      price_sim[j,count] <- g[j,simulation.length];		
+      price_sim[j,count] <- g[j,simulation.length];
     }
-    
+
     if(count == 1){
       plot(timeline,g[1,],xlab="t",ylab="price", ylim=c(-1000,price_limit+100),xlim=c(0,simulation.length),xaxp=c(0,simulation.length,simulation.length/10),type="l", col="black",lwd = 0.10,cex.axis = 0.6,cex.lab = 0.8);
-      par(new=T) 
+      par(new=T)
       for (i in 1:companies){
-        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);	  	
-        par(new=T)		
-      }		
+        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
+        par(new=T)
+      }
     }
     else{
       for (i in 1:companies){
         plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
-        par(new=T)		
-      }		
+        par(new=T)
+      }
     }
   }
-  
+
   matplot(x = S, y=0:n, type ="s", col="black", ylim=c(0,price_limit+100), xlim=c(0,simulation.length), lwd = 0.5, cex.axis = 0.6, cex.lab = 0.8, axes=FALSE, xlab="", ylab="")
-  par(new=T) 
+  par(new=T)
   title(main="Geometric Brownian Motion", col.main="black", font.main=1,cex.main = 0.8)
   #legend(1,8000, c("mu = 0.7,  sigma = 0.5"), cex=0.8, col=c("black"), pch=1, lty=1);
-  
+
   call_premium <- numeric(companies);
   put_premium <- numeric(companies);
   for(i in 1:companies){
@@ -201,7 +201,7 @@ jdm_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_price,m
   print(call_premium);
   print("Put Option Price:");
   print(put_premium);
-  
+
   premium <- list(call_premium,put_premium);
   return (invisible(premium));
 }
@@ -216,7 +216,7 @@ jdm_new_bs<- function(data, companies,simulation.length=180,monte_carlo=1000,sta
   #k <- 5;
   #companies <- 6;
   #col <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
-  
+
   lambda <- 1 / simulation.length
   dt <-  1 / simulation.length
   timeline <- seq(0,simulation.length-1,1)
@@ -233,8 +233,8 @@ jdm_new_bs<- function(data, companies,simulation.length=180,monte_carlo=1000,sta
     n <- qpois(1 - 1e-8, lambda = lambda * simulation.length)
     X <- rexp(n = n, rate = lambda)
     S <- c(0, cumsum(X))
-    plot(x = S, y = 0:n, type = "s", xlim = c(0, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="") 
-    par(new=T) 
+    plot(x = S, y = 0:n, type = "s", xlim = c(0, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="")
+    par(new=T)
     nSamp <- 1
     X <- matrix(rexp(n * nSamp, rate = lambda), ncol = nSamp, dimnames = list(paste("S", 1:n, sep = ""), paste("samp", 1:nSamp)))
     S <- apply(X, 2, cumsum)
@@ -249,7 +249,7 @@ jdm_new_bs<- function(data, companies,simulation.length=180,monte_carlo=1000,sta
       for(number in 1:companies){
         if(S[jump_count,] <= i){
           flag_jump <- "on";
-          
+
           if(runif(1,min=0,max=1) >= 0.5){
             jump[number] <- jump[number] + exp(rlnorm(1,meanlog=0.2, sdlog=0.5)*data[jump_company[jump_count-1],number]);
           }
@@ -261,38 +261,38 @@ jdm_new_bs<- function(data, companies,simulation.length=180,monte_carlo=1000,sta
         }
         else{
           f[number,i] <- f[number,i-1]+sqrt(dt)*rnorm(1)
-          g[number,i] <- g[number,1]*exp((mu[number]-lambda * k-(sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)	
+          g[number,i] <- g[number,1]*exp((mu[number]-lambda * k-(sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
         }
         if(g[number,i] > price_limit){price_limit <- g[number,i];}
-        
+
       }
       if(flag_jump == "on"){jump_count <- jump_count + 1}
     }
     for (j in 1:companies){
-      price_sim[j,count] <- g[j,simulation.length];		
+      price_sim[j,count] <- g[j,simulation.length];
     }
-    
+
     if(count == 1){
       plot(timeline,g[1,],xlab="t",ylab="price", ylim=c(-1000,price_limit+100),xlim=c(0,simulation.length),xaxp=c(0,simulation.length,simulation.length/10),type="l", col="black",lwd = 0.10,cex.axis = 0.6,cex.lab = 0.8);
-      par(new=T) 
+      par(new=T)
       for (i in 1:companies){
-        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);	  	
-        par(new=T)		
-      }		
+        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
+        par(new=T)
+      }
     }
     else{
       for (i in 1:companies){
         plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
-        par(new=T)		
-      }		
+        par(new=T)
+      }
     }
   }
-  
+
   matplot(x = S, y=0:n, type ="s", col="black", ylim=c(0,price_limit+100), xlim=c(0,simulation.length), lwd = 0.5, cex.axis = 0.6, cex.lab = 0.8, axes=FALSE, xlab="", ylab="")
-  par(new=T) 
+  par(new=T)
   title(main="Geometric Brownian Motion", col.main="black", font.main=1,cex.main = 0.8)
   #legend(1,8000, c("mu = 0.7,  sigma = 0.5"), cex=0.8, col=c("black"), pch=1, lty=1);
-  
+
   call_premium <- numeric(companies);
   put_premium <- numeric(companies);
   for(i in 1:companies){
@@ -321,7 +321,7 @@ jdm_new_bs<- function(data, companies,simulation.length=180,monte_carlo=1000,sta
   print(call_premium);
   print("Put Option Price:");
   print(put_premium);
-  
+
   premium <- list(call_premium,put_premium);
   return (invisible(premium));
 }
