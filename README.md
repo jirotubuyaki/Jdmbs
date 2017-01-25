@@ -108,16 +108,27 @@ This package has three method. And it is excused by:
 
 It is normal model for monte carlo:
 ```
-> premium <- normal_bs(companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
+> premium <- normal_bs(companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,color);
 ```
 Jump Diffusion for monte carlo:
 ```
-> premium <- jdm_bs(companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
+> premium <- jdm_bs(companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,color);
 ```
 It is a proposed method for monte carlo. data.csv must be required:
 ```
-> premium <- jdm_new_bs(data,companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col);
+> premium <- jdm_new_bs(data,companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,color);
 ```
+Let's args be
+
+* data is a correlation coefficients of companies in "data.csv" file.   
+* companies is a number of simulate companies.  
+* simulation.length is a duration of simulation.  
+* monte_carlo is a iteration number of monte carlo.  
+* start_price is a list of initial price of company stock prices.  
+* mu is a list of parameters of geometric brown motions.  
+* K is a list of option execution prices.  
+* color is a list of colors in plot.  
+
 
 ## Simulation
 <div style="text-align: center;">
