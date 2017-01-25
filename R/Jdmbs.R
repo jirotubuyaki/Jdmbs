@@ -6,7 +6,7 @@ normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_p
   #monte_carlo <- 1000;
   #K <- c(1000,1000,1000,2100,1800,200);
   #companies <- 6;
-  #col <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
+  #color <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
 
   lambda <- 1 / simulation.length
   dt <-  1 / simulation.length
@@ -15,8 +15,7 @@ normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_p
   g <- array(0,c(companies, simulation.length))
   premium <- c(0,0,0,0,0,0);
   price_limit <-0;
-  ##########################################################
-  #junp process with correlation companies
+
   f <- array(0,c(companies, simulation.length))
   for(count in 1:companies){
     g[count,1] <- start_price[count];
@@ -92,7 +91,7 @@ jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_pric
   #monte_carlo <- 1000;
   #K <- c(1000,1000,1000,2100,1800,200);
   #companies <- 6;
-  #col <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
+  #color <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
 
   lambda <- 1 / simulation.length
   dt <-  1 / simulation.length
@@ -211,7 +210,7 @@ jdm_new_bs<- function(data, companies, simulation.length=180, monte_carlo=1000, 
   #monte_carlo <- 1000;
   #K <- c(1000,1000,1000,2100,1800,200);
   #companies <- 6;
-  #col <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
+  #color <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
 
   lambda <- 1 / simulation.length
   dt <-  1 / simulation.length
