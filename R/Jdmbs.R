@@ -1,11 +1,10 @@
-normal_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col) {
+normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_price, mu, sigma, K, color) {
   #simulation.length <- 180;
   #start_price<- c(1000,500,500,1500,1250,800);
   #mu <- c(1,1.5,2,0.8,0.4,0.25);
   #sigma <- c(0.4,0.4,0.5,0.3,0.8,0.15);
   #monte_carlo <- 1000;
   #K <- c(1000,1000,1000,2100,1800,200);
-  #k <- 5;
   #companies <- 6;
   #col <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
 
@@ -15,8 +14,6 @@ normal_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_pric
   price_sim <-array(0,c(companies, monte_carlo));
   g <- array(0,c(companies, simulation.length))
   premium <- c(0,0,0,0,0,0);
-  jump <- c(0,0,0,0,0,0);
-  jump_count <- 2;
   price_limit <-0;
   ##########################################################
   #junp process with correlation companies
@@ -28,7 +25,7 @@ normal_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_pric
     for(i in 2:simulation.length){
       for(number in 1:companies){
         f[number,i] <- f[number,i-1]+sqrt(dt)*rnorm(1)
-        g[number,i] <- g[number,1]*exp((mu[number]-lambda * k-(sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i])
+        g[number,i] <- g[number,1]*exp((mu[number] - (sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i])
         if(g[number,i] > price_limit){price_limit <- g[number,i];}
       }
     }
@@ -87,14 +84,13 @@ normal_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_pric
   premium <- list(call_premium,put_premium);
   return (invisible(premium));
 }
-jdm_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col) {
+jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_price, mu, sigma,K, color) {
   #simulation.length <- 180;
   #start_price <- c(1000,500,500,1500,1250,800);
   #mu <- c(1,1.5,2,0.8,0.4,0.25);
   #sigma <- c(0.4,0.4,0.5,0.3,0.8,0.15);
   #monte_carlo <- 1000;
   #K <- c(1000,1000,1000,2100,1800,200);
-  #k <- 5;
   #companies <- 6;
   #col <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
 
@@ -105,6 +101,7 @@ jdm_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_price,m
   g <- array(0,c(companies, simulation.length))
   jump <- c(0,0,0,0,0,0);
   jump_count <- 2;
+  premium <- c(0,0,0,0,0,0);
   price_limit <-0;
   f <- array(0,c(companies, simulation.length))
   for(count in 1:companies){
@@ -137,11 +134,11 @@ jdm_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_price,m
             jump[number] <- jump[number] - exp(rlnorm(1,meanlog=0.2, sdlog=0.5));
           }
           f[number,i] <- f[number,i-1]+sqrt(dt)*rnorm(1)
-          g[number,i] <- g[number,1]*exp((mu[number]-lambda * k-(sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
+          g[number,i] <- g[number,1]*exp((mu[number] - (sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
         }
         else{
           f[number,i] <- f[number,i-1]+sqrt(dt)*rnorm(1)
-          g[number,i] <- g[number,1]*exp((mu[number]-lambda * k-(sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
+          g[number,i] <- g[number,1]*exp((mu[number] - (sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
         }
         if(g[number,i] > price_limit){price_limit <- g[number,i];}
 
@@ -205,7 +202,7 @@ jdm_bs<- function(companies,simulation.length=180,monte_carlo=1000,start_price,m
   premium <- list(call_premium,put_premium);
   return (invisible(premium));
 }
-jdm_new_bs<- function(data, companies,simulation.length=180,monte_carlo=1000,start_price,mu,sigma,K,k,col) {
+jdm_new_bs<- function(data, companies, simulation.length=180, monte_carlo=1000, start_price, mu, sigma, K, color) {
   #data <- read.table("data.csv", sep=",");
   #simulation.length <- 180;
   #start_price <- c(1000,500,500,1500,1250,800);
@@ -213,7 +210,6 @@ jdm_new_bs<- function(data, companies,simulation.length=180,monte_carlo=1000,sta
   #sigma <- c(0.4,0.4,0.5,0.3,0.8,0.15);
   #monte_carlo <- 1000;
   #K <- c(1000,1000,1000,2100,1800,200);
-  #k <- 5;
   #companies <- 6;
   #col <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
 
@@ -224,6 +220,7 @@ jdm_new_bs<- function(data, companies,simulation.length=180,monte_carlo=1000,sta
   g <- array(0,c(companies, simulation.length))
   jump <- c(0,0,0,0,0,0);
   jump_count <- 2;
+  premium <- c(0,0,0,0,0,0);
   price_limit <-0;
   f <- array(0,c(companies, simulation.length))
   for(count in 1:companies){
@@ -257,11 +254,11 @@ jdm_new_bs<- function(data, companies,simulation.length=180,monte_carlo=1000,sta
             jump[number] <- jump[number] - exp(rlnorm(1,meanlog=0.2, sdlog=0.5)*data[jump_company[jump_count-1],number]);
           }
           f[number,i] <- f[number,i-1]+sqrt(dt)*rnorm(1)
-          g[number,i] <- g[number,1]*exp((mu[number]-lambda * k-(sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
+          g[number,i] <- g[number,1]*exp((mu[number] - (sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
         }
         else{
           f[number,i] <- f[number,i-1]+sqrt(dt)*rnorm(1)
-          g[number,i] <- g[number,1]*exp((mu[number]-lambda * k-(sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
+          g[number,i] <- g[number,1]*exp((mu[number] - (sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
         }
         if(g[number,i] > price_limit){price_limit <- g[number,i];}
 
