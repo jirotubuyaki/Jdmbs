@@ -184,6 +184,7 @@ Let's args be
 * monte_carlo is a iteration number of monte carlo.  
 * start_price is a list of initial price of company stock prices.  
 * mu is a list of parameters of geometric brown motions.  
+* sigma is a list of parameters of geometric brown motions.  
 * K is a list of option execution prices.  
 * color is a list of colors in plot.  
 
