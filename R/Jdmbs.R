@@ -8,7 +8,6 @@ normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_p
   #companies <- 6;
   #color <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
 
-  lambda <- 1 / simulation.length
   dt <-  1 / simulation.length
   timeline <- seq(0,simulation.length-1,1)
   price_sim <-array(0,c(companies, monte_carlo));
