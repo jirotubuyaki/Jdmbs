@@ -31,16 +31,16 @@ normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_p
       price_sim[j,count] <- g[j,simulation.length];
     }
     if(count == 1){
-      plot(timeline,g[1,],xlab="t",ylab="price", ylim=c(-1000,price_limit),xlim=c(0,simulation.length),xaxp=c(0,simulation.length,simulation.length/10),type="l", col="black",lwd = 0.10,cex.axis = 0.6,cex.lab = 0.8);
+      plot(timeline,g[1,],xlab="t",ylab="price", ylim=c(-1000,price_limit),xlim=c(0,simulation.length),xaxp=c(0,simulation.length,simulation.length/10),type="l", col="black",lwd = 0.010,cex.axis = 0.6,cex.lab = 0.8);
       par(new=T)
       for (i in 1:companies){
-        plot(timeline,g[i,], ylim=c(0,price_limit),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
+        plot(timeline,g[i,], ylim=c(0,price_limit),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=color[i],lwd = 0.010,cex.axis = 0.6);
         par(new=T)
       }
     }
     else{
       for (i in 1:companies){
-        plot(timeline,g[i,], ylim=c(0,price_limit),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
+        plot(timeline,g[i,], ylim=c(0,price_limit),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=color[i],lwd = 0.010,cex.axis = 0.6);
         par(new=T)
       }
     }
@@ -151,13 +151,13 @@ jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_pric
       plot(timeline,g[1,],xlab="t",ylab="price", ylim=c(-1000,price_limit+100),xlim=c(0,simulation.length),xaxp=c(0,simulation.length,simulation.length/10),type="l", col="black",lwd = 0.10,cex.axis = 0.6,cex.lab = 0.8);
       par(new=T)
       for (i in 1:companies){
-        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
+        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=color[i],lwd = 0.10,cex.axis = 0.6);
         par(new=T)
       }
     }
     else{
       for (i in 1:companies){
-        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
+        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=color[i],lwd = 0.10,cex.axis = 0.6);
         par(new=T)
       }
     }
@@ -271,13 +271,13 @@ jdm_new_bs<- function(data, companies, simulation.length=180, monte_carlo=1000, 
       plot(timeline,g[1,],xlab="t",ylab="price", ylim=c(-1000,price_limit+100),xlim=c(0,simulation.length),xaxp=c(0,simulation.length,simulation.length/10),type="l", col="black",lwd = 0.10,cex.axis = 0.6,cex.lab = 0.8);
       par(new=T)
       for (i in 1:companies){
-        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
+        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=color[i],lwd = 0.10,cex.axis = 0.6);
         par(new=T)
       }
     }
     else{
       for (i in 1:companies){
-        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=col[i],lwd = 0.10,cex.axis = 0.6);
+        plot(timeline,g[i,], ylim=c(0,price_limit+100),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=color[i],lwd = 0.10,cex.axis = 0.6);
         par(new=T)
       }
     }
