@@ -115,11 +115,34 @@ $$
 Where $random_i$ is a $n_{th}$ company. And $U$ is discrete uniform distribution. $Output_{ij}$ is a correlation coefficients from $i$ company to $ j $. it is from result of algorithm 1.
 
 ## Correlation Companies Algorithm
-In order to calculate correlation coefficients between all pair companies, all paths must be enumerated in graph structure.　And variety of algorithms to find paths are proposed. We propose algorithm for enumeration correlations in
-a given circulation graph. This program code produce a matrix of correlation coefficients between all pair companies.
-This package includes a Perl program in order to calculate a correlations of companies.  
-Please change connect_companies parameters and use like below.  
-output data is "data.csv"  
+In order to calculate correlation coefficients between all pair companies, all paths must be enumerated in graph structure.　And variety of algorithms to find paths are proposed. We propose algorithm for enumeration correlations in a given circulation graph. This program code produce a matrix of correlation coefficients between all pair companies.
+
+```{r,echo=FALSE,warnings=FALSE,messages=FALSE,results='hide',fig.align='center', fig.width=60, fig.height=30, dpi=300,out.width='10cm'}
+library(igraph);
+dis.mat <- read.table("~/Desktop/GitHub/Jdmbs/data/graph.csv", sep=",");
+g <- graph.data.frame(dis.mat[1:2]);
+E(g)$weight <- dis.mat[[3]];
+reciprocity(g)
+dyad.census(g)
+is.mutual(g)
+plot(g,
+	layout=layout.fruchterman.reingold,
+	vertex.size=30,
+	vertex.color="deepskyblue",
+	vertex.label.color="white",
+	vertex.label.cex=10,
+	edge.label=E(g)$weight,
+	edge.color="gray",
+	edge.label.color="black",
+	edge.label.cex = 10,
+	edge.arrow.size =0.6,
+	edge.width =0.5,
+	edge.curved=seq(-0.75, -0.75, length = ecount(g))
+	);
+```
+・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・Figure1: The relation of companies
+
+This package includes a Perl program in order to calculate a correlations of companies. Please change connect_companies parameters and use like below. output data is "data.csv"  
 
 ```
 > perl path.pl
@@ -188,7 +211,7 @@ Let's args be
 * K is a list of option execution prices.
 * color is a list of colors in plot.
 
-```{r, echo=FALSE, fig.width=60, fig.height=30, dpi=300,out.width='16.5cm'}
+```{r, echo=FALSE, fig.width=60, fig.align='center', fig.height=30, dpi=300,out.width='16.5cm'}
 load("~/Desktop/GitHub/Jdmbs/data/data.rda")
 simulation.length <- 180;
 start_price<- c(1000,500,500,1500,1250,800);
@@ -202,7 +225,7 @@ normal_bs(companies, simulation.length=180, monte_carlo=1000, start_price, mu, s
 ```
 
 
-　　　　　　　　　　　Figure1: Simulation Result of Geometric Brownian Motion
+　　　　　　　　　　　Figure2: Simulation Result of Geometric Brownian Motion
 
 ## Conclusions
 New algorithm for option price is described and explain how to use. This package can produce a option price with related companies. And several improvements are planed. Please send suggestions and report bugs to okadaalgorithm@gmail.com.
