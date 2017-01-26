@@ -31,16 +31,16 @@ normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_p
       price_sim[j,count] <- g[j,simulation.length];
     }
     if(count == 1){
-      plot(timeline,g[1,],xlab="t",ylab="price", ylim=c(-1000,price_limit),xlim=c(0,simulation.length),xaxp=c(0,simulation.length,simulation.length/10),type="l", col="black",lwd = 0.010,cex.axis = 0.6,cex.lab = 0.8);
+      plot(timeline,g[1,],xlab="t",ylab="price", ylim=c(-1000,price_limit),xlim=c(0,simulation.length),xaxp=c(0,simulation.length,simulation.length/10),type="l", col="black",lwd = 0.10,cex.axis = 0.6,cex.lab = 0.8);
       par(new=T)
       for (i in 1:companies){
-        plot(timeline,g[i,], ylim=c(0,price_limit),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=color[i],lwd = 0.010,cex.axis = 0.6);
+        plot(timeline,g[i,], ylim=c(0,price_limit),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=color[i],lwd = 0.10,cex.axis = 0.6);
         par(new=T)
       }
     }
     else{
       for (i in 1:companies){
-        plot(timeline,g[i,], ylim=c(0,price_limit),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=color[i],lwd = 0.010,cex.axis = 0.6);
+        plot(timeline,g[i,], ylim=c(0,price_limit),xlim=c(0,simulation.length),xlab="",ylab="",axes=FALSE,type="l", col=color[i],lwd = 0.10,cex.axis = 0.6);
         par(new=T)
       }
     }
@@ -163,7 +163,7 @@ jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_pric
     }
   }
 
-  matplot(x = S, y=0:n, type ="s", col="black", ylim=c(0,price_limit+100), xlim=c(0,simulation.length), lwd = 0.5, cex.axis = 0.6, cex.lab = 0.8, axes=FALSE, xlab="", ylab="")
+  matplot(x = S, y=0:n, type ="s", col="black", ylim=c(0,price_limit+100), xlim=c(0,simulation.length), lwd = 0.1, cex.axis = 0.6, cex.lab = 0.8, axes=FALSE, xlab="", ylab="")
   par(new=T)
   title(main="Geometric Brownian Motion", col.main="black", font.main=1,cex.main = 0.8)
   #legend(1,8000, c("mu = 0.7,  sigma = 0.5"), cex=0.8, col=c("black"), pch=1, lty=1);
