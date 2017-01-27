@@ -3,13 +3,14 @@ Type: Package
 Title: An R Package for A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
 Version: 1.0
 Date: 2016-09-25
-Authors@R: c( 
+Authors@R: c(
   person("Masashi", "Okada", role = c("aut", "cre"), email="okadaalgorithm@gmail.com")
   )
-Description: Black-Scholes model is important to calcurate option premium in stock market. And variety of jump diffusion model as time-series of stock price are studied. In this package, we propose new jumps diffusion model with corelational companies in order to culculate option pricing in a stock market. This model express corelation of companies as directed graph structure have a weight of corelation coeffect among companies. And calcurate option premiums together. 
+Description: Black-Scholes model is important to calcurate option premium in stock market. And variety of jump diffusion model as time-series of stock price are studied. In this package, we propose new jumps diffusion model with corelational companies in order to culculate option pricing in a stock market. This model express corelation of companies as directed graph structure have a weight of corelation coeffect among companies. And calcurate option premiums together.
 Depends:
     R (>= 3.2.3)
 License: GPL (>= 2)
+Imports: igraph
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1
