@@ -1,6 +1,9 @@
 ## ----echo=FALSE,warnings=FALSE,messages=FALSE,results='hide',fig.align='center', fig.width=60, fig.height=30, dpi=300,out.width='10cm'----
 library(igraph);
-dis.mat <- read.table("../data/graph.csv", sep=",");
+company_1<- c(1,1,1,2,2,2,3,4,5,5,5,6);
+company_2 <- c(2,5,4,1,3,5,2,1,1,2,6,5);
+weight <- c(0.8,0.6,-0.8,0.2,0.5,0.4,0.6,-0.8,0.1,0.3,-0.2,-0.2);
+dis.mat<- data.frame(Company_1=company_1, Company_2=company_2, WEIGHT=weight);
 g <- graph.data.frame(dis.mat[1:2]);
 E(g)$weight <- dis.mat[[3]];
 reciprocity(g)
