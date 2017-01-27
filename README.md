@@ -124,11 +124,11 @@ Let's args be
 * companies is a number of simulate companies.  
 * simulation.length is a duration of simulation.  
 * monte_carlo is a iteration number of monte carlo.  
-* start_price is a list of initial price of company stock prices.  
-* mu is a list of parameters of geometric brown motions.  
-* K is a list of option execution prices.  
+* start_price is a vector of initial price of company stock prices.  
+* mu is a vector of parameters of geometric brown motions.  
+* K is a vecotor of option execution prices.  
 * color is a list of colors in plot.  
-
+* return is a premium of a list with (call_premium, put_premium)
 
 ## Simulation
 <div style="text-align: center;">

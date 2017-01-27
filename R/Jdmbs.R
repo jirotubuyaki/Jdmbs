@@ -1,3 +1,15 @@
+#' Normal A Monte Carlo Option Pricing Algorithm
+#' @param  companies is a number of simulate companies.
+#' @param  simulation.length is a duration of simulation.
+#' @param  monte_carlo is a iteration number of monte carlo.
+#' @param  start_price is a vector of initial price of company stock prices.
+#' @param  mu is a vector of parameters of geometric brown motions.
+#' @param  sigma is a voctor of parameters of geometric brown motions.
+#' @param  K is a vector of option execution prices.
+#' @param  color is a vector of colors in plot.
+#' @return premium of a list with (call_premium, put_premium)
+#' @examples
+#' normal_bs(1, simulation.length=180, monte_carlo=1000, 1000, 1, 0.6, 1200, "blue")
 normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_price, mu, sigma, K, color) {
   #simulation.length <- 180;
   #start_price<- c(1000,500,500,1500,1250,800);
@@ -82,6 +94,18 @@ normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_p
   premium <- list(call_premium,put_premium);
   return (invisible(premium));
 }
+#' A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model
+#' @param  companies is a number of simulate companies.
+#' @param  simulation.length is a duration of simulation.
+#' @param  monte_carlo is a iteration number of monte carlo.
+#' @param  start_price is a vector of initial price of company stock prices.
+#' @param  mu is a vector of parameters of geometric brown motions.
+#' @param  sigma is a voctor of parameters of geometric brown motions.
+#' @param  K is a vector of option execution prices.
+#' @param  color is a vector of colors in plot.
+#' @return premium of a list with (call_premium, put_premium)
+#' @examples
+#' jdm_bs(1, simulation.length=180, monte_carlo=1000, 1000, 1, 0.6, 1200, "blue")
 jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_price, mu, sigma,K, color) {
   #simulation.length <- 180;
   #start_price <- c(1000,500,500,1500,1250,800);
@@ -200,6 +224,19 @@ jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_pric
   premium <- list(call_premium,put_premium);
   return (invisible(premium));
 }
+#' A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
+#' @param  data is a correlation coefficients of companies in “data.csv” file.
+#' @param  companies is a number of simulate companies.
+#' @param  simulation.length is a duration of simulation.
+#' @param  monte_carlo is a iteration number of monte carlo.
+#' @param  start_price is a vector of initial price of company stock prices.
+#' @param  mu is a vector of parameters of geometric brown motions.
+#' @param  sigma is a voctor of parameters of geometric brown motions.
+#' @param  K is a vector of option execution prices.
+#' @param  color is a vector of colors in plot.
+#' @return premium of a list with (call_premium, put_premium)
+#' @examples
+#' jdm_new_bs(matrix(0.6, nrow=6, ncol=6), simulation.length=90, monte_carlo=500, c(1000,500,500,1500,1250,800), c(1,1.5,2,0.8,0.4,0.25), c(0.4,0.4,0.5,0.3,0.8,0.15), c(1000,1000,1000,2100,1800,200), c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred"))
 jdm_new_bs<- function(data, companies, simulation.length=180, monte_carlo=1000, start_price, mu, sigma, K, color) {
   #data <- read.table("data.csv", sep=",");
   #simulation.length <- 180;
