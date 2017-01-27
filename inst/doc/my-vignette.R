@@ -1,6 +1,6 @@
 ## ----echo=FALSE,warnings=FALSE,messages=FALSE,results='hide',fig.align='center', fig.width=60, fig.height=30, dpi=300,out.width='10cm'----
 library(igraph);
-dis.mat <- read.table("~/Desktop/GitHub/Jdmbs/data/graph.csv", sep=",");
+dis.mat <- read.table("../data/graph.csv", sep=",");
 g <- graph.data.frame(dis.mat[1:2]);
 E(g)$weight <- dis.mat[[3]];
 reciprocity(g)
@@ -22,7 +22,8 @@ plot(g,
 	);
 
 ## ---- echo=FALSE, fig.width=60, fig.align='center', fig.height=28, dpi=300,out.width='16.5cm'----
-load("~/Desktop/GitHub/Jdmbs/data/data.rda")
+load("../data/data.rda")
+source('../R/Jdmbs.R')
 simulation.length <- 180;
 start_price<- c(1000,500,500,1500,1250,800);
 mu <- c(1,1.5,2,0.8,0.4,0.25);

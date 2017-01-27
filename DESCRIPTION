@@ -10,10 +10,11 @@ Description: Black-Scholes model is important to calcurate option premium in sto
 Depends:
     R (>= 3.2.3)
 License: GPL (>= 2)
-Imports: igraph
+Imports: igraph, rmarkdown
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1
 Maintainer: Masashi Okada <okadaalgorithm@gmail.com>
-Suggests: knitr
+Suggests: knitr,
+    testthat
 VignetteBuilder: knitr
