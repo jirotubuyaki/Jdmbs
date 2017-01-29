@@ -2,23 +2,25 @@
 % Please edit documentation in R/JdmbsJump.R
 \name{jdm_bs}
 \alias{jdm_bs}
-\title{A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model}
+\title{Monte Carlo Option Pricing Algorithm for Jump Diffusion Model}
 \usage{
 jdm_bs(companies, simulation.length = 180, monte_carlo = 1000, start_price,
-  mu, sigma, K, color)
+  mu, sigma, event_times, K, color)
 }
 \arguments{
-\item{companies}{is a number of simulate companies.}
+\item{companies}{is a j of simulate companies.}
 
 \item{simulation.length}{is a duration of simulation.}
 
-\item{monte_carlo}{is a iteration number of monte carlo.}
+\item{monte_carlo}{is a iteration j of monte carlo.}
 
-\item{start_price}{is a vector of initial price of company stock prices.}
+\item{start_price}{is a vector of initial price of j stock prices.}
 
 \item{mu}{is a vector of parameters of geometric brown motions.}
 
 \item{sigma}{is a voctor of parameters of geometric brown motions.}
+
+\item{event_times}{is somethings happen how many times in Unit time.}
 
 \item{K}{is a vector of option execution prices.}
 
@@ -28,9 +30,10 @@ jdm_bs(companies, simulation.length = 180, monte_carlo = 1000, start_price,
 premium of a list with (call_premium, put_premium)
 }
 \description{
-A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model
+Monte Carlo Option Pricing Algorithm for Jump Diffusion Model
 }
 \examples{
-jdm_bs(1, simulation.length=180, monte_carlo=1000, 1000, 1, 0.6, 1200, "blue");
+jdm_bs(3 ,simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
+c(0.08,0.04,0.06), 3,c(2500,3000,1500), c("red","blue","green"))
 }
 

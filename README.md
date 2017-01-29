@@ -120,15 +120,19 @@ It is a proposed method for monte carlo. data.csv must be required:
 ```
 Let's args be
 
-* data is a correlation coefficients of companies in "data.csv" file.   
-* companies is a number of simulate companies.  
-* simulation.length is a duration of simulation.  
-* monte_carlo is a iteration number of monte carlo.  
-* start_price is a vector of initial price of company stock prices.  
-* mu is a vector of parameters of geometric brown motions.  
-* K is a vecotor of option execution prices.  
-* color is a list of colors in plot.  
-* return is a premium of a list with (call_premium, put_premium)
+* companies_data is a correlation coefficients of companies in “data.csv” file.
+* companies is a j of simulate companies.
+* simulation.length is a duration of simulation.
+* monte_carlo is a iteration j of monte carlo.
+* start_price is a vector of initial price of j stock prices.
+* mu is a vector of parameters of geometric brown motions.
+* sigma is a voctor of parameters of geometric brown motions.
+* event_times is somethings happen how many times in Unit time.
+* K is a vector of option execution prices.
+* color is a vector of colors in plot.
+
+Let's return be
+* premium of a list with (call_premium, put_premium)
 
 ## Simulation
 <div style="text-align: center;">

@@ -1,4 +1,4 @@
-##' Normal A Monte Carlo Option Pricing Algorithm
+##' Normal Monte Carlo Option Pricing Algorithm
 #' @import utils
 #' @import graphics
 #' @import stats
@@ -33,8 +33,10 @@ normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_p
           W[j] <- 0
           price[j,1] <- start_price[j]
         }
+        # W2 - W1 = N(mean=0, sd = 2 - 1)
         dW[j] <- rnorm(1, mean = 0, sd = 1)
         W[j] <- W[j] + dW[j]
+        # about Geometric Brownian Motion from Wikipedia ( https://en.wikipedia.org/wiki/Geometric_Brownian_motion )
         price[j,i] <- start_price[j] * exp((mu[j] - (sigma[j] ^ 2) / 2) * (i - 1)  + sigma[j] * W[j])
         if(price[j,i] > price_up_limit_graph){
           price_up_limit_graph <- price[j,i]

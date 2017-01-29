@@ -2,25 +2,27 @@
 % Please edit documentation in R/JdmbsNewJump.R
 \name{jdm_new_bs}
 \alias{jdm_new_bs}
-\title{A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies}
+\title{Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies}
 \usage{
 jdm_new_bs(companies_data, companies, simulation.length = 180,
-  monte_carlo = 1000, start_price, mu, sigma, K, color)
+  monte_carlo = 1000, start_price, mu, sigma, event_times, K, color)
 }
 \arguments{
 \item{companies_data}{is a correlation coefficients of companies in “data.csv” file.}
 
-\item{companies}{is a number of simulate companies.}
+\item{companies}{is a j of simulate companies.}
 
 \item{simulation.length}{is a duration of simulation.}
 
-\item{monte_carlo}{is a iteration number of monte carlo.}
+\item{monte_carlo}{is a iteration j of monte carlo.}
 
-\item{start_price}{is a vector of initial price of company stock prices.}
+\item{start_price}{is a vector of initial price of j stock prices.}
 
 \item{mu}{is a vector of parameters of geometric brown motions.}
 
 \item{sigma}{is a voctor of parameters of geometric brown motions.}
+
+\item{event_times}{is somethings happen how many times in Unit time.}
 
 \item{K}{is a vector of option execution prices.}
 
@@ -30,9 +32,11 @@ jdm_new_bs(companies_data, companies, simulation.length = 180,
 premium of a list with (call_premium, put_premium)
 }
 \description{
-A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
+Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
 }
 \examples{
-jdm_new_bs(matrix(0.1:0.36, nrow=6, ncol=6), 6,simulation.length=90, monte_carlo=500, c(1000,500,500,1500,1250,800), c(1,1.5,2,0.8,0.4,0.25), c(0.4,0.4,0.5,0.3,0.8,0.15), c(1000,1000,1000,2100,1800,200), c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred"))
+jdm_new_bs(matrix(c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9), nrow=3, ncol=3),
+3, simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
+c(0.08,0.04,0.06), 3,c(2500,3000,1500), c("red","blue","green"))
 }
 

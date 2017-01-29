@@ -2,19 +2,19 @@
 % Please edit documentation in R/Jdmbs.R
 \name{normal_bs}
 \alias{normal_bs}
-\title{Normal A Monte Carlo Option Pricing Algorithm}
+\title{Normal Monte Carlo Option Pricing Algorithm}
 \usage{
 normal_bs(companies, simulation.length = 180, monte_carlo = 1000,
   start_price, mu, sigma, K, color)
 }
 \arguments{
-\item{companies}{is a number of simulate companies.}
+\item{companies}{is a j of simulate companies.}
 
 \item{simulation.length}{is a duration of simulation.}
 
-\item{monte_carlo}{is a iteration number of monte carlo.}
+\item{monte_carlo}{is a iteration j of monte carlo.}
 
-\item{start_price}{is a vector of initial price of company stock prices.}
+\item{start_price}{is a vector of initial price of j stock prices.}
 
 \item{mu}{is a vector of parameters of geometric brown motions.}
 
@@ -28,9 +28,9 @@ normal_bs(companies, simulation.length = 180, monte_carlo = 1000,
 premium of a list with (call_premium, put_premium)
 }
 \description{
-Normal A Monte Carlo Option Pricing Algorithm
+Normal Monte Carlo Option Pricing Algorithm
 }
 \examples{
-normal_bs(1, simulation.length=180, monte_carlo=1000, 1000, 1, 0.6, 1200, "blue")
+normal_bs(1, simulation.length=50, monte_carlo=1000,1000, 0.007, 0.03, 3000, "blue")
 }
 
