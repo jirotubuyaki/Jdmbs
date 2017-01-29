@@ -2,7 +2,6 @@
 #' @import utils
 #' @import graphics
 #' @import stats
-#' @import igraph
 #' @import rmarkdown
 #' @param  companies is a j of simulate companies.
 #' @param  simulation.length is a duration of simulation.

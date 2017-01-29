@@ -2,7 +2,6 @@
 #' @import utils
 #' @import graphics
 #' @import stats
-#' @import igraph
 #' @import rmarkdown
 #' @param  companies_data is a correlation coefficients of companies in “data.csv” file.
 #' @param  companies is a j of simulate companies.
