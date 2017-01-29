@@ -1,3 +1,6 @@
+# calculate relationship of companies.
+# @input $n is company number.
+# @output is "data.csv" at current directory.
 my $n = 6;
 my $corelation = 1;
 my $start = 0;
@@ -14,6 +17,8 @@ for(my $i=1;$i<=$n;$i++){
 		$connect_companies[i][j] = 0;
 	}
 }
+# @input $connect_companies[i][j] = 0.8 is company i affect to company j.
+# please change $connect_companies[i][j].
 $connect_companies[1][2] = 0.8;
 $connect_companies[1][5] = 0.6;
 $connect_companies[1][4] = -0.8;
@@ -40,8 +45,8 @@ for(my $i=1;$i<=$n;$i++){
 			$start = $i;
 			$end = $j;
 			@path = ();
-			&DFS($i);				
-		}		
+			&DFS($i);
+		}
 	}
 }
 
@@ -78,14 +83,15 @@ sub DFS{
 						}
 					}
 					if($flag eq "off"){
-						&DFS($k);						
+						&DFS($k);
 					}
-				}		
+				}
 			}
 		}
-		pop @path;		
+		pop @path;
 	}
 }
+# @output file is "data.csv" at current directory.
 $file = "data.csv";
 open (OUT, ">$file") or die "$!";
 for(my $i=1;$i<=$n;$i++){
