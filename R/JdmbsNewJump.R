@@ -1,4 +1,5 @@
 #' A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
+#' @import poisson
 #' @param  companies_data is a correlation coefficients of companies in “data.csv” file.
 #' @param  companies is a number of simulate companies.
 #' @param  simulation.length is a duration of simulation.
@@ -7,12 +8,16 @@
 #' @param  mu is a vector of parameters of geometric brown motions.
 #' @param  sigma is a voctor of parameters of geometric brown motions.
 #' @param  K is a vector of option execution prices.
+#' @param  lambda is Parameter of Poisson process.
+#' @param  k is a number something happen in Poisson process.
 #' @param  color is a vector of colors in plot.
 #' @return premium of a list with (call_premium, put_premium)
 #' @examples
-#' jdm_new_bs(matrix(0.1:0.36, nrow=6, ncol=6), 6,simulation.length=90, monte_carlo=500, c(1000,500,500,1500,1250,800), c(1,1.5,2,0.8,0.4,0.25), c(0.4,0.4,0.5,0.3,0.8,0.15), c(1000,1000,1000,2100,1800,200), c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred"))
+#' jdm_new_bs(matrix(0.1:0.9, nrow=3, ncol=3), 3 ,simulation.length=50,
+#' monte_carlo=100, c(1000,500,500), c(1,1.5,2),
+#' c(0.4,0.4,0.5), c(1000,1000,1000), 2, 4, c("red","blue","green"))
 #' @export
-jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_carlo=1000, start_price, mu, sigma, K, color) {
+jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_carlo=1000, start_price, mu, sigma, K, lambda, k, color) {
   #companies_data <- read.table("data.csv", sep=",");
   #simulation.length <- 180;
   #start_price <- c(1000,500,500,1500,1250,800);
@@ -20,10 +25,11 @@ jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_ca
   #sigma <- c(0.4,0.4,0.5,0.3,0.8,0.15);
   #monte_carlo <- 1000;
   #K <- c(1000,1000,1000,2100,1800,200);
+  #lambda <- 2;
+  #k <- 5;
   #companies <- 6;
   #color <- c("red","blue","green","blueviolet","pink","deepskyblue","mediumvioletred");
 
-  lambda <- 1 / simulation.length
   dt <-  1 / simulation.length
   timeline <- seq(0,simulation.length-1,1)
   price_sim <-array(0,c(companies, monte_carlo));
@@ -37,38 +43,32 @@ jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_ca
     g[count,1] <- start_price[count];
   }
   for(count in 1:monte_carlo){
-    n <- qpois(1 - 1e-8, lambda = lambda * simulation.length)
-    X <- rexp(n = n, rate = lambda)
-    S <- c(0, cumsum(X))
-    plot(x = S, y = 0:n, type = "s", xlim = c(0, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="")
+    S <- poisson::hpp.event.times(lambda, k, num.sims = 1, t0 = 0)
+    S <- S * simulation.length
+    plot(x = S, y = 1:k, type = "s", xlim = c(0, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="")
     par(new=T)
-    nSamp <- 1
-    X <- matrix(rexp(n * nSamp, rate = lambda), ncol = nSamp, dimnames = list(paste("S", 1:n, sep = ""), paste("samp", 1:nSamp)))
-    S <- apply(X, 2, cumsum)
-    S <- rbind("T0" = rep(0, nSamp), S)
-    head(S)
     for(i in 2:simulation.length){
       flag_jump <- "off";
       jump_company <- rep(0:0, length=jump_count);
-      for(j in 2: jump_count){
+      for(j in 1: jump_count){
         jump_company[j-1] <- as.integer(runif(1,min=1,max=companies+1));
       }
       for(number in 1:companies){
-        if(S[jump_count,] <= i){
+        if(S[jump_count] <= i && jump_count <= k){
           flag_jump <- "on";
 
           if(runif(1,min=0,max=1) >= 0.5){
-            jump[number] <- jump[number] + exp(rlnorm(1,meanlog=0.2, sdlog=0.5)*data[jump_company[jump_count-1],number]);
+            jump[number] <- rnorm(1,mean=0, sd=0.5) * companies_data[jump_company[jump_count-1],number];
           }
           else{
-            jump[number] <- jump[number] - exp(rlnorm(1,meanlog=0.2, sdlog=0.5)*data[jump_company[jump_count-1],number]);
+            jump[number] <- rnorm(1,mean=0, sd=0.5) * companies_data[jump_company[jump_count-1],number];
           }
           f[number,i] <- f[number,i-1]+sqrt(dt)*rnorm(1)
-          g[number,i] <- g[number,1]*exp((mu[number] - (sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
+          g[number,i] <- g[number,1]*exp((mu[number] - (sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number])
         }
         else{
           f[number,i] <- f[number,i-1]+sqrt(dt)*rnorm(1)
-          g[number,i] <- g[number,1]*exp((mu[number] - (sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i] + jump[number]*dt)
+          g[number,i] <- g[number,1]*exp((mu[number] - (sigma[number]^2)/2)*(i-1)*dt+sigma[number]*f[number,i])
         }
         if(g[number,i] > price_limit){price_limit <- g[number,i];}
 
@@ -95,7 +95,7 @@ jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_ca
     }
   }
 
-  matplot(x = S, y=0:n, type ="s", col="black", ylim=c(0,price_limit+100), xlim=c(0,simulation.length), lwd = 0.5, cex.axis = 0.6, cex.lab = 0.8, axes=FALSE, xlab="", ylab="")
+  matplot(x = S, y=1:k, type ="s", col="black", ylim=c(0,price_limit+100), xlim=c(0,simulation.length), lwd = 0.5, cex.axis = 0.6, cex.lab = 0.8, axes=FALSE, xlab="", ylab="")
   par(new=T)
   title(main="Geometric Brownian Motion", col.main="black", font.main=1,cex.main = 0.8)
   #legend(1,8000, c("mu = 0.7,  sigma = 0.5"), cex=0.8, col=c("black"), pch=1, lty=1);
