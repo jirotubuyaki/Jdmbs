@@ -108,20 +108,20 @@ This package has three method. And it is excused by:
 
 It is normal model for monte carlo:
 ```
-> premium <- normal_bs(1, simulation.length=50, monte_carlo=1000,1000, 0.007, 0.03, 3000, "blue")
+> premium <- normal_bs(1, simulation.length=50, monte_carlo=1000,
+                       1000, 0.007, 0.03, 3000, "blue")
 ```
 Jump Diffusion for monte carlo:
 ```
-> premium <- jdm_bs(3 ,simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
-                    c(0.08,0.04,0.06), 3,c(2500,3000,1500), c("red","blue","green")
-                    )
+> premium <- jdm_bs(3 ,simulation.length=100,monte_carlo=80, c(1000,500,500),
+                       c(0.005, 0.025, 0.01),c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500),
+                       c("red","blue","green"))
 ```
-It is a proposed method for monte carlo. data must be required:
+It is a proposed method for monte carlo. data.csv must be required:
 ```
 > premium <- jdm_new_bs(matrix(c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9), nrow=3, ncol=3),
                         3, simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
-                        c(0.08,0.04,0.06), 3,c(2500,3000,1500), c("red","blue","green")
-                        )
+                        c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500), c("red","blue","green"))
 ```
 Let's args be
 
@@ -133,8 +133,10 @@ Let's args be
 * mu is a vector of parameters of geometric brown motions.
 * sigma is a voctor of parameters of geometric brown motions.
 * event_times is somethings happen how many times in Unit time.
+* jump is a vector of jump parameter.
 * K is a vector of option execution prices.
 * color is a vector of colors in plot.
+
 
 Let's return be
 * premium of a list with (call_premium, put_premium)

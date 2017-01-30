@@ -24,9 +24,9 @@ plot(g,
 	edge.curved=seq(-0.75, -0.75, length = ecount(g))
 	);
 
-## ---- echo=FALSE, fig.width=60, fig.align='center', fig.height=28, dpi=300,out.width='16.5cm'----
+## ---- echo=FALSE, fig.width=60, fig.align='center', fig.height=25, dpi=300,out.width='16.5cm'----
 load("../data/data.rda")
-source('../R/JdmbsJump.R')
+source('../R/Jdmbs.R')
 normal_bs(3 ,simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
 c(0.08,0.04,0.06),c(2500,3000,1500), c("red","blue","green"))
 

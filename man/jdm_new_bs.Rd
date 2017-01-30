@@ -5,7 +5,7 @@
 \title{Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies}
 \usage{
 jdm_new_bs(companies_data, companies, simulation.length = 180,
-  monte_carlo = 1000, start_price, mu, sigma, event_times, K, color)
+  monte_carlo = 1000, start_price, mu, sigma, event_times, jump, K, color)
 }
 \arguments{
 \item{companies_data}{is a correlation coefficients of companies in “data.csv” file.}
@@ -24,6 +24,8 @@ jdm_new_bs(companies_data, companies, simulation.length = 180,
 
 \item{event_times}{is somethings happen how many times in Unit time.}
 
+\item{jump}{is a vector of jump parameter.}
+
 \item{K}{is a vector of option execution prices.}
 
 \item{color}{is a vector of colors in plot.}
@@ -35,8 +37,8 @@ premium of a list with (call_premium, put_premium)
 Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
 }
 \examples{
-jdm_new_bs(matrix(c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9), nrow=3, ncol=3),
+jdm_new_bs(matrix(c(1,0.2,0.3,0.4,1,0.6,0.7,0.8,1), nrow=3, ncol=3),
 3, simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
-c(0.08,0.04,0.06), 3,c(2500,3000,1500), c("red","blue","green"))
+c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500), c("red","blue","green"))
 }
 

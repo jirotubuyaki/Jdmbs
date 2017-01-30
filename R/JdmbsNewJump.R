@@ -11,15 +11,16 @@
 #' @param  mu is a vector of parameters of geometric brown motions.
 #' @param  sigma is a voctor of parameters of geometric brown motions.
 #' @param  event_times is somethings happen how many times in Unit time.
+#' @param  jump is a vector of jump parameter.
 #' @param  K is a vector of option execution prices.
 #' @param  color is a vector of colors in plot.
 #' @return premium of a list with (call_premium, put_premium)
 #' @examples
 #' jdm_new_bs(matrix(c(1,0.2,0.3,0.4,1,0.6,0.7,0.8,1), nrow=3, ncol=3),
 #' 3, simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
-#' c(0.08,0.04,0.06), 3,c(2500,3000,1500), c("red","blue","green"))
+#' c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500), c("red","blue","green"))
 #' @export
-jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_carlo=1000, start_price, mu,sigma, event_times, K, color) {
+jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_carlo=1000, start_price, mu,sigma, event_times, jump, K, color) {
   price_sim <-array(0, c(companies, monte_carlo));
   price <- array(0, c(monte_carlo, companies, simulation.length))
   premium <- c()
@@ -68,7 +69,7 @@ jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_ca
         dW[j] <- rnorm(1, mean = 0, sd = 1)
         W[j] <- W[j] + dW[j]
         # about Geometric Brownian Motion from Wikipedia ( https://en.wikipedia.org/wiki/Geometric_Brownian_motion )
-        price[count, j,i] <- start_price[j] * exp((mu[j] - (sigma[j] ^ 2) / 2) * (i - 1)  + sigma[j] * W[j] + J_affect[j])
+        price[count, j,i] <- start_price[j] * exp((mu[j] - (sigma[j] ^ 2) / 2) * (i - 1)  + sigma[j] * W[j] + jump[j] * J_affect[j])
         if(price[count, j,i] > price_up_limit_graph){
           price_up_limit_graph <- price[count, j,i]
         }

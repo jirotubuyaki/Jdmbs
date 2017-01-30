@@ -5,7 +5,7 @@
 \title{Monte Carlo Option Pricing Algorithm for Jump Diffusion Model}
 \usage{
 jdm_bs(companies, simulation.length = 180, monte_carlo = 1000, start_price,
-  mu, sigma, event_times, K, color)
+  mu, sigma, event_times, jump, K, color)
 }
 \arguments{
 \item{companies}{is a j of simulate companies.}
@@ -22,6 +22,8 @@ jdm_bs(companies, simulation.length = 180, monte_carlo = 1000, start_price,
 
 \item{event_times}{is somethings happen how many times in Unit time.}
 
+\item{jump}{is a vector of jump parameter.}
+
 \item{K}{is a vector of option execution prices.}
 
 \item{color}{is a vector of colors in plot.}
@@ -34,6 +36,6 @@ Monte Carlo Option Pricing Algorithm for Jump Diffusion Model
 }
 \examples{
 jdm_bs(3 ,simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
-c(0.08,0.04,0.06), 3,c(2500,3000,1500), c("red","blue","green"))
+c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500), c("red","blue","green"))
 }
 
