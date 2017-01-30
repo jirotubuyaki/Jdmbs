@@ -105,7 +105,39 @@ For online help facilities or the details of a particular command (such as the f
 ```
 ## Method
 This package has three method. And it is excused by:
+It is normal model for monte carlo:
+```
+> premium <- normal_bs(companies, simulation.length=180, monte_carlo=1000, start_price, mu, sigma, K, color)
+```
+Jump Diffusion for monte carlo:
+```
+> premium <- jdm_bs(companies, simulation.length=180, monte_carlo=1000,
+                    start_price, mu,sigma, event_times,jump, K, color)
+```
+It is a proposed method for monte carlo. data.csv must be required:
+```
+> premium <- jdm_new_bs(companies_data, companies, simulation.length=180,
+                        monte_carlo=1000, start_price, mu,sigma, event_times, jump, K, color)
+```
 
+Let's args be
+
+* companies_data is a correlation coefficients of companies in “data.csv” file.
+* companies is a j of simulate companies.
+* simulation.length is a duration of simulation.
+* monte_carlo is a iteration j of monte carlo.
+* start_price is a vector of initial price of j stock prices.
+* mu is a vector of parameters of geometric brown motions.
+* sigma is a voctor of parameters of geometric brown motions.
+* event_times is somethings happen how many times in Unit time.
+* jump is a vector of jump parameter.
+* K is a vector of option execution prices.
+* color is a vector of colors in plot.
+
+Let's return be  
+* premium of a list with (call_premium, put_premium)
+
+## Example
 It is normal model for monte carlo:
 ```
 > premium <- normal_bs(1, simulation.length=50, monte_carlo=1000,
@@ -123,23 +155,6 @@ It is a proposed method for monte carlo. data.csv must be required:
                         3, simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
                         c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500), c("red","blue","green"))
 ```
-Let's args be
-
-* companies_data is a correlation coefficients of companies in “data.csv” file.
-* companies is a j of simulate companies.
-* simulation.length is a duration of simulation.
-* monte_carlo is a iteration j of monte carlo.
-* start_price is a vector of initial price of j stock prices.
-* mu is a vector of parameters of geometric brown motions.
-* sigma is a voctor of parameters of geometric brown motions.
-* event_times is somethings happen how many times in Unit time.
-* jump is a vector of jump parameter.
-* K is a vector of option execution prices.
-* color is a vector of colors in plot.
-
-
-Let's return be
-* premium of a list with (call_premium, put_premium)
 
 ## Simulation
 <div style="text-align: center;">
