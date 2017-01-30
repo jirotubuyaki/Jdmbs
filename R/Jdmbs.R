@@ -3,7 +3,6 @@
 #' @import graphics
 #' @import stats
 #' @import rmarkdown
-#' @import igraph
 #' @param  companies is a j of simulate companies.
 #' @param  simulation.length is a duration of simulation.
 #' @param  monte_carlo is a iteration j of monte carlo.

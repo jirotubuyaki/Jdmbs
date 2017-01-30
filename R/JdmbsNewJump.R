@@ -59,9 +59,6 @@ jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_ca
           price[count, j, 1] <- start_price[j]
         }
         if(jump_time[count, jump_count] <= i){
-          print(jump_company_id[jump_count])
-          print(j)
-          print(companies_data[jump_company_id[jump_count],j])
           J_affect[j] <- J_affect[j] + J[jump_count] * companies_data[jump_company_id[jump_count],j]
           jump_flag <- "on"
         }
