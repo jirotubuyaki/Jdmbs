@@ -18,40 +18,39 @@
 #' c(0.08,0.04,0.06), 3,c(2500,3000,1500), c("red","blue","green"))
 #' @export
 jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_price, mu,sigma, event_times, K, color) {
-
   price_sim <-array(0, c(companies, monte_carlo));
-  price <- array(0, c(companies, simulation.length))
+  price <- array(0, c(monte_carlo, companies, simulation.length))
   premium <- c()
   price_up_limit_graph <- 0;
   price_down_limit_graph <- 0;
   dW <- array(0, c(companies))
   W <- array(0, c(companies))
   J <- array(0, c(companies))
-  jump_time <- c(0)
+  jump_time <- array(0, c(monte_carlo, simulation.length))
+  jump_time_count <- array(0, c(monte_carlo))
   jump_count <- 1
   jump_flag <- "off"
 
   for(count in 1 : monte_carlo){
-    jump_time <- c(0)
     jump_count <- 1
     J <- array(0, c(companies))
+    W <- array(0, c(companies))
     # somethings happen 3times in 100 mins. lambda = 3 / 100
     lambda = event_times / simulation.length
-    while(jump_time[jump_count] < simulation.length){
+    while(jump_time[count, jump_count] < simulation.length){
       # http://preshing.com/20111007/how-to-generate-random-timings-for-a-poisson-process/ from The Art of Computer Programming
-      jump_time[jump_count + 1] = jump_time[jump_count] - log(1 - runif(1,min=0,max=1)) / lambda
+      jump_time[count, jump_count + 1] = jump_time[count, jump_count] - log(1 - runif(1,min=0,max=1)) / lambda
       jump_count <- jump_count + 1
+      jump_time_count[count] <- jump_time_count[count] + 1
     }
-    # jump_count <- 2 because jump_time[1] = 0. So start from "2"
+    # jump_count <- 2 because jump_time[count, 1] = 0. So start from "2"
     jump_count <- 2
     for(i in 2 : simulation.length){
       for(j in 1 : companies){
         if(i == 2){
-          W[j] <- 0
-          price[j,1] <- start_price[j]
-
+          price[count, j, 1] <- start_price[j]
         }
-        if(jump_time[jump_count] <= i){
+        if(jump_time[count, jump_count] <= i){
           J[j] <- J[j] + runif(1,min=0,max=1) * rnorm(1, mean = 0, sd = 1)
           jump_flag <- "on"
         }
@@ -59,12 +58,12 @@ jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_pric
         dW[j] <- rnorm(1, mean = 0, sd = 1)
         W[j] <- W[j] + dW[j]
         # about Geometric Brownian Motion from Wikipedia ( https://en.wikipedia.org/wiki/Geometric_Brownian_motion )
-        price[j,i] <- start_price[j] * exp((mu[j] - (sigma[j] ^ 2) / 2) * (i - 1)  + sigma[j] * W[j] + J[j])
-        if(price[j,i] > price_up_limit_graph){
-          price_up_limit_graph <- price[j,i]
+        price[count, j,i] <- start_price[j] * exp((mu[j] - (sigma[j] ^ 2) / 2) * (i - 1)  + sigma[j] * W[j] + J[j])
+        if(price[count, j,i] > price_up_limit_graph){
+          price_up_limit_graph <- price[count, j,i]
         }
-        if(price[j,i] < price_down_limit_graph){
-          price_down_limit_graph <- price[j,i]
+        if(price[count, j,i] < price_down_limit_graph){
+          price_down_limit_graph <- price[count, j,i]
         }
       }
       if(jump_flag == "on"){
@@ -73,23 +72,25 @@ jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_pric
       }
     }
     for (i in 1 : companies){
-      price_sim[i,count] <- price[i, simulation.length];
+      price_sim[i,count] <- price[count, i, simulation.length];
     }
+  }
+  for(count in 1 : monte_carlo){
     if(count == 1){
-      plot(price[1, 1 : simulation.length], xlab="t", ylab="price", ylim = c(price_down_limit_graph, price_up_limit_graph), xlim=c(0, simulation.length), xaxp=c(0, simulation.length,simulation.length/10), type="l", col="black", lwd = 0.10, cex.axis = 0.6, cex.lab = 0.8)
+      plot(price[count, 1, ], xlab="t", ylab="price", ylim = c(price_down_limit_graph, price_up_limit_graph), xlim=c(1, simulation.length), xaxp=c(1, simulation.length,simulation.length/10), type="l", col="black", lwd = 0.10, cex.axis = 0.6, cex.lab = 0.8)
       par(new=T)
-      plot(x = jump_time, y = 1:length(jump_time), type = "s", xlim = c(0, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="")
+      plot(x = jump_time[count,1:jump_time_count[count]], y = 1 : jump_time_count[count] - 1, type = "s", xlim = c(1, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="")
       par(new=T)
       for (i in 1 : companies){
-        plot(price[i, 1 : simulation.length], ylim=c(price_down_limit_graph, price_up_limit_graph), xlim=c(0,simulation.length), xlab="", ylab="", axes=FALSE, type="l", col=color[i], lwd = 0.20, cex.axis = 0.6)
+        plot(price[count, i, ], ylim=c(price_down_limit_graph, price_up_limit_graph), xlim=c(1,simulation.length), xlab="", ylab="", axes=FALSE, type="l", col=color[i], lwd = 0.20, cex.axis = 0.6)
         par(new=T)
       }
     }
     else{
-      plot(x = jump_time, y = 1:length(jump_time), type = "s", xlim = c(0, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="")
+      plot(x = jump_time[count,1:jump_time_count[count]], y = 1 : jump_time_count[count] - 1, type = "s", xlim = c(1, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="")
       par(new=T)
       for (i in 1:companies){
-        plot(price[i, 1 : simulation.length], ylim=c(price_down_limit_graph, price_up_limit_graph), xlim=c(0,simulation.length), xlab="", ylab="", axes=FALSE, type="l", col=color[i], lwd = 0.20, cex.axis = 0.6)
+        plot(price[count, i, ], ylim=c(price_down_limit_graph, price_up_limit_graph), xlim=c(1,simulation.length), xlab="", ylab="", axes=FALSE, type="l", col=color[i], lwd = 0.20, cex.axis = 0.6)
         par(new=T)
       }
     }
