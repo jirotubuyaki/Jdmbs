@@ -145,7 +145,7 @@ Let's return be
 <div style="text-align: center;">
 <img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/Rplot.png" height="500px"><br>
 </div>
-　　　　　　　　　Figure 2. stock prices of companies
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Figure 2. stock prices of companies
 
 ## Conclusions
 New algorithm for option price is described and explain how to use. This package can produce a option price with related companies. And several improvements are planed. Please send suggestions and report bugs to okadaalgorithm@gmail.com.
