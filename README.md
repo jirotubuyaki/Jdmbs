@@ -141,7 +141,7 @@ Let's return be
 
 ## Simulation
 <div style="text-align: center;">
-<img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/simulation.png" height="400px"><br>
+<img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/Rplot.png" height="500px"><br>
 </div>
 　　　　　　　　　Figure 2. stock prices of companies
 
