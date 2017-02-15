@@ -26,7 +26,7 @@ we discuss effectiveness of it.
 
 ## Introduction
 In the early 1970's, Black-Scholes model[@Black1973] is proposed. This model can calculate an option price as market transactions of derivatives. Black-Scholes model express time-series of stock price as geometric brown motion in stochastic differential equation. Option premium is calculated from exercise price and time duration of option and geometric brown motion under risk-neutral probability. Appearance of Black-Scholes model expanded and grew option market at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
-But BS model does not represent all aspects of characteristics of a real market. And expansion of BS model is studied and proposed variety of models. Especially time-series of a stock price exhibits phenomenons like a price jump. And in order to modeling it, Jump Diffusion Model[@Clift2007] using Poison Process to express jump phenomenons is proposed. In this paper, I propose Correlational Jumps Model which have correlation of companies in stock price. A jump phenomenon of one company affect jumps of other correlational companies obeying correlation coefficients among companies. And it can calculate premiums of the companies together. In chapter 3, a directed graph of correlational companies algorithm explain. Then in chapter 4, we simulate a proposed mode and explain its algorithm.
+But BS model does not represent all aspects of characteristics of a real market. And expansion of BS model is studied and proposed variety of models. Especially time-series of a stock price exhibits phenomenons like a price jump. And in order to modeling it, Jump Diffusion Model[@Clift2007] [@Shreve2004] using Poison Process to express jump phenomenons is proposed. In this paper, I propose Correlational Jumps Model which have correlation of companies in stock price. A jump phenomenon of one company affect jumps of other correlational companies obeying correlation coefficients among companies. And it can calculate premiums of the companies together. In chapter 3, a directed graph of correlational companies algorithm explain. Then in chapter 4, we simulate a proposed mode and explain its algorithm.
 
 ## Background
 ### Black Scholes model
@@ -51,7 +51,7 @@ where $\mu$ present a draft parameter. it is a trend int the stock price.  And $
 The Poisson Process present random phenomenons happened as time sequence. It is widely used to model random points in time and space. Poison process is given by
 
 $$
-P(X(t+s)-X(t)=k) = e^{-\lambda_{s}}\frac{(\lambda s)^k}{k!}
+P(X(t+s)-X(t)=k) = e^{-\lambda s}\frac{(\lambda s)^k}{k!}
 $$
 
 where $\lambda$ is the arrival intensity. $k$ is a number something happen.  
@@ -203,23 +203,23 @@ It is a proposed method for monte carlo. data.csv must be required:
 
 Let's args be
 
-* companies_data is a correlation coefficients of companies in “data.csv” file.
-* companies is a j of simulate companies.
-* simulation.length is a duration of simulation.
-* monte_carlo is a iteration j of monte carlo.
-* start_price is a vector of initial price of j stock prices.
-* mu is a vector of parameters of geometric brown motions.
-* sigma is a voctor of parameters of geometric brown motions.
-* event_times is somethings happen how many times in Unit time.
-* jump is a vector of jump parameter.
-* K is a vector of option execution prices.
-* color is a vector of colors in plot.
+* companies_data: a matrix of a correlation coefficient of companies
+* companies: an integer of company number in order to simulate.
+* simulation.length: an integer of a duration of simulation.
+* monte_carlo: an integer of iterations of monte carlo.
+* start_price: a vector of company's initial stock prices.
+* mu: a vector of parameter of Geometric Brownian motion.
+* sigma: a vector of parameter of Geometric Brownian motion.
+* event_times: an integer of how many times jump in Unit time.
+* jump: a vector of jump parameter.
+* K: a vector of option execution prices.
+* color: a vector of colors in plot.  
 
 Let's return be  
 
-* premium of a list with (call_premium, put_premium)
+* premium of a list of (call_premium, put_premium)
 
-## Example
+## Example  
 It is normal model for monte carlo:
 ```
 > premium <- normal_bs(1, simulation.length=50, monte_carlo=1000,
@@ -246,7 +246,7 @@ It is a proposed method for monte carlo. data.csv must be required:
 
 ```{r, echo=FALSE, fig.width=60, fig.align='center', fig.height=25, dpi=300,out.width='16.5cm'}
 load("../data/data.rda")
-source('../R/JdmbsJump.R')
+source('../R/Jdmbs.R')
 normal_bs(3 ,simulation.length=90,monte_carlo=80, c(10000,7000,5000), c(0.0012, 0.0012, 0.0012),
 + c(sqrt(0.002),sqrt(0.002),sqrt(0.002)), c(2500,3000,1500), c("deeppink","royalblue","greenyellow"))
 ```

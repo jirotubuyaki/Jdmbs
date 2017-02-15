@@ -2,35 +2,35 @@
 % Please edit documentation in R/Jdmbs.R
 \name{normal_bs}
 \alias{normal_bs}
-\title{Normal Monte Carlo Option Pricing Algorithm}
+\title{Normal A Monte Carlo Option Pricing Algorithm}
 \usage{
 normal_bs(companies, simulation.length = 180, monte_carlo = 1000,
   start_price, mu, sigma, K, color)
 }
 \arguments{
-\item{companies}{is a j of simulate companies.}
+\item{companies}{an integer of company number in order to simulate.}
 
-\item{simulation.length}{is a duration of simulation.}
+\item{simulation.length}{an integer of a duration of simulation.}
 
-\item{monte_carlo}{is a iteration j of monte carlo.}
+\item{monte_carlo}{an integer of iterations of monte carlo.}
 
-\item{start_price}{is a vector of initial price of j stock prices.}
+\item{start_price}{a vector of company's initial stock prices.}
 
-\item{mu}{is a vector of parameters of geometric brown motions.}
+\item{mu}{a vector of parameter of Geometric Brownian motion.}
 
-\item{sigma}{is a voctor of parameters of geometric brown motions.}
+\item{sigma}{a vector of parameter of Geometric Brownian motion.}
 
-\item{K}{is a vector of option execution prices.}
+\item{K}{a vector of option execution prices.}
 
-\item{color}{is a vector of colors in plot.}
+\item{color}{a vector of colors in plot.}
 }
 \value{
-premium of a list with (call_premium, put_premium)
+premium a list of (call_premium, put_premium)
 }
 \description{
-Normal Monte Carlo Option Pricing Algorithm
+Normal A Monte Carlo Option Pricing Algorithm
 }
 \examples{
-normal_bs(1, simulation.length=50, monte_carlo=1000,1000, 0.007, 0.03, 3000, "blue")
+normal_bs(1, simulation.length=50, monte_carlo=100,1000, 0.007, 0.03, 3000, "blue")
 }
 

@@ -2,43 +2,43 @@
 % Please edit documentation in R/JdmbsNewJump.R
 \name{jdm_new_bs}
 \alias{jdm_new_bs}
-\title{Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies}
+\title{A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies}
 \usage{
 jdm_new_bs(companies_data, companies, simulation.length = 180,
   monte_carlo = 1000, start_price, mu, sigma, event_times, jump, K, color)
 }
 \arguments{
-\item{companies_data}{is a correlation coefficients of companies in “data.csv” file.}
+\item{companies_data}{a matrix of a correlation coefficient of companies}
 
-\item{companies}{is a j of simulate companies.}
+\item{companies}{an integer of company number in order to simulate.}
 
-\item{simulation.length}{is a duration of simulation.}
+\item{simulation.length}{an integer of a duration of simulation.}
 
-\item{monte_carlo}{is a iteration j of monte carlo.}
+\item{monte_carlo}{an integer of iterations of monte carlo.}
 
-\item{start_price}{is a vector of initial price of j stock prices.}
+\item{start_price}{a vector of company's initial stock prices.}
 
-\item{mu}{is a vector of parameters of geometric brown motions.}
+\item{mu}{a vector of parameter of Geometric Brownian motion.}
 
-\item{sigma}{is a voctor of parameters of geometric brown motions.}
+\item{sigma}{a vector of parameter of Geometric Brownian motion.}
 
-\item{event_times}{is somethings happen how many times in Unit time.}
+\item{event_times}{an integer of how many times jump in Unit time.}
 
-\item{jump}{is a vector of jump parameter.}
+\item{jump}{a vector of jump parameter.}
 
-\item{K}{is a vector of option execution prices.}
+\item{K}{a vector of option execution prices.}
 
-\item{color}{is a vector of colors in plot.}
+\item{color}{a vector of colors in plot.}
 }
 \value{
-premium of a list with (call_premium, put_premium)
+premium a list of (call_premium, put_premium)
 }
 \description{
-Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
+A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
 }
 \examples{
 jdm_new_bs(matrix(c(1,0.2,0.3,0.4,1,0.6,0.7,0.8,1), nrow=3, ncol=3),
-3, simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
+3, simulation.length=60,monte_carlo=60, c(1000,500,500), c(0.005, 0.025, 0.01),
 c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500), c("red","blue","green"))
 }
 

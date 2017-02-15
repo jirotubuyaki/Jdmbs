@@ -1,21 +1,17 @@
-#' Monte Carlo Option Pricing Algorithm for Jump Diffusion Model
-#' @import utils
-#' @import graphics
-#' @import stats
-#' @import rmarkdown
-#' @param  companies is a j of simulate companies.
-#' @param  simulation.length is a duration of simulation.
-#' @param  monte_carlo is a iteration j of monte carlo.
-#' @param  start_price is a vector of initial price of j stock prices.
-#' @param  mu is a vector of parameters of geometric brown motions.
-#' @param  sigma is a voctor of parameters of geometric brown motions.
-#' @param  event_times is somethings happen how many times in Unit time.
-#' @param  jump is a vector of jump parameter.
-#' @param  K is a vector of option execution prices.
-#' @param  color is a vector of colors in plot.
-#' @return premium of a list with (call_premium, put_premium)
+#' A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model
+#' @param  companies an integer of company number in order to simulate.
+#' @param  simulation.length an integer of a duration of simulation.
+#' @param  monte_carlo an integer of iterations of monte carlo.
+#' @param  start_price a vector of company's initial stock prices.
+#' @param  mu a vector of parameter of Geometric Brownian motion.
+#' @param  sigma a vector of parameter of Geometric Brownian motion.
+#' @param  event_times an integer of how many times jump in Unit time.
+#' @param  jump a vector of jump parameter.
+#' @param  K a vector of option execution prices.
+#' @param  color a vector of colors in plot.
+#' @return premium a list of (call_premium, put_premium)
 #' @examples
-#' jdm_bs(3 ,simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
+#' jdm_bs(3 ,simulation.length=60,monte_carlo=60, c(1000,500,500), c(0.005, 0.025, 0.01),
 #' c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500), c("red","blue","green"))
 #' @export
 jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_price, mu,sigma, event_times,jump, K, color) {

@@ -1,19 +1,20 @@
-##' Normal Monte Carlo Option Pricing Algorithm
+#' Normal A Monte Carlo Option Pricing Algorithm
 #' @import utils
 #' @import graphics
 #' @import stats
+#' @importFrom igraph graph.data.frame reciprocity dyad.census is.mutual E
 #' @import rmarkdown
-#' @param  companies is a j of simulate companies.
-#' @param  simulation.length is a duration of simulation.
-#' @param  monte_carlo is a iteration j of monte carlo.
-#' @param  start_price is a vector of initial price of j stock prices.
-#' @param  mu is a vector of parameters of geometric brown motions.
-#' @param  sigma is a voctor of parameters of geometric brown motions.
-#' @param  K is a vector of option execution prices.
-#' @param  color is a vector of colors in plot.
-#' @return premium of a list with (call_premium, put_premium)
+#' @param  companies an integer of company number in order to simulate.
+#' @param  simulation.length an integer of a duration of simulation.
+#' @param  monte_carlo an integer of iterations of monte carlo.
+#' @param  start_price a vector of company's initial stock prices.
+#' @param  mu a vector of parameter of Geometric Brownian motion.
+#' @param  sigma a vector of parameter of Geometric Brownian motion.
+#' @param  K a vector of option execution prices.
+#' @param  color a vector of colors in plot.
+#' @return premium a list of (call_premium, put_premium)
 #' @examples
-#' normal_bs(1, simulation.length=50, monte_carlo=1000,1000, 0.007, 0.03, 3000, "blue")
+#' normal_bs(1, simulation.length=50, monte_carlo=100,1000, 0.007, 0.03, 3000, "blue")
 #' @export
 normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_price, mu, sigma, K, color) {
 
