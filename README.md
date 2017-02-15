@@ -1,7 +1,7 @@
 # Jdmbs: An R package for A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies  
 [![Build Status](https://travis-ci.org/jirotubuyaki/Jdmbs.svg?branch=master)](https://travis-ci.org/jirotubuyaki/Jdmbs)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Jdmbs)](http://cran.r-project.org/package=Jdmbs)
-![CRAN_Status_Badge](http://cranlogs.r-pkg.org/badges/grand-total/Jdmbs)
+[![](http://cranlogs.r-pkg.org/badges/Jdmbs)](http://cran.rstudio.com/web/packages/Jdmbs/index.html)
 ## Abstract
 Black-Scholes model is important to calculate option premium in stock market. And variety of jump diffusion model as
 time-series of stock price are studied. In this paper, we propose new jumps diffusion model with correlational companies in
