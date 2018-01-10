@@ -1,4 +1,4 @@
-# Jdmbs: An R package for A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies  
+# Jdmbs: An R package for A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlational Companies  
 [![Build Status](https://travis-ci.org/jirotubuyaki/Jdmbs.svg?branch=master)](https://travis-ci.org/jirotubuyaki/Jdmbs)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Jdmbs)](http://cran.r-project.org/package=Jdmbs)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/Jdmbs)](http://cran.rstudio.com/web/packages/Jdmbs/index.html)
@@ -52,7 +52,7 @@ Standard Jump Diffusion model occurs jump in one stock market and it does not af
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_9.png "eque")
 
-Where *random_i* is a *n_th* company. And *U* is discrete uniform distribution.*Output_ij* is a correlation coefficients from *i* company to *j*. it is from result of algorithm 1.
+Where *random_i* is a *n_th* company. And *U* is discrete uniform distribution.*Output_ij* is a correlation coefficients from company *i*  to company *j*.
 
 ## Correlation Companies Algorithm
 In order to calculate correlation coefficients between all pair companies, all paths must be enumerated in graph structure.　And variety of algorithms to find paths are proposed. We propose algorithm for enumeration correlations in
