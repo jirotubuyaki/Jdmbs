@@ -58,7 +58,7 @@ Where *random_i* is a *n_th* company. And *U* is discrete uniform distribution.*
 In order to calculate correlation coefficients between all pair companies, all paths must be enumerated in graph structure.　And variety of algorithms to find paths are proposed. We propose algorithm for enumeration correlations in
 a given circulation graph. This program code produce a matrix of correlation coefficients between all pair companies.
 This package includes a Perl program in order to calculate a correlations of companies.
-Please change $connect_companies parameters and use like below. output data is "data.csv"
+Please change connect_companies parameters and use like below. output data is "data.csv"
 
 ```
 > perl path.pl
