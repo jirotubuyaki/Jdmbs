@@ -1,11 +1,11 @@
 ---
-title: "Jdmbs: An R package for A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies"
+title: "Jdmbs: An R package for A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlational Companies"
 subtitle: 'A Vignette'
 author: |
   | Masashi Okada
   | Okada Algorithm Private Invention Research Laboratory
   | okadaalgorithm@gmail.com
-date: "Jdmbs version 1.0 `r Sys.Date()`"
+date: "Jdmbs version 1.1 `r Sys.Date()`"
 output:
   pdf_document:
     latex_engine: xelatex
@@ -17,16 +17,14 @@ vignette: >
 ---
 
 ## Abstract
-Black-Scholes model is important to calculate option premium in stock market. And variety of jump diffusion model as
-time-series of stock price are studied. In this paper, we propose new jumps diffusion model with correlational companies in
-order to calculate option pricing in a stock market. This model express correlational of companies as directed graph structure
-have a weight of correlational coefficients among companies. And calculate option premiums together. Then we exhibit monte-
-carlo algorithm of proposed model. After simulate this model comparing with standard jump model and change parameters,
-we discuss effectiveness of it.
+Black-Scholes model is important to calculate option premiums in the stock market. And variety of jump diffusion models as
+time-series of stock price are studied. In this paper, we propose a new jumps diffusion model with correlational companies in
+order to calculate option pricing in the stock market. This models express correlations of companies as a directed graph structure
+which has a weight of correlational coefficients among companies. And It calculates option premiums together. Then we exhibit monte-carlo algorithms of proposed models. Then we simulate a new model which is proposed in this package.
 
 ## Introduction
-In the early 1970's, Black-Scholes model[@Black1973] is proposed. This model can calculate an option price as market transactions of derivatives. Black-Scholes model express time-series of stock price as geometric brown motion in stochastic differential equation. Option premium is calculated from exercise price and time duration of option and geometric brown motion under risk-neutral probability. Appearance of Black-Scholes model expanded and grew option market at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
-But BS model does not represent all aspects of characteristics of a real market. And expansion of BS model is studied and proposed variety of models. Especially time-series of a stock price exhibits phenomenons like a price jump. And in order to modeling it, Jump Diffusion Model[@Clift2007] [@Shreve2004] using Poison Process to express jump phenomenons is proposed. In this paper, I propose Correlational Jumps Model which have correlation of companies in stock price. A jump phenomenon of one company affect jumps of other correlational companies obeying correlation coefficients among companies. And it can calculate premiums of the companies together. In chapter 3, a directed graph of correlational companies algorithm explain. Then in chapter 4, we simulate a proposed mode and explain its algorithm.
+In the early 1970's, Black-Scholes model[@Black1973] is proposed. This model can calculate an option price as market transactions of derivatives. Black-Scholes models express time-series of a stock price as Geometric Brown Motion in Stochastic Differential Equation. Option premiums are calculated from exercise prices and time duration of options and Geometric Brown Motion under risk-neutral probability. Appearance of Black-Scholes model expanded and grew option markets at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
+But BS model does not represent all aspects of characteristics of the real market. And expansion of BS model is studied and proposed variety of models. Especially time-series of a stock price exhibits phenomenons like a price jump. And in order to model it, Jump Diffusion Model[@Clift2007] [@Shreve2004] using Poison Process to express jump phenomenons is proposed. In this paper, We propose Correlational Jumps Model which have correlations of companies in stock prices. A jump phenomenon of one company affects jumps of other correlational companies obeying correlation coefficients among companies. And it can calculate premiums of the companies together. In this paper, a directed graph of correlational companies algorithm is implemented. Then we simulate a proposed model.
 
 ## Background
 ### Black Scholes model
@@ -36,7 +34,7 @@ $$
 F = E[max(X(T)-K,0)]
 $$
 
-$E[x]$ express expected value of $x$. And European put option premium is given by
+$E[x]$ expresses expected value of $x$. And European put option premium is given by
 
 $$
 F = E[max(K-X(T),0)]
@@ -112,38 +110,21 @@ b & \in \{\cdots,-2,-1,0,1,2\cdots\}\\
 \end{split}
 $$
 
-Where $random_i$ is a $n_{th}$ company. And $U$ is discrete uniform distribution. $Output_{ij}$ is a correlation coefficients from $i$ company to $ j $. it is from result of algorithm 1.
+Where $random_i$ is a $n_{th}$ company. And $U$ is discrete uniform distribution. $Output_{ij}$ is a correlation coefficients from company $i$ to company $j$.
 
-## Correlation Companies Algorithm
+## Correlational Companies Algorithm
 In order to calculate correlation coefficients between all pair companies, all paths must be enumerated in graph structure.　And variety of algorithms to find paths are proposed. We propose algorithm for enumeration correlations in a given circulation graph. This program code produce a matrix of correlation coefficients between all pair companies.
 
-```{r,echo=FALSE,warnings=FALSE,messages=FALSE,results='hide',fig.align='center', fig.width=60, fig.height=30, dpi=300,out.width='10cm'}
-library(igraph);
-company_1<- c(1,1,1,2,2,2,3,4,5,5,5,6);
-company_2 <- c(2,5,4,1,3,5,2,1,1,2,6,5);
-weight <- c(0.8,0.6,-0.8,0.2,0.5,0.4,0.6,-0.8,0.1,0.3,-0.2,-0.2);
-dis.mat<- data.frame(Company_1=company_1, Company_2=company_2, WEIGHT=weight);
-g <- graph.data.frame(dis.mat[1:2]);
-E(g)$weight <- dis.mat[[3]];
-reciprocity(g)
-dyad.census(g)
-is.mutual(g)
-plot(g,
-	layout=layout.fruchterman.reingold,
-	vertex.size=30,
-	vertex.color="deepskyblue",
-	vertex.label.color="white",
-	vertex.label.cex=10,
-	edge.label=E(g)$weight,
-	edge.color="gray",
-	edge.label.color="black",
-	edge.label.cex = 10,
-	edge.arrow.size =0.6,
-	edge.width =0.5,
-	edge.curved=seq(-0.75, -0.75, length = ecount(g))
-	);
+```{r fig.width=3.5,fig.height=3.5,fig.align="center",echo=FALSE}
+library(png)
+library(grid)
+img <- readPNG("./companies.png")
+ grid.raster(img)
 ```
-・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・Figure1: The relation of companies
+
+\begin{center}
+Figure1: The relation of companies
+\end{center}
 
 This package includes a Perl program in order to calculate a correlations of companies. Please change connect_companies parameters and use like below. output data is "data.csv"  
 
@@ -176,7 +157,7 @@ Once the packages are installed, it needs to be made accessible to the current R
 > library(Jdmbs)
 ```
 
-For online help facilities or the details of a particular command (such as the function hmds) you can type:
+For online help facilities or the details of a particular command (such as the function normal_bs) you can type:
 
 ```
 > help(package="Jdmbs")
@@ -204,20 +185,20 @@ It is a proposed method for monte carlo. data.csv must be required:
 Let's args be
 
 * companies_data: a matrix of a correlation coefficient of companies
-* companies: an integer of company number in order to simulate.
+* companies: an integer of a company number in order to simulate.
 * simulation.length: an integer of a duration of simulation.
 * monte_carlo: an integer of iterations of monte carlo.
 * start_price: a vector of company's initial stock prices.
-* mu: a vector of parameter of Geometric Brownian motion.
-* sigma: a vector of parameter of Geometric Brownian motion.
-* event_times: an integer of how many times jump in Unit time.
-* jump: a vector of jump parameter.
+* mu: a vector of parameter of Geometric Brownian Motion.
+* sigma: a vector of parameters of Geometric Brownian Motion.
+* event_times: an integer of how many times jump in a unit time.
+* jump: a vector of jump parameters.
 * K: a vector of option execution prices.
-* color: a vector of colors in plot.  
+* color: a vector of colors in a plot.  
 
 Let's return be  
 
-* premium of a list of (call_premium, put_premium)
+* premiums of a list of (call_premium, put_premium)
 
 ## Example  
 It is normal model for monte carlo:
@@ -251,11 +232,13 @@ normal_bs(3 ,simulation.length=90,monte_carlo=80, c(10000,7000,5000), c(0.0012, 
 + c(sqrt(0.002),sqrt(0.002),sqrt(0.002)), c(2500,3000,1500), c("deeppink","royalblue","greenyellow"))
 ```
 
-
-　　　　　　　　　　　Figure2: Simulation Result of Geometric Brownian Motion
+\begin{center}
+Figure2: Simulation Result of Geometric Brownian Motion
+\end{center}
+　　　　　　　　　　　
 
 ## Conclusions
-New algorithm for option price is described and explain how to use. This package can produce a option price with related companies. And several improvements are planed. Please send suggestions and report bugs to okadaalgorithm@gmail.com.
+New algorithm for option prices is described and explained how to use it. This package can produce a option price with related companies. And several improvements are planed. Please send suggestions and report bugs to okadaalgorithm@gmail.com.
 
 ## Acknowledgments
 This activity would not have been possible without the support of my family and friends. To my family, thank you for lots of encouragement for me and inspiring me to follow my dreams. I am especially grateful to my parents, who supported me all aspects.  
