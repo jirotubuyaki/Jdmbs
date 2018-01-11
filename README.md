@@ -4,7 +4,7 @@
 [![](http://cranlogs.r-pkg.org/badges/grand-total/Jdmbs)](http://cran.rstudio.com/web/packages/Jdmbs/index.html)
 ## Abstract
 Black-Scholes model is important to calculate option premiums in the stock market. And variety of jump diffusion models as
-time-series of stock price are studied. In this paper, we propose a new jumps diffusion model with correlational companies in
+time-series of stock prices are studied. In this paper, we propose a new jumps diffusion model with correlational companies in
 order to calculate option pricing in the stock market. This models express correlations of companies as a directed graph structure
 has a weight of correlational coefficients among companies. And It calculates option premiums together. Then we exhibit monte-carlo algorithms of proposed models. Then we simulate a new model which is proposed in this package.
 
