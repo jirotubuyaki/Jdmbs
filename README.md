@@ -5,7 +5,7 @@
 ## Abstract
 Black-Scholes model is important to calculate option premiums in the stock market. And variety of jump diffusion models as
 time-series of stock prices are studied. In this paper, we propose a new jumps diffusion model with correlational companies in
-order to calculate option pricing in the stock market. This models express correlations of companies as a directed graph structure
+order to calculate option pricing in the stock market. These models express correlations of companies as a directed graph structure which
 has a weight of correlational coefficients among companies. And It calculates option premiums together. Then we exhibit monte-carlo algorithms of proposed models. Then we simulate a new model which is proposed in this package.
 
 ## Introduction
@@ -55,10 +55,10 @@ Standard Jump Diffusion model occurs jump in one stock market and it does not af
 Where *random_i* is a *n_th* company. And *U* is discrete uniform distribution.*Output_ij* is a correlation coefficients from company *i*  to company *j*.
 
 ## Correlational Companies Algorithm
-In order to calculate correlation coefficients between all pair companies, all paths must be enumerated in graph structure.　And variety of algorithms to find paths are proposed. We propose algorithm for enumeration correlations in
-a given circulation graph. This program code produce a matrix of correlation coefficients between all pair companies.
+In order to calculate correlation coefficients between all pair companies, all paths must be enumerated in a graph structure.　And variety of algorithms to find paths are proposed. We propose algorithm for enumeration correlations in
+a given circulation graph. This program code produces a matrix of correlation coefficients between all pair companies.
 This package includes a Perl program in order to calculate a correlations of companies.
-Please change connect_companies parameters and use like below. output data is "data.csv"
+Please change connect_companies parameters and use like below.
 
 ```
 > perl path.pl
