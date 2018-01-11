@@ -3,16 +3,14 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Jdmbs)](http://cran.r-project.org/package=Jdmbs)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/Jdmbs)](http://cran.rstudio.com/web/packages/Jdmbs/index.html)
 ## Abstract
-Black-Scholes model is important to calculate option premium in stock market. And variety of jump diffusion
-models as time-series of stock price are studied. In this paper, we propose new jumps diffusion model with
-correlational companies in order to calculate option pricing in a stock market. This models express correlation
-of companies as directed graph structure has a weight of correlational coefficients among companies. And It
-calculates option premiums together. Then we exhibit monte-carlo algorithm of proposed models. Then we
-simulate a new model which is proposed in this package.  
+Black-Scholes model is important to calculate option premiums in the stock market. And variety of jump diffusion models as
+time-series of stock price are studied. In this paper, we propose a new jumps diffusion model with correlational companies in
+order to calculate option pricing in the stock market. This models express correlations of companies as a directed graph structure
+has a weight of correlational coefficients among companies. And It calculates option premiums together. Then we exhibit monte-carlo algorithms of proposed models. Then we simulate a new model which is proposed in this package.
 
 ## Introduction
-In the early 1970's, Black-Scholes model[@Black1973] is proposed. This model can calculate an option price as market transactions of derivatives. Black-Scholes models express time-series of stock price as geometric brown motion in stochastic differential equation. Option premium is calculated from exercise price and time duration of option and geometric brown motion under risk-neutral probability. Appearance of Black-Scholes model expanded and grew option market at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
-But BS model does not represent all aspects of characteristics of a real market. And expansion of BS model is studied and proposed variety of models. Especially time-series of a stock price exhibits phenomenons like a price jump. And in order to model it, Jump Diffusion Model[@Clift2007] [@Shreve2004] using Poison Process to express jump phenomenons is proposed. In this paper, We propose Correlational Jumps Model which have correlation of companies in stock price. A jump phenomenon of one company affects jumps of other correlational companies obeying correlation coefficients among companies. And it can calculate premiums of the companies together. In this paper, a directed graph of correlational companies algorithm is implemented. Then we simulate a proposed model.
+In the early 1970's, Black-Scholes model[@Black1973] is proposed. This model can calculate an option price as market transactions of derivatives. Black-Scholes models express time-series of a stock price as Geometric Brown Motion in Stochastic Differential Equation. Option premiums are calculated from exercise prices and time duration of options and Geometric Brown Motion under risk-neutral probability. Appearance of Black-Scholes model expanded and grew option markets at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
+But BS model does not represent all aspects of characteristics of the real market. And expansion of BS model is studied and proposed variety of models. Especially time-series of a stock price exhibits phenomenons like a price jump. And in order to model it, Jump Diffusion Model[@Clift2007] [@Shreve2004] using Poison Process to express jump phenomenons is proposed. In this paper, We propose Correlational Jumps Model which have correlations of companies in stock prices. A jump phenomenon of one company affects jumps of other correlational companies obeying correlation coefficients among companies. And it can calculate premiums of the companies together. In this paper, a directed graph of correlational companies algorithm is implemented. Then we simulate a proposed model.
 
 ## Background
 ### Black Scholes model
