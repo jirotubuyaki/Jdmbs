@@ -3,10 +3,12 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Jdmbs)](http://cran.r-project.org/package=Jdmbs)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/Jdmbs)](http://cran.rstudio.com/web/packages/Jdmbs/index.html)
 ## Abstract
-Black-Scholes model is important to calculate option premium in stock market. And variety of jump diffusion models as
-time-series of stock price are studied. In this paper, we propose new jumps diffusion model with correlational companies in
-order to calculate option pricing in a stock market. This models express correlation of companies as directed graph structure
-has a weight of correlational coefficients among companies. And It calculates option premiums together. Then we exhibit monte-carlo algorithm of proposed models. Then we simulate this model comparing with standard jump model and change parameters.
+Black-Scholes model is important to calculate option premium in stock market. And variety of jump diffusion
+models as time-series of stock price are studied. In this paper, we propose new jumps diffusion model with
+correlational companies in order to calculate option pricing in a stock market. This models express correlation
+of companies as directed graph structure has a weight of correlational coefficients among companies. And It
+calculates option premiums together. Then we exhibit monte-carlo algorithm of proposed models. Then we
+simulate new model which is proposed in this package.  
 
 ## Introduction
 In the early 1970's, Black-Scholes model[@Black1973] is proposed. This model can calculate an option price as market transactions of derivatives. Black-Scholes models express time-series of stock price as geometric brown motion in stochastic differential equation. Option premium is calculated from exercise price and time duration of option and geometric brown motion under risk-neutral probability. Appearance of Black-Scholes model expanded and grew option market at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
