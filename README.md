@@ -6,7 +6,7 @@
 Black-Scholes model is important to calculate option premiums in the stock market. And variety of jump diffusion models as
 time-series of stock price are studied. In this paper, we propose a new jumps diffusion model with correlational companies in
 order to calculate option pricing in the stock market. This models express correlations of companies as a directed graph structure
- which has a weight of correlational coefficients among companies. And It calculates option premiums together. Then we exhibit monte-carlo algorithms of proposed models. Then we simulate a new model which is proposed in this package.
+has a weight of correlational coefficients among companies. And It calculates option premiums together. Then we exhibit monte-carlo algorithms of proposed models. Then we simulate a new model which is proposed in this package.
 
 ## Introduction
 In the early 1970's, Black-Scholes model[@Black1973] is proposed. This model can calculate an option price as market transactions of derivatives. Black-Scholes models express time-series of a stock price as Geometric Brown Motion in Stochastic Differential Equation. Option premiums are calculated from exercise prices and time duration of options and Geometric Brown Motion under risk-neutral probability. Appearance of Black-Scholes model expanded and grew option markets at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
@@ -26,13 +26,13 @@ Black-Scholes model is given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_3.png "eque")
 
-where *μ* present a draft parameter. it is a trend int the stock price.  And *σ* is volatility. *r* is is the risk-free interest rate.*N* is gauss distribution.
+Where *μ* present a draft parameter. It is a trend in the stock price.  And *σ* is volatility. *r* is is the risk-free interest rate.*N* is gauss distribution.
 ### Poison Process
-The Poisson Process present random phenomenons happened as time sequence. It is widely used to model random points in time and space. Poison process is given by
+The Poisson Process present random phenomenons happened at any timings. It is widely used to model random points in both time and space. Poison Process is given by  
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_4.png "eque")
 
-where *λ* is the arrival intensity. *k* is a number something happen.
+Where *λ* is the arrival intensity. *k* is a number something happen.
 ### The Mixed-Exponential Jump Diffusion Model
 Under the mixed-exponential jump diffusion model (MEM), the dynamics of the asset price St
 under a risk-neutral measure1 P to be used for option pricing is given by
@@ -41,7 +41,7 @@ under a risk-neutral measure1 P to be used for option pricing is given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_6.png "eque")
 
-where *r* is the risk-free interest rate, *σ* the volatility, *{N(t):t =0・・・}* a Poisson process with rate *λ*, *{W(t):t=0・・・}* a standard Brownian motion.
+Where *r* is the risk-free interest rate, *σ* the volatility, *{N(t):t =0・・・}* a Poisson process with rate *λ*, *{W(t):t=0・・・}* a standard Brownian Motion.
 
 ## Correlational Jumps Model
 Standard Jump Diffusion model occurs jump in one stock market and it does not affect other companies. In correlational Jumps model one jump among companies affects other stock price of a company obeying correlation coefficacies. Therefore equetions are given by
@@ -168,8 +168,8 @@ This activity would not have been possible without the support of my family and 
 
 ## References
 Black, Scholes, and Merton. 1973. “The Pricing of Options and Corporate Liabilities” 3 Issue 3: 637–54.  
-  
+
 Clift, Simon S, and Peter A Forsyth. 2007. “Numerical Solution of Two Asset Jump Diffusion Models for
 Option Valuation,” 1–44.  
-  
+
 Shreve, Steven. 2004. Stochastic Calculus for Finance II: Continuous-Time Models. Springer-Verlag.  
