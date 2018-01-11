@@ -34,8 +34,7 @@ The Poisson Process present random phenomenons happened at any timings. It is wi
 
 Where *λ* is the arrival intensity. *k* is a number something happen.
 ### The Mixed-Exponential Jump Diffusion Model
-Under the mixed-exponential jump diffusion model (MEM), the dynamics of the asset price St
-under a risk-neutral measure1 P to be used for option pricing is given by
+Under the mixed-exponential jump diffusion model (MEM), the dynamics of the asset price St are given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_5.png "eque")
 
@@ -44,7 +43,7 @@ under a risk-neutral measure1 P to be used for option pricing is given by
 Where *r* is the risk-free interest rate, *σ* the volatility, *{N(t):t =0・・・}* a Poisson process with rate *λ*, *{W(t):t=0・・・}* a standard Brownian Motion.
 
 ## Correlational Jumps Model
-Standard Jump Diffusion model occurs jump in one stock market and it does not affect other companies. In correlational Jumps model one jump among companies affects other stock price of a company obeying correlation coefficacies. Therefore equetions are given by
+Standard Jump Diffusion model occurs jumps in one stock market and it does not affect other companies. In correlational Jumps model, a one jump among companies affects other stock prices of a company obeying correlation coefficacies. Therefore equetions are given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_7.png "eque")
 
