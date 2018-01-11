@@ -43,7 +43,7 @@ Under the mixed-exponential jump diffusion model (MEM), the dynamics of the asse
 Where *r* is the risk-free interest rate, *σ* the volatility, *{N(t):t =0・・・}* a Poisson process with rate *λ*, *{W(t):t=0・・・}* a standard Brownian Motion.
 
 ## Correlational Jumps Model
-Standard Jump Diffusion model occurs jumps in one stock market and it does not affect other companies. In correlational Jumps model, a one jump among companies affects other stock prices of a company obeying correlation coefficacies. Therefore equetions are given by
+Standard Jump Diffusion model occurs jumps in the one stock market and it does not affect other companies. In correlational Jumps model, a one jump among companies affects other stock prices of a company obeying correlation coefficacies. Therefore equetions are given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_7.png "eque")
 
