@@ -162,7 +162,7 @@ It is a proposed method for monte carlo. data.csv must be required:
 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Figure 2. stock prices of companies
 
 ## Conclusions
-New algorithm for option price is described and explain how to use. This package can produce a option price with related companies. And several improvements are planed. Please send suggestions and report bugs to okadaalgorithm@gmail.com.
+New algorithm for option prices is described and explained how to use it. This package can produce a option price with related companies. And several improvements are planed. Please send suggestions and report bugs to okadaalgorithm@gmail.com.
 ## Acknowledgments
 This activity would not have been possible without the support of my family and friends. To my family, thank you for lots of encouragement for me and inspiring me to follow my dreams. I am especially grateful to my parents, who supported me all aspects.
 
