@@ -122,16 +122,16 @@ It is a proposed method for monte carlo. data.csv must be required:
 Let's args be
 
 * companies_data: a matrix of a correlation coefficient of companies
-* companies: an integer of company number in order to simulate.
+* companies: an integer of a company number in order to simulate.
 * simulation.length: an integer of a duration of simulation.
 * monte_carlo: an integer of iterations of monte carlo.
 * start_price: a vector of company's initial stock prices.
-* mu: a vector of parameter of Geometric Brownian Motion.
+* mu: a vector of parameters of Geometric Brownian Motion.
 * sigma: a vector of parameter of Geometric Brownian Motion.
-* event_times: an integer of how many times jump in Unit time.
-* jump: a vector of jump parameter.
+* event_times: an integer of how many times jump in a unit time.
+* jump: a vector of jump parameters.
 * K: a vector of option execution prices.
-* color: a vector of colors in plot.  
+* color: a vector of colors in a plot.  
 
 Let's return be  
 * premium of a list with (call_premium, put_premium)
