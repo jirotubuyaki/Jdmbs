@@ -134,7 +134,7 @@ Let's args be
 * color: a vector of colors in a plot.  
 
 Let's return be  
-* premium of a list with (call_premium, put_premium)
+* premiums of a list with (call_premium, put_premium)
 
 ## Example
 It is normal model for monte carlo:
