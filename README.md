@@ -3,14 +3,14 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Jdmbs)](http://cran.r-project.org/package=Jdmbs)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/Jdmbs)](http://cran.rstudio.com/web/packages/Jdmbs/index.html)
 ## Abstract
-Black-Scholes model is important to calculate option premiums in the stock market. And variety of jump diffusion models as
+Black-Scholes model is important to calculate option premiums in the stock market. Then, variety of jump diffusion models as
 time-series of stock prices are studied. In this paper, we propose a new jumps diffusion model with correlational companies in
 order to calculate option pricing in the stock market. These models express correlations of companies as a directed graph structure which
-has a weight of correlational coefficients among companies. And It calculates option premiums together. Then we exhibit monte-carlo algorithms of proposed models. Finally we simulate a new model which is proposed in this package.
+has a weight of correlational coefficients among companies and It calculates option premiums together. Then, we exhibit monte-carlo algorithms of proposed models. Finally we simulate a new model which is proposed in this package.
 
 ## Introduction
 In the early 1970's, Black-Scholes model[@Black1973] is proposed. This model can calculate an option price as market transactions of derivatives. Black-Scholes models express time-series of a stock price as Geometric Brown Motion in Stochastic Differential Equation. Option premiums are calculated from exercise prices and time duration of options and Geometric Brown Motion under risk-neutral probability. Appearance of Black-Scholes model expanded and grew option markets at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
-But BS model does not represent all aspects of characteristics of the real market. And expansion of BS model is studied and proposed variety of models. Especially time-series of a stock price exhibits phenomenons like a price jump. And in order to model it, Jump Diffusion Model[@Clift2007] [@Shreve2004] using Poison Process to express jump phenomenons is proposed. In this paper, We propose Correlational Jumps Model which have correlations of companies in stock prices. A jump phenomenon of one company affects jumps of other correlational companies obeying correlation coefficients among companies. And it can calculate premiums of the companies together. In this paper, a directed graph of correlational companies algorithm is implemented. Then we simulate a proposed model.
+However BS model does not represent all aspects of characteristics of the real market and expansion of BS model is studied and proposed variety of models. Especially time-series of a stock price exhibits phenomenons like a price jump and in order to model it, Jump Diffusion Model[@Clift2007] [@Shreve2004] using Poison Process to express jump phenomenons is proposed. In this paper, We propose Correlational Jumps Model which have correlations of companies in stock prices. A jump phenomenon of one company affects jumps of other correlational companies obeying correlation coefficients among companies and it can calculate premiums of the companies together. In this paper, a directed graph of correlational companies algorithm is implemented. Then we simulate a proposed model.
 
 ## Background
 ### Black Scholes model
@@ -18,7 +18,7 @@ There are several types of options in the stock market. European call option can
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_1.png "eque")
 
-*E[x]* expresses expected value of *x*. And European put option premium is given by
+*E[x]* expresses expected value of *x* and European put option premium is given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_2.png "eque")
 
@@ -26,7 +26,7 @@ Black-Scholes model is given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_3.png "eque")
 
-Where *μ* present a draft parameter. It is a trend in the stock price.  And *σ* is volatility. *r* is is the risk-free interest rate.*N* is gauss distribution.
+Where *μ* present a draft parameter. It is a trend in the stock price and *σ* is volatility. *r* is is the risk-free interest rate.*N* is gauss distribution.
 ### Poison Process
 The Poisson Process present random phenomenons happened at any timings. It is widely used to model random points in both time and space. Poison Process is given by  
 
@@ -51,10 +51,10 @@ Standard Jump Diffusion model occurs jumps in the one stock market and it does n
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_9.png "eque")
 
-Where *random_i* is a *n_th* company. And *U* is discrete uniform distribution.*Output_ij* is a correlation coefficients from company *i*  to company *j*.
+Where *random_i* is a *n_th* company and *U* is discrete uniform distribution.*Output_ij* is a correlation coefficients from company *i*  to company *j*.
 
 ## Correlational Companies Algorithm
-In order to calculate correlation coefficients between all pair companies, all paths must be enumerated in a graph structure.　And variety of algorithms to find paths are proposed. We propose algorithm for enumeration correlations in
+In order to calculate correlation coefficients between all pair companies, all paths must be enumerated in a graph structure and variety of algorithms to find paths are proposed. We propose algorithm for enumeration correlations in
 a given circulation graph. This program code produces a matrix of correlation coefficients between all pair companies.
 This package includes a Perl program in order to calculate a correlations of companies.
 Please change connect_companies parameters and use like below.
@@ -102,7 +102,7 @@ For online help facilities or the details of a particular command (such as the f
 > help(package="Jdmbs")
 ```
 ## Method
-This package has three method. And it is excused by:
+This package has three method and it is excused by:
 It is normal model for monte carlo:
 ```
 > premium <- normal_bs(companies, simulation.length=180, monte_carlo=1000, start_price, mu, sigma, K, color)
@@ -163,7 +163,7 @@ It is a proposed method for monte carlo. data.csv must be required:
 ## Conclusions
 New algorithm for option prices is described and explained how to use it. This package can produce a option price with related companies. And several improvements are planed. Please send suggestions and report bugs to okadaalgorithm@gmail.com.
 ## Acknowledgments
-This activity would not have been possible without the support of my family and friends. To my family, thank you for lots of encouragement for me and inspiring me to follow my dreams. I am especially grateful to my parents, who supported me all aspects.
+This activity would not have been possible without the support of my family and friends. To my family, thank you for much encouragement for me and inspiring me to follow my dreams. I am especially grateful to my parents, who supported me all aspects.
 
 ## References
 Black, Scholes, and Merton. 1973. “The Pricing of Options and Corporate Liabilities” 3 Issue 3: 637–54.  
