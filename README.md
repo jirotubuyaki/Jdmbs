@@ -6,8 +6,8 @@
 Black-Scholes model is important to calculate option premiums in the stock market. Then, variety of jump diffusion models as the time-series of stock prices are studied. In this paper, we propose a new jumps diffusion model with correlational companies in order to calculate option prices in the stock market. This model denotes correlations of companies as a directed graph structure which has the weights of correlation coefficient among companies and it calculates option premiums together. Then, we exhibit the monte-carlo algorithms of a proposed model. Finally, we simulate a new model which is implemented in this package.
 
 ## Introduction
-In the early 1970's, Black-Scholes (BS) model [@Black1973] was proposed. This model can calculate an option price as market transactions of derivatives. BS model denotes time-series of a stock price as Geometric brown motion in Stochastic differential equation. Option premiums are calculated from Geometric brown motion under a risk-neutral probability. The appearance of BS model expanded and grew option markets at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
-However BS model does not represent all aspects of characteristics of the real market. Therefore the expansions of BS models are studied and proposed. Especially the time-series of a stock price exhibits phenomenons like price jumps. In response to it, Jump diffusion model [@Clift2007] [@Shreve2004] using Poison Process to represent jump phenomenons is proposed. In this paper, We propose Correlational jumps model which models the correlations of companies in stock prices. A jump phenomenon of one company affects the jumps of other correlational companies as obeying correlation coefficient and it can calculate the premiums of companies together. In this package, the proposed model and a directed graph of correlational companies algorithm are implemented. Finally, we explain how to use it and simulate it.
+In the early 1970's, Black-Scholes (BS) model [@Black1973] was proposed. This model can calculate an option price as market transactions of derivatives. BS model denotes time-series of a stock price as geometric Brownian motion in Stochastic differential equation. Option premiums are calculated from geometric Brownian motion under a risk-neutral probability. The appearance of BS model expanded and grew option markets at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
+However BS model does not represent all aspects of characteristics of the real market. Therefore the expansions of BS models are studied and proposed. Especially the time-series of a stock price exhibits phenomenons like price jumps. In response to it, Jump diffusion model [@Clift2007] [@Shreve2004] using Poison process to represent jump phenomenons is researched. In this paper, we propose Correlational jumps model which models the correlations of companies in stock prices. A jump phenomenon of one company affects the jumps of other correlational companies as obeying correlation coefficient and it can calculate the premiums of companies together. In this package, the new model and a directed graph of correlational companies algorithm are implemented. Finally, we explain how to use it and simulate it.
 
 ## Background
 ### Black Scholes model
@@ -40,7 +40,7 @@ Under the mixed-exponential jump diffusion model (MEM), the dynamics of the asse
 where *r* is the risk-free interest rate, *σ* is the volatility, *{N(t):t =0・・・}* a Poisson process with rate *λ*, *{W(t):t=0・・・}* a standard Brownian Motion.
 
 ## Correlational Jumps Model
-Standard jump diffusion model occurs jumps in the one stock market and it does not affect other companies. In correlational Jumps model, a one jump among companies affects other stock prices of a company obeying correlation coefficients. Therefore equations are given by
+Standard jump diffusion model causes jumps in the one stock market and it does not affect other companies. In correlational Jumps model, a one jump among companies affects other stock prices of a company obeying correlation coefficients. Therefore equations are given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_7.png "eque")
 
@@ -124,8 +124,8 @@ Let's arguments be:
 * simulation .length : an integer of a duration of simulation.
 * monte_carlo : an integer of iterations of monte carlo.
 * start_price : a vector of company's initial stock prices.
-* mu : a vector of parameter of Geometric brownian motion.
-* sigma : a vector of parameters of Geometric brownian motion.
+* mu : a vector of parameter of geometric Brownian motion.
+* sigma : a vector of parameters of geometric Brownian motion.
 * event_times : an integer of how many times jump in a unit time.
 * jump : a vector of jump parameters.
 * K : a vector of option execution prices.  
@@ -157,7 +157,7 @@ It is a proposed method for monte carlo. data.csv must be required:
 <div style="text-align: center;">
 <img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/GBM.png" height="500px"><br>
 </div>
-　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　   　　　　　　　　　　　　　Figure 2. Simulation result of Geometric brownian motion
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　   　　　　　　　　　　　　　Figure 2. Simulation result of geometric Brownian motion
 
 ## Conclusions
 New algorithm for option prices was described and explained how to use it. This package can produce option prices with related companies. And several improvements are planed. Please send suggestions and report bugs to okadaalgorithm@gmail.com.
