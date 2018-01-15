@@ -59,6 +59,9 @@ In order to calculate correlation coefficients between all pair companies, all p
   </div>
 </div>
 Figure 1. The relation of companies 
+  
+This package includes a Perl program in order to calculate a correlations of companies. Please change
+connect_companies parameters and use like below. output data is “data.csv” .  
 
 ```
 > perl path.pl
@@ -154,7 +157,7 @@ It is a proposed method for monte carlo. data.csv must be required:
 <div style="text-align: center;">
 <img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/GBM.png" height="500px"><br>
 </div>
-　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　Figure 2. Simulation result of Geometric brownian motion
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　   　　　　　　　　　　　　　Figure 2. Simulation result of Geometric brownian motion
 
 ## Conclusions
 New algorithm for option prices was described and explained how to use it. This package can produce option prices with related companies. And several improvements are planed. Please send suggestions and report bugs to okadaalgorithm@gmail.com.
