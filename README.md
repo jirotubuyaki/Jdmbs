@@ -29,7 +29,7 @@ The Poisson process presents random phenomenons happened at any timings. It is w
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_4.png "eque")
 
-Where *λ* is the arrival intensity. *k* is a number something happen.
+where *λ* is the arrival intensity. *k* is a number something happen.
 ### Mixed-Exponential Jump Diffusion Model
 Under the mixed-exponential jump diffusion model (MEM), the dynamics of the asset price St are given by
 
