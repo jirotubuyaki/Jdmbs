@@ -3,19 +3,19 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Jdmbs)](http://cran.r-project.org/package=Jdmbs)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/Jdmbs)](http://cran.rstudio.com/web/packages/Jdmbs/index.html)
 ## Abstract
-Black-Scholes model is important to calculate option premiums in the stock market. Then, variety of jump diffusion models as the time-series of stock prices are studied. In this paper, we propose a new jumps diffusion model with correlational companies in order to calculate option prices in the stock market. This model denotes correlations of companies as a directed graph structure which has the weights of correlation coefficient among companies and it calculates option premiums together. Then, we exhibit the monte-carlo algorithms of a proposed model. Finally, we simulate a new model which is implemented in this package.
+Black-Scholes model is important to calculate option premiums in the stock market, and sometime stock prices show jump phenomena. In order to handle it, variety of jump diffusion models are studied. In this paper, we propose a new jump diffusion model which has correlation coefficients in order to calculate the option prices of related companies together. Its model can treat jump phenomena which happen among companies represented as a directed graph structure. Then, we simulate a implemented model in this package.
 
 ## Introduction
-In the early 1970's, Black-Scholes (BS) model [@Black1973] was proposed. This model can calculate an option price as market transactions of derivatives. BS model denotes time-series of a stock price as geometric Brownian motion in Stochastic differential equation. Option premiums are calculated from geometric Brownian motion under a risk-neutral probability. The appearance of BS model expanded and grew option markets at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
-However BS model does not represent all aspects of characteristics of the real market. Therefore the expansions of BS models are studied and proposed. Especially the time-series of a stock price exhibits phenomenons like price jumps. In response to it, Jump diffusion model [@Clift2007] [@Shreve2004] using Poison process to represent jump phenomenons is researched. In this paper, we propose Correlational jumps model which models the correlations of companies in stock prices. A jump phenomenon of one company affects the jumps of other correlational companies as obeying correlation coefficient and it can calculate the premiums of companies together. In this package, the new model and a directed graph of correlational companies algorithm are implemented. Finally, we explain how to use it and simulate it.
+In the early 1970's, Black-Scholes (BS) model [@Black1973] was proposed. This model can calculate option prices as market transactions of derivatives. BS model is illustrated as geometric Brownian motion in Stochastic differential equation. Option premiums are calculated from geometric Brownian motion under a risk-neutral probability. The appearance of BS model expanded and grew option markets at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
+However BS model does not represent all aspects of characteristics of the real market. Therefore the expansions of BS models are studied and proposed. Especially the time-series of a stock price exhibits phenomena like price jumps. In response to it, Jump diffusion model [@Clift2007] [@Shreve2004] using Poison process to represent jump phenomena is researched. In this paper, we propose a new jumps model which models the correlations of companies. A jump phenomenon of one company affects the jumps of other correlational companies as obeying correlation coefficient, and its model can calculate the premiums of companies together. In this package, the new model and the algorithm which calculates correlation coefficients are implemented. Finally, we explain how to use it and simulate it.
 
 ## Background
-### Black Scholes model
+### Black Scholes Model
 There are several types of options in the stock market. European call option can not execute until the duration of $T$ is finished and its execution price is $K$. Option premiums are calculated under a risk-neutral probability. European call option premium is given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_1.png "eque")
 
-*E[x]* denotes expected value of *x* and European put option premium is given by
+where *E[x]* denotes expected value of *x* and European put option premium is given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_2.png "eque")
 
@@ -61,7 +61,7 @@ In order to calculate correlation coefficients between all pair companies, all p
 Figure 1. The relation of companies 
   
 This package includes a Perl program in order to calculate a correlations of companies. Please change
-connect_companies parameters and use like below. output data is “data.csv” .  
+connect_companies parameters and use like below. output data is “data.csv”.  
 
 ```
 > perl path.pl
@@ -128,15 +128,15 @@ Let's arguments be:
 * sigma : a vector of parameters of geometric Brownian motion.
 * event_times : an integer of how many times jump in a unit time.
 * jump : a vector of jump parameters.
-* K : a vector of option execution prices.  
-* color : a vector of colors in a plot.  
+* K : a vector of option execution prices.
+* color : a vector of colors in a plot.
 
 Let's return be:  
 
 * premiums of a list of (call_premium, put_premium)
 
 ## Example
-It is normal model for monte carlo:
+It is a normal model for monte carlo:
 ```
 > premium <- normal_bs(1, simulation.length=50, monte_carlo=1000,
                        1000, 0.007, 0.03, 3000, "blue")
@@ -147,7 +147,7 @@ Jump Diffusion for monte carlo:
                        c(0.005, 0.025, 0.01),c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500),
                        c("red","blue","green"))
 ```
-It is a proposed method for monte carlo. data.csv must be required:
+It is a proposed method for monte carlo. companies_data must be required:
 ```
 > premium <- jdm_new_bs(matrix(c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9), nrow=3, ncol=3),
                         3, simulation.length=100,monte_carlo=80, c(1000,500,500), c(0.005, 0.025, 0.01),
