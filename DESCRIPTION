@@ -1,23 +1,21 @@
 Package: Jdmbs
 Type: Package
-Title: Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
-Version: 1.1
+Version: 1.2
+Title: Monte Carlo Option Pricing Algorithm for Jump Diffusion Models
+        with Correlational Companies
+Description: Black-Scholes model [Black (1973) <doi:10.1086/260062>] is important to calculate option premiums in the stock market, and variety of improved models are studied. In this package, I propose methods in order to calculate both Black-Scholes model and Jump diffusion model [Kou (2002) <doi:10.1287/mnsc.48.8.1086.166>] by Monte Carlo methods. This package can be used for computational finance.
 Date: 2018-01-15
 Authors@R: c(
   person("Masashi", "Okada", role = c("aut", "cre"), email="okadaalgorithm@gmail.com")
   )
-Description: Black-Scholes Model [Black (1973) <doi:10.1086/260062>] is important to calculate option premium in the stock market. And variety of improved models are studied. In this package, I proposed functions in order to calculate normal and new Jump Diffusion Models [Kou (2002) <doi:10.1287/mnsc.48.8.1086.166>] by Monte Carlo Method. This package can be used for Computational Finance.
+Author: Masashi Okada [aut, cre]
+Maintainer: Masashi Okada <okadaalgorithm@gmail.com>
 Depends: R (>= 3.2.3)
 License: GPL (>= 2)
 Imports: igraph, rmarkdown, graphics, stats, utils, png
+Suggests: knitr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
-Maintainer: Masashi Okada <okadaalgorithm@gmail.com>
-Suggests: knitr
 VignetteBuilder: knitr
-NeedsCompilation: no
-Packaged: 2018-01-15 10:33:21 UTC; okada
-Author: Masashi Okada [aut, cre]
-Repository: CRAN
-Date/Publication: 2018-01-15 10:47:11
+
