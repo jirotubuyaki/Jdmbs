@@ -1,10 +1,9 @@
 Package: Jdmbs
 Type: Package
 Version: 1.2
-Title: Monte Carlo Option Pricing Algorithm for Jump Diffusion Models
-        with Correlational Companies
-Description: Black-Scholes model [Black (1973) <doi:10.1086/260062>] is important to calculate option premiums in the stock market, and variety of improved models are studied. In this package, I propose methods in order to calculate both Black-Scholes model and Jump diffusion model [Kou (2002) <doi:10.1287/mnsc.48.8.1086.166>] by Monte Carlo methods. This package can be used for computational finance.
-Date: 2018-01-15
+Title: Monte Carlo Option Pricing Algorithms for Jump Diffusion Models with Correlational Companies
+Description: Black-Scholes model [Black (1973) <doi:10.1086/260062>] is important to calculate option prices in the stock market and variety of improved models are studied. In this package, I propose methods in order to calculate both Black-Scholes model and Jump diffusion model [Kou (2002) <doi:10.1287/mnsc.48.8.1086.166>] by Monte Carlo methods. This package can be used for computational finance.
+Date: 2018-04-25
 Authors@R: c(
   person("Masashi", "Okada", role = c("aut", "cre"), email="okadaalgorithm@gmail.com")
   )
