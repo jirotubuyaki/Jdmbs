@@ -9,17 +9,17 @@ normal_bs(companies, simulation.length = 180, monte_carlo = 1000,
   color = color)
 }
 \arguments{
-\item{companies}{: an integer of company number in order to simulate.}
+\item{companies}{: an integer of a company number in order to simulate.}
 
-\item{simulation.length}{: an integer of a duration of simulation.}
+\item{simulation.length}{: an integer of a time duration of simulation.}
 
-\item{monte_carlo}{: an integer of iterations of monte carlo.}
+\item{monte_carlo}{: an integer of an iteration number for monte carlo.}
 
 \item{start_price}{: a vector of company's initial stock prices.}
 
-\item{mu}{: a vector of drift parameter of geometric Brownian motion.}
+\item{mu}{: a vector of drift parameters of geometric Brownian motion.}
 
-\item{sigma}{: a vector of volatility parameter of geometric Brownian motion.}
+\item{sigma}{: a vector of volatility parameters of geometric Brownian motion.}
 
 \item{K}{: a vector of option strike prices.}
 
@@ -32,5 +32,5 @@ option prices : a list of (call_price, put_price)
 A Normal Monte Carlo Option Pricing Algorithm
 }
 \examples{
-normal_bs(1, simulation.length=50, monte_carlo=100,1000, 0.007, 0.03, 3000, "blue")
+price <- normal_bs(1, simulation.length=50, monte_carlo=1000,1000, 0.007, 0.03, 1500, "blue")
 }

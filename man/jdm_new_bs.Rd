@@ -11,19 +11,19 @@ jdm_new_bs(companies_data, companies, simulation.length = 180,
 \arguments{
 \item{companies_data}{: a matrix of a correlation coefficient of companies}
 
-\item{companies}{: an integer of company number in order to simulate.}
+\item{companies}{: an integer of a company number in order to simulate.}
 
-\item{simulation.length}{: an integer of a duration of simulation.}
+\item{simulation.length}{: an integer of a time duration of simulation.}
 
-\item{monte_carlo}{: an integer of iterations of monte carlo.}
+\item{monte_carlo}{: an integer of an iteration number for monte carlo.}
 
 \item{start_price}{: a vector of company's initial stock prices.}
 
-\item{mu}{: a vector of drift parameter of geometric Brownian motion.}
+\item{mu}{: a vector of drift parameters of geometric Brownian motion.}
 
-\item{sigma}{: a vector of volatility parameter of geometric Brownian motion.}
+\item{sigma}{: a vector of volatility parameters of geometric Brownian motion.}
 
-\item{event_times}{: an integer of how many times jump in Unit time.}
+\item{event_times}{: an integer of how many times jump in unit time.}
 
 \item{jump}{: a vector of jump parameter.}
 
@@ -38,7 +38,9 @@ option prices : a list of (call_price, put_price)
 A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
 }
 \examples{
-jdm_new_bs(matrix(c(1,0.2,0.3,0.4,1,0.6,0.7,0.8,1), nrow=3, ncol=3),
-3, simulation.length=60,monte_carlo=60, c(1000,500,500), c(0.005, 0.025, 0.01),
-c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500), c("red","blue","green"))
+price <- jdm_new_bs(matrix(c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9),nrow=3, ncol=3),
+                    3, simulation.length=100,monte_carlo=80, c(1000,500,500),
+                    c(0.002, 0.012, 0.005),c(0.05,0.05,0.06), 3,c(0.1,0.1,0.1),
+                    c(1500,1000,700),c("red","blue","green")
+                   )
 }
