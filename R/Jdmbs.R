@@ -4,17 +4,17 @@
 #' @import stats
 #' @importFrom igraph graph.data.frame reciprocity dyad.census is.mutual E
 #' @import rmarkdown
-#' @param  companies : an integer of company number in order to simulate.
-#' @param  simulation.length : an integer of a duration of simulation.
-#' @param  monte_carlo : an integer of iterations of monte carlo.
+#' @param  companies : an integer of a company number in order to simulate.
+#' @param  simulation.length : an integer of a time duration of simulation.
+#' @param  monte_carlo : an integer of an iteration number for monte carlo.
 #' @param  start_price : a vector of company's initial stock prices.
-#' @param  mu : a vector of drift parameter of geometric Brownian motion.
-#' @param  sigma : a vector of volatility parameter of geometric Brownian motion.
+#' @param  mu : a vector of drift parameters of geometric Brownian motion.
+#' @param  sigma : a vector of volatility parameters of geometric Brownian motion.
 #' @param  K : a vector of option strike prices.
 #' @param  color : a vector of colors in plot.
 #' @return option prices : a list of (call_price, put_price)
 #' @examples
-#' normal_bs(1, simulation.length=50, monte_carlo=100,1000, 0.007, 0.03, 3000, "blue")
+#' price <- normal_bs(1, simulation.length=50, monte_carlo=1000,1000, 0.007, 0.03, 1500, "blue")
 #' @export
 normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_price=start_price, mu=mu, sigma=sigma, K=K, color=color) {
   if(is.numeric(companies) == FALSE){
@@ -22,7 +22,7 @@ normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_p
     return(FALSE)
   }
   if(companies <= 0){
-    print("Error: Input companies type is less than or equal to zero.")
+    print("Error: Input companies is less than or equal to zero.")
     return(FALSE)
   }
   if(is.numeric(simulation.length) == FALSE){
@@ -37,7 +37,7 @@ normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_p
     print("Error: Input monte_carlo type is not integer.")
     return(FALSE)
   }
-  if(simulation.length <= 0){
+  if(monte_carlo <= 0){
     print("Error: Input monte_carlo is less than or equal to zero.")
     return(FALSE)
   }

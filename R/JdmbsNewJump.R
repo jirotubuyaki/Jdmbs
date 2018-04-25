@@ -1,24 +1,26 @@
 #' A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
 #' @param  companies_data : a matrix of a correlation coefficient of companies
-#' @param  companies : an integer of company number in order to simulate.
-#' @param  simulation.length : an integer of a duration of simulation.
-#' @param  monte_carlo : an integer of iterations of monte carlo.
+#' @param  companies : an integer of a company number in order to simulate.
+#' @param  simulation.length : an integer of a time duration of simulation.
+#' @param  monte_carlo : an integer of an iteration number for monte carlo.
 #' @param  start_price : a vector of company's initial stock prices.
-#' @param  mu : a vector of drift parameter of geometric Brownian motion.
-#' @param  sigma : a vector of volatility parameter of geometric Brownian motion.
-#' @param  event_times : an integer of how many times jump in Unit time.
+#' @param  mu : a vector of drift parameters of geometric Brownian motion.
+#' @param  sigma : a vector of volatility parameters of geometric Brownian motion.
+#' @param  event_times : an integer of how many times jump in unit time.
 #' @param  jump : a vector of jump parameter.
 #' @param  K : a vector of option strike prices.
 #' @param  color : a vector of colors in plot.
 #' @return option prices : a list of (call_price, put_price)
 #' @examples
-#' jdm_new_bs(matrix(c(1,0.2,0.3,0.4,1,0.6,0.7,0.8,1), nrow=3, ncol=3),
-#' 3, simulation.length=60,monte_carlo=60, c(1000,500,500), c(0.005, 0.025, 0.01),
-#' c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500), c("red","blue","green"))
+#' price <- jdm_new_bs(matrix(c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9),nrow=3, ncol=3),
+#'                     3, simulation.length=100,monte_carlo=80, c(1000,500,500),
+#'                     c(0.002, 0.012, 0.005),c(0.05,0.05,0.06), 3,c(0.1,0.1,0.1),
+#'                     c(1500,1000,700),c("red","blue","green")
+#'                    )
 #' @export
 jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_carlo=1000, start_price=start_price, mu=mu,sigma=sigma, event_times=event_times, jump=jump, K=K, color=color) {
   if(is.matrix(companies_data) == FALSE){
-    print("Error: Input companies type is not matrix.")
+    print("Error: Input companies_data type is not matrix.")
     return(FALSE)
   }
   if(is.numeric(companies) == FALSE){
@@ -26,7 +28,7 @@ jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_ca
     return(FALSE)
   }
   if(companies <= 0){
-    print("Error: Input companies type is less than or equal to zero.")
+    print("Error: Input companies is less than or equal to zero.")
     return(FALSE)
   }
   if(is.numeric(simulation.length) == FALSE){
@@ -41,7 +43,7 @@ jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_ca
     print("Error: Input monte_carlo type is not integer.")
     return(FALSE)
   }
-  if(simulation.length <= 0){
+  if(monte_carlo <= 0){
     print("Error: Input monte_carlo is less than or equal to zero.")
     return(FALSE)
   }

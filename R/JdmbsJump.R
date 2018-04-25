@@ -1,18 +1,21 @@
 #' A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model
-#' @param  companies : an integer of company number in order to simulate.
-#' @param  simulation.length : an integer of a duration of simulation.
-#' @param  monte_carlo : an integer of iterations of monte carlo.
+#' @param  companies : an integer of a company number in order to simulate.
+#' @param  simulation.length : an integer of a time duration of simulation.
+#' @param  monte_carlo : an integer of an iteration number for monte carlo.
 #' @param  start_price : a vector of company's initial stock prices.
-#' @param  mu : a vector of drift parameter of geometric Brownian motion.
-#' @param  sigma : a vector of volatility parameter of geometric Brownian motion.
-#' @param  event_times : an integer of how many times jump in Unit time.
+#' @param  mu : a vector of drift parameters of geometric Brownian motion.
+#' @param  sigma : a vector of volatility parameters of geometric Brownian motion.
+#' @param  event_times : an integer of how many times jump in unit time.
 #' @param  jump : a vector of jump parameter.
 #' @param  K : a vector of option strike prices.
 #' @param  color : a vector of colors in plot.
 #' @return option prices : a list of (call_price, put_price)
 #' @examples
-#' jdm_bs(3 ,simulation.length=60,monte_carlo=60, c(1000,500,500), c(0.005, 0.025, 0.01),
-#' c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1), c(2500,3000,1500), c("red","blue","green"))
+#' price <- jdm_bs(3 ,simulation.length=100,monte_carlo=80,
+#'                c(1000,500,500), c(0.002, 0.015, 0.01),
+#'                c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1),
+#'                c(1300,600,700), c("red","blue","green")
+#'                )
 #' @export
 jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_price=start_price, mu=mu, sigma=sigma, event_times=event_times, jump=jump, K=K, color=color) {
   if(is.numeric(companies) == FALSE){
@@ -20,7 +23,7 @@ jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_pric
     return(FALSE)
   }
   if(companies <= 0){
-    print("Error: Input companies type is less than or equal to zero.")
+    print("Error: Input companies is less than or equal to zero.")
     return(FALSE)
   }
   if(is.numeric(simulation.length) == FALSE){
@@ -35,7 +38,7 @@ jdm_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_pric
     print("Error: Input monte_carlo type is not integer.")
     return(FALSE)
   }
-  if(simulation.length <= 0){
+  if(monte_carlo <= 0){
     print("Error: Input monte_carlo is less than or equal to zero.")
     return(FALSE)
   }
