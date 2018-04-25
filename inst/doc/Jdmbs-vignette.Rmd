@@ -1,5 +1,5 @@
 ---
-title: "Jdmbs: An R Package for Monte Carlo Option Pricing Algorithm for Jump Diffusion Models with Correlational Companies"
+title: "Jdmbs: An R Package for Monte Carlo Option Pricing Algorithms for Jump Diffusion Models with Correlational Companies"
 subtitle: 'A Vignette'
 author: |
   | Masashi Okada
@@ -17,10 +17,10 @@ vignette: >
 ---
 
 ## Abstract
-Black-Scholes model is important to calculate option price in the stock market, and sometime stock prices show jump phenomena. In order to handle it, variety of jump diffusion models are studied. In this paper, we propose a new jump diffusion model which has correlation coefficients in order to calculate the option prices of related companies together. Its model can treat jump phenomena which happen among companies represented as a directed graph structure. Then, we simulate a implemented model in this package.
+Black-Scholes model is important to calculate option price in the stock market, and sometime stock prices show jump phenomena. In order to handle it, a variety of jump diffusion models are studied. In this paper, we propose a new jump diffusion model which has correlation coefficients in order to calculate the option prices of related companies together. Its model can treat jump phenomena which happen among companies represented as a directed graph structure. Then, we simulate a implemented model in this package.
 
 ## Introduction
-In the early 1970's, Black-Scholes (BS) model [@Black1973] was proposed. This model can calculate option prices as market transactions of derivatives. BS model is illustrated as geometric Brownian motion in Stochastic differential equation. Option prices are calculated from geometric Brownian motion under a risk-neutral probability. The appearance of BS model expanded and grew option markets at a rapid pace. For the achievement, Scholes and Marton won the novel prize.
+In the early 1970's, Black-Scholes (BS) model [@Black1973] was proposed. This model can calculate option prices as market transactions of derivatives. BS model is illustrated as geometric Brownian motion in Stochastic differential equation. Option prices are calculated from geometric Brownian motion under a risk-neutral probability. The appearance of BS model expanded and grew option markets at a rapid pace. For the achievement, Scholes and Marton won the Novel prize.
 However BS model does not represent all aspects of characteristics of the real market. Therefore the expansions of BS models are studied and proposed. Especially the time-series of a stock price exhibits phenomena like price jumps. In response to it, Jump diffusion model [@Clift2007] [@Shreve2004] using Poison process to represent jump phenomena is researched. In this paper, we propose a new jumps model which models the correlations of companies. A jump phenomenon of one company affects the jumps of other correlational companies as obeying correlation coefficient, and its model can calculate the prices of companies together. In this package, the new model and the algorithm which calculates correlation coefficients are implemented. Finally, we explain how to use it and simulate it.
 
 ## Background
@@ -82,7 +82,7 @@ $$
 \begin{pmatrix}
 \mu_{1} \\ \mu_{2} \\ \vdots\\\mu_{n}
 \end{pmatrix}
-d
+dt
 +
 \begin{pmatrix}
 \sigma_{1}dW_{1}t) \\ \sigma_{2}dW_{2}(t) \\ \vdots\\\sigma_{n}dW_{n}(t)
@@ -116,7 +116,7 @@ $$
 where $random_i$ is a $n_{th}$ company and $U$ is a discrete uniform distribution. $Output_{ij}$ is a correlation coefficient from company $i$ to company $j$.
 
 ## Correlational Companies Algorithm
-In order to calculate correlation coefficients between all pair companies, all paths must be enumerated in a graph structure and variety of algorithms to find paths are proposed. We propose algorithm for enumerating correlations in a given circulation graph. This program code produces a matrix of correlation coefficients between all pair companies.
+In order to calculate correlation coefficients between all pair companies, all paths must be enumerated in a graph structure and a variety of algorithms to find paths are proposed. We propose algorithm for enumerating correlations in a given circulation graph. This program code produces a matrix of correlation coefficients between all pair companies.
 
 ```{r fig.width=2.2,fig.height=2.2,fig.cap="The relation of companies",echo=FALSE}
 library(png)
@@ -146,8 +146,7 @@ This package includes a Perl program in order to calculate the correlations of c
   
   
 ## Installation
-Jdmbs is available through GitHub (https://github.com/jirotubuyaki/Jdmbs) or CRAN (https://CRAN.R-project.org/package=Jdmbs).  
-If download from Github you can use devtools by the commands:  
+Jdmbs is available through GitHub (https://github.com/jirotubuyaki/Jdmbs) or CRAN (https://CRAN.R-project.org/package=Jdmbs). If download from Github you can use devtools by the commands:  
 
 ```
 > library(devtools)
@@ -191,16 +190,16 @@ This is a proposed method for Monte Carlo. companies_data must be required:
 Let's arguments be:
 
 * companies_data : a matrix of a correlation coefficient of companies
-* companies : an integer of company number in order to simulate.
-* simulation.length : an integer of a duration of simulation.
-* monte_carlo : an integer of iterations of monte carlo.
+* companies : an integer of a company number in order to simulate.
+* simulation.length : an integer of a time duration of simulation.
+* monte_carlo : an integer of an iteration number for monte carlo.
 * start_price : a vector of company's initial stock prices.
-* mu : a vector of drift parameter of geometric Brownian motion.
-* sigma : a vector of volatility parameter of geometric Brownian motion.
-* event_times : an integer of how many times jump in Unit time.
+* mu : a vector of drift parameters of geometric Brownian motion.
+* sigma : a vector of volatility parameters of geometric Brownian motion.
+* event_times : an integer of how many times jump in unit time.
 * jump : a vector of jump parameter.
 * K : a vector of option strike prices.
-* color : a vector of colors in plot. 
+* color : a vector of colors in plot.
 
 Let's return be:  
 
@@ -237,7 +236,7 @@ img <- readPNG("./image.png")
 ```
 
 ## Conclusions
-New algorithm for option prices was described and explained how to use it. This package can produce option prices with related companies. And several improvements are planed. Please send suggestions and report bugs to okadaalgorithm@gmail.com.
+New algorithms for option prices were described and explained how to use it. This package can produce option prices with related companies. And several improvements are planed. Please send suggestions and report bugs to okadaalgorithm@gmail.com.
 
 ## Acknowledgments
 This activity would not have been possible without the support of my family and friends. To my family, thank you for much encouragement for me and inspiring me to follow my dreams. I am especially grateful to my parents, who supported me all aspects.  
