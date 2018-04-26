@@ -160,6 +160,7 @@ Let's arguments be:
 * jump : a vector of jump parameter.
 * K : a vector of option strike prices.
 * color : a vector of colors in plot.
+  
 Let's return be:  
 
 * price of a list of (call_price, put_price)
