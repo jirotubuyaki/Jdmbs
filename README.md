@@ -40,7 +40,7 @@ Black-Scholes model is given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_3.png "eque")
 
-where C is a call option price and t is a duration, K is a strike price.  is a volatility. r is a risk-free interest
+where C is a call option price and t is a duration, K is a strike price. sigma is a volatility. r is a risk-free interest
 rate. N is a Gauss distribution.
 ### Poison Process
 The Poisson process presents random phenomena happened at any timings. It is widely used in order to
@@ -56,7 +56,7 @@ Under the mixed-exponential jump diffusion model (MEM), the dynamics of the asse
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_6.png "eque")
 
-where r is the risk-free interest rate,  is the volatility, {N(t) : t = 0 · · · } a Poisson process with rate ,
+where r is the risk-free interest rate, sigma is the volatility, {N(t) : t = 0 · · · } a Poisson process with rate lamda,
 {W(t) : t = 0 · · · } is a standard Brownian motion.
 
 ## Correlational Jumps Model
@@ -84,7 +84,8 @@ between all pair companies.
   <img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/companies.png" height=350px>
   </div>
 </div>
-Figure 1. The relation of companies 
+Figure 1. The relation of companies  
+
   
 This package includes a Perl program in order to calculate the correlations of companies. Please change
 connect_companies parameters and use like below. output data is “data.csv”.  
@@ -106,8 +107,7 @@ Table 1. Result of the correlation coefficients of the companies
 
 
 ## Installation
-Jdmbs is available through GitHub (https://github.com/jirotubuyaki/Jdmbs) or CRAN (https://CRAN.
-R-project.org/package=Jdmbs). If download from Github you can use devtools by the commands:
+Jdmbs is available through GitHub (https://github.com/jirotubuyaki/Jdmbs) or CRAN (https://CRAN.R-project.org/package=Jdmbs). If download from Github you can use devtools by the commands:
 
 ```
 > library(devtools)
@@ -189,7 +189,7 @@ It is a proposed method for monte carlo. companies_data must be required:
 ```
   
 <div style="text-align: center;">
-<img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/GBM.png" height="500px"><br>
+<img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/GBM.png""><br>
 </div>
 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　   　　　　　　　　　　　　　Figure 2. Simulation result of geometric Brownian motion
 
