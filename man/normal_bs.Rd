@@ -32,5 +32,5 @@ option prices : a list of (call_price, put_price)
 A Normal Monte Carlo Option Pricing Algorithm
 }
 \examples{
-price <- normal_bs(1, simulation.length=50, monte_carlo=1000,1000, 0.007, 0.03, 1500, "blue")
+price <- normal_bs(1, simulation.length=50, monte_carlo=100,1000, 0.007, 0.03, 1500, "blue")
 }

@@ -3,7 +3,6 @@
 #' @import graphics
 #' @import stats
 #' @importFrom igraph graph.data.frame reciprocity dyad.census is.mutual E
-#' @import rmarkdown
 #' @param  companies : an integer of a company number in order to simulate.
 #' @param  simulation.length : an integer of a time duration of simulation.
 #' @param  monte_carlo : an integer of an iteration number for monte carlo.
@@ -14,7 +13,7 @@
 #' @param  color : a vector of colors in plot.
 #' @return option prices : a list of (call_price, put_price)
 #' @examples
-#' price <- normal_bs(1, simulation.length=50, monte_carlo=1000,1000, 0.007, 0.03, 1500, "blue")
+#' price <- normal_bs(1, simulation.length=50, monte_carlo=100,1000, 0.007, 0.03, 1500, "blue")
 #' @export
 normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_price=start_price, mu=mu, sigma=sigma, K=K, color=color) {
   if(is.numeric(companies) == FALSE){
