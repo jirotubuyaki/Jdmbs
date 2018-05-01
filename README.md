@@ -70,7 +70,7 @@ correlation coefficients. Therefore equations are given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_9.png "eque")
 
-where randomi is a nth company and U is a discrete uniform distribution. Outputij is a correlation coefficient
+where company_i is a nth company and U is a discrete uniform distribution. crrelation_ij is a correlation coefficient
 from company i to company j.
 
 ## Correlational Companies Algorithm
