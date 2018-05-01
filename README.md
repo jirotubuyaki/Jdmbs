@@ -3,7 +3,7 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Jdmbs)](http://cran.r-project.org/package=Jdmbs)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/Jdmbs)](http://cran.rstudio.com/web/packages/Jdmbs/index.html)
 ## Abstract
-Black-Scholes model is important to calculate option price in the stock market, and sometime stock prices
+Black-Scholes model is important to calculate option price in the stock market, and sometimes stock prices
 show jump phenomena. In order to handle it, a variety of jump diffusion models are studied. In this paper,
 we propose a new jump diffusion model which has correlation coefficients in order to calculate the option
 prices of related companies together. Its model can treat jump phenomena which happen among companies
@@ -147,7 +147,7 @@ This is a proposed method for monte carlo. companies_data must be required:
                      )
 ```
 
-Let's arguments be:
+Let arguments be:
 
 * companies_data : a matrix of a correlation coefficient of companies
 * companies : an integer of a company number in order to simulate.
@@ -161,7 +161,7 @@ Let's arguments be:
 * K : a vector of option strike prices.
 * color : a vector of colors in plot.
   
-Let's return be:  
+Let return be:  
 
 * price of a list of (call_price, put_price)
 
