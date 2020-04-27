@@ -4,14 +4,18 @@
 \alias{normal_bs}
 \title{A Normal Monte Carlo Option Pricing Algorithm}
 \usage{
-normal_bs(companies, simulation.length = 180, monte_carlo = 1000,
-  start_price = start_price, mu = mu, sigma = sigma, K = K,
-  color = color)
+normal_bs(
+  day = 100,
+  monte_carlo = 1000,
+  start_price = start_price,
+  mu = mu,
+  sigma = sigma,
+  K = K,
+  plot = TRUE
+)
 }
 \arguments{
-\item{companies}{: an integer of a company number in order to simulate.}
-
-\item{simulation.length}{: an integer of a time duration of simulation.}
+\item{day}{: an integer of a time duration of simulation.}
 
 \item{monte_carlo}{: an integer of an iteration number for monte carlo.}
 
@@ -23,7 +27,7 @@ normal_bs(companies, simulation.length = 180, monte_carlo = 1000,
 
 \item{K}{: a vector of option strike prices.}
 
-\item{color}{: a vector of colors in plot.}
+\item{plot}{: a logical type of whether plot a result or not.}
 }
 \value{
 option prices : a list of (call_price, put_price)
@@ -32,5 +36,5 @@ option prices : a list of (call_price, put_price)
 A Normal Monte Carlo Option Pricing Algorithm
 }
 \examples{
-price <- normal_bs(1, simulation.length=50, monte_carlo=100,1000, 0.007, 0.03, 1500, "blue")
+price <- normal_bs(100,10,c(300,500,850),c(0.1,0.2,0.05),c(0.05,0.1,0.09),c(600,700,1200),plot=TRUE)
 }

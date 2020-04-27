@@ -2,18 +2,24 @@
 % Please edit documentation in R/JdmbsNewJump.R
 \name{jdm_new_bs}
 \alias{jdm_new_bs}
-\title{A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies}
+\title{A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlational Companies}
 \usage{
-jdm_new_bs(companies_data, companies, simulation.length = 180,
-  monte_carlo = 1000, start_price = start_price, mu = mu, sigma = sigma,
-  event_times = event_times, jump = jump, K = K, color = color)
+jdm_new_bs(
+  correlation_matrix,
+  day = 180,
+  monte_carlo = 1000,
+  start_price = start_price,
+  mu = mu,
+  sigma = sigma,
+  lambda = lambda,
+  K = K,
+  plot = TRUE
+)
 }
 \arguments{
-\item{companies_data}{: a matrix of a correlation coefficient of companies}
+\item{correlation_matrix}{: a matrix of a correlation coefficient of companies}
 
-\item{companies}{: an integer of a company number in order to simulate.}
-
-\item{simulation.length}{: an integer of a time duration of simulation.}
+\item{day}{: an integer of a time duration of simulation.}
 
 \item{monte_carlo}{: an integer of an iteration number for monte carlo.}
 
@@ -23,24 +29,22 @@ jdm_new_bs(companies_data, companies, simulation.length = 180,
 
 \item{sigma}{: a vector of volatility parameters of geometric Brownian motion.}
 
-\item{event_times}{: an integer of how many times jump in unit time.}
-
-\item{jump}{: a vector of jump parameter.}
+\item{lambda}{: an integer of how many times jump in unit time.}
 
 \item{K}{: a vector of option strike prices.}
 
-\item{color}{: a vector of colors in plot.}
+\item{plot}{: a logical type of whether plot a result or not.}
 }
 \value{
 option prices : a list of (call_price, put_price)
 }
 \description{
-A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
+A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlational Companies
 }
 \examples{
 price <- jdm_new_bs(matrix(c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9),nrow=3, ncol=3),
-                    3, simulation.length=100,monte_carlo=80, c(1000,500,500),
-                    c(0.002, 0.012, 0.005),c(0.05,0.05,0.06), 3,c(0.1,0.1,0.1),
-                    c(1500,1000,700),c("red","blue","green")
+                    day=100,monte_carlo=20, c(1000,500,500),
+                    c(0.002, 0.012, 0.005),c(0.05,0.05,0.06), 3,
+                    c(1500,1000,700),plot=TRUE
                    )
 }

@@ -4,7 +4,9 @@
 \name{data}
 \alias{data}
 \title{correlation coefficients between all pair companies}
-\format{An object of class \code{data.frame} with 6 rows and 6 columns.}
+\format{
+An object of class \code{function} of length 1.
+}
 \usage{
 data
 }

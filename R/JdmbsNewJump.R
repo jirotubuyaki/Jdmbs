@@ -1,42 +1,34 @@
-#' A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlation Companies
-#' @param  companies_data : a matrix of a correlation coefficient of companies
-#' @param  companies : an integer of a company number in order to simulate.
-#' @param  simulation.length : an integer of a time duration of simulation.
+library(ggplot2)
+#' A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model with Correlational Companies
+#' @import utils
+#' @import graphics
+#' @import stats
+#' @import  ggplot2
+#' @param  correlation_matrix : a matrix of a correlation coefficient of companies
+#' @param  day : an integer of a time duration of simulation.
 #' @param  monte_carlo : an integer of an iteration number for monte carlo.
 #' @param  start_price : a vector of company's initial stock prices.
 #' @param  mu : a vector of drift parameters of geometric Brownian motion.
 #' @param  sigma : a vector of volatility parameters of geometric Brownian motion.
-#' @param  event_times : an integer of how many times jump in unit time.
-#' @param  jump : a vector of jump parameter.
+#' @param  lambda : an integer of how many times jump in unit time.
 #' @param  K : a vector of option strike prices.
-#' @param  color : a vector of colors in plot.
+#' @param plot : a logical type of whether plot a result or not.
 #' @return option prices : a list of (call_price, put_price)
 #' @examples
 #' price <- jdm_new_bs(matrix(c(0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9),nrow=3, ncol=3),
-#'                     3, simulation.length=100,monte_carlo=80, c(1000,500,500),
-#'                     c(0.002, 0.012, 0.005),c(0.05,0.05,0.06), 3,c(0.1,0.1,0.1),
-#'                     c(1500,1000,700),c("red","blue","green")
+#'                     day=100,monte_carlo=20, c(1000,500,500),
+#'                     c(0.002, 0.012, 0.005),c(0.05,0.05,0.06), 3,
+#'                     c(1500,1000,700),plot=TRUE
 #'                    )
 #' @export
-jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_carlo=1000, start_price=start_price, mu=mu,sigma=sigma, event_times=event_times, jump=jump, K=K, color=color) {
-  if(is.matrix(companies_data) == FALSE){
-    print("Error: Input companies_data type is not matrix.")
+jdm_new_bs<- function(correlation_matrix, day=180, monte_carlo=1000, start_price=start_price, mu=mu,sigma=sigma, lambda=lambda, K=K,plot=TRUE) {
+
+ if(is.numeric(day) == FALSE){
+    #print("Error: Input simulation.time type is not integer.")
     return(FALSE)
   }
-  if(is.numeric(companies) == FALSE){
-    print("Error: Input companies type is not numeric.")
-    return(FALSE)
-  }
-  if(companies <= 0){
-    print("Error: Input companies is less than or equal to zero.")
-    return(FALSE)
-  }
-  if(is.numeric(simulation.length) == FALSE){
-    print("Error: Input simulation.length type is not integer.")
-    return(FALSE)
-  }
-  if(simulation.length <= 0){
-    print("Error: Input simulation.length is less than or equal to zero.")
+  if(day <= 0){
+    #print("Error: Input simulation.time is less than or equal to zero.")
     return(FALSE)
   }
   if(is.numeric(monte_carlo) == FALSE){
@@ -47,116 +39,151 @@ jdm_new_bs<- function(companies_data, companies, simulation.length=180, monte_ca
     print("Error: Input monte_carlo is less than or equal to zero.")
     return(FALSE)
   }
-  price_sim <-array(0, c(companies, monte_carlo));
-  price <- array(0, c(monte_carlo, companies, simulation.length))
-  price_up_limit_graph <- 0;
-  price_down_limit_graph <- 0;
-  dW <- array(0, c(companies))
-  W <- array(0, c(companies))
-  J <- array(0, c(companies))
-  jump_time <- array(0, c(monte_carlo, simulation.length))
-  jump_time_count <- array(0, c(monte_carlo))
+  if(is.logical(plot) == FALSE){
+    print("Error: Input plot type is not logical.")
+    return(FALSE)
+  }
+  
+  dt <- 1 / 365 #Now Thinking.
+
+  company_number <- length(start_price)
+  t <- seq(0, day * dt, dt)
+  price_end <-array(0,c(company_number, monte_carlo));
+  price <- array(0,c(company_number, monte_carlo, day + 1))
+  dW <- 0
+  W <- 0
+  lambda <- lambda / (day * dt)
+  jump_time <- array(0, c(monte_carlo, monte_carlo * day))
+  jump_company_id <- c(0)
+  data_jump <- matrix(0, nrow= monte_carlo * day, ncol=3)
+  count <- 1
   jump_count <- 1
   jump_flag <- "off"
 
-  for(count in 1 : monte_carlo){
+  for(j in 1 : monte_carlo){
     jump_count <- 1
-    J <- array(0, c(companies))
-    J_affect <- array(0, c(companies))
+    jump_time <- array(0, c(monte_carlo, monte_carlo * day))
     jump_company_id <- c(0)
-    W <- array(0, c(companies))
-    # somethings happen 3times in 100 mins. lambda = 3 / 100
-    lambda = event_times / simulation.length
-    while(jump_time[count, jump_count] < simulation.length){
+    while(jump_time[j, jump_count] < t[length(t)]){
       # http://preshing.com/20111007/how-to-generate-random-timings-for-a-poisson-process/ from The Art of Computer Programming
-      jump_time[count, jump_count + 1] = jump_time[count, jump_count] - log(1 - runif(1,min=0,max=1)) / lambda
-      # which company occur jump. this company's jump affect other companies. company id is memorize.
-      jump_company_id[jump_count + 1] <- as.integer(runif(1,min=1,max=companies+1))
-      J[jump_count+ 1] <- runif(1,min=0,max=1) * rnorm(1, mean = 0, sd = 1)
+      jump_company_id[jump_count] <- as.integer(runif(1,min=1,max=company_number+1))
+      jump_time[j, jump_count + 1] <- jump_time[j, jump_count] - log(1 - runif(1,min=0,max=1)) / lambda
       jump_count <- jump_count + 1
-      jump_time_count[count] <- jump_time_count[count] + 1
     }
-    # jump_count <- 2 because jump_time[count, 1] = 0. So start from "2"
-    jump_count <- 2
-    for(i in 2 : simulation.length){
-      for(j in 1 : companies){
-        if(i == 2){
-          price[count, j, 1] <- start_price[j]
-        }
-        if(jump_time[count, jump_count] <= i){
-          J_affect[j] <- J_affect[j] + J[jump_count] * companies_data[jump_company_id[jump_count],j]
+    for(i in 1 : company_number){
+      W <- 0
+      J <- 1
+      jump_count <- 2
+      price[i, j, 1] <- start_price[i]
+      for(k in 1 : day+1){
+        # W2 - W1 = N(mean=0, sd = 2 - 1)
+        dW <- rnorm(1, mean = 0, sd = 1)
+        W <- W + dW
+        if(jump_time[j, jump_count] <= t[k]){
+          jump_rate <- runif(1, min = -1, max = 1)
+          if(jump_rate == 0){
+            jump_rate <- 0.0001
+          }
+          J <- J * (jump_rate * correlation_matrix[jump_company_id[jump_count], i] + 1)
           jump_flag <- "on"
         }
-        # W2 - W1 = N(mean=0, sd = 2 - 1)
-        dW[j] <- rnorm(1, mean = 0, sd = 1)
-        W[j] <- W[j] + dW[j]
         # about Geometric Brownian Motion from Wikipedia ( https://en.wikipedia.org/wiki/Geometric_Brownian_motion )
-        price[count, j,i] <- start_price[j] * exp((mu[j] - (sigma[j] ^ 2) / 2) * (i - 1)  + sigma[j] * W[j] + jump[j] * J_affect[j])
-        if(price[count, j,i] > price_up_limit_graph){
-          price_up_limit_graph <- price[count, j,i]
+        price[i, j, k] <- start_price[i] * exp((mu[i] - ((sigma[i] ^ 2) / 2)) * t[k]  + sigma[i] * W) * J
+        if(jump_flag == "on"){
+          data_jump[count, 1] <- k - 1
+          data_jump[count, 2] <- price[i, j, k]
+          data_jump[count, 3] <- i
+          count <- count + 1
+          jump_count <- jump_count + 1
+          jump_flag = "off"
         }
-        if(price[count, j,i] < price_down_limit_graph){
-          price_down_limit_graph <- price[count, j,i]
-        }
-      }
-      if(jump_flag == "on"){
-        jump_count <- jump_count + 1
-        jump_flag = "off"
-      }
-    }
-    for (i in 1 : companies){
-      price_sim[i,count] <- price[count, i, simulation.length];
-    }
-  }
-  for(count in 1 : monte_carlo){
-    if(count == 1){
-      plot(price[count, 1, ], xlab="t", ylab="price", ylim = c(price_down_limit_graph, price_up_limit_graph), xlim=c(1, simulation.length), xaxp=c(0, simulation.length,simulation.length/10), type="l", col="black", lwd = 0.10, cex.axis = 0.6, cex.lab = 0.8)
-      par(new=T)
-      plot(x = jump_time[count,1:jump_time_count[count]], y = 1 : jump_time_count[count] - 1, type = "s", xlim = c(1, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="")
-      par(new=T)
-      for (i in 1 : companies){
-        plot(price[count, i, ], ylim=c(price_down_limit_graph, price_up_limit_graph), xlim=c(1,simulation.length), xlab="", ylab="", axes=FALSE, type="l", col=color[i], lwd = 0.20, cex.axis = 0.6)
-        par(new=T)
-      }
-    }
-    else{
-      plot(x = jump_time[count,1:jump_time_count[count]], y = 1 : jump_time_count[count] - 1, type = "s", xlim = c(1, simulation.length),axes=FALSE,lwd = 0.10,xlab="",ylab="")
-      par(new=T)
-      for (i in 1:companies){
-        plot(price[count, i, ], ylim=c(price_down_limit_graph, price_up_limit_graph), xlim=c(1,simulation.length), xlab="", ylab="", axes=FALSE, type="l", col=color[i], lwd = 0.20, cex.axis = 0.6)
-        par(new=T)
       }
     }
   }
-  par(new=T)
-  title(main = "Geometric Brownian Motion", col.main="black", font.main=1, cex.main = 0.8)
-  #legend(1,8000, c("mu = 0.7,  sigma = 0.5"), cex=0.8, col=c("black"), pch=1, lty=1);
-
-  call_price <- array(0,c(companies));
-  put_price <- array(0,c(companies));
-  for(i in 1 : companies){
-    for(count in 1 : monte_carlo){
-      if((price_sim[i,count] - K[i]) <= 0){
+  for(i in 1 : company_number){
+    for(j in 1 : monte_carlo){
+      price_end[i, j] <- price[i, j, day + 1]
+    }
+  }
+  if(plot == TRUE){
+    jump_number <- count
+    data_matrix <- matrix(0, nrow=day + 1, ncol = 1)
+    count <- 1
+    g <- ggplot()
+    for(i in 1 : company_number){
+      for(j in 1 : monte_carlo){
+        for(k in 1 : day + 1){
+          data_matrix[k, 1] <- price[i ,j ,k]
+        }
+        data_f <- data.frame(day= 0:day, price=price[i, j , ] ,Group=rep(i, day + 1))
+        g <- g + layer(data=data_f, 
+                       mapping=aes(x= day, y=price,colour=factor(Group)), 
+                       geom="line", 
+                       stat="identity", 
+                       position="identity",
+                      )
+        g$layers[[count]]$aes_params$size <- 0.1
+        count <- count + 1
+        g <- g + layer(data=data_f, 
+                       mapping=aes(x=day , y=price,colour=factor(Group)), 
+                       geom="point", 
+                       stat="identity", 
+                       position="identity",
+                      )
+        g$layers[[count]]$aes_params$size <- 0.1
+        count <- count + 1
+      }
+    }
+    data_jump_f <- data.frame(day=data_jump[1 : jump_number - 1 , 1], price=data_jump[1 : jump_number -1 , 2], Group= factor(data_jump[1 : jump_number - 1 , 3]))
+    g <- g + layer(data=data_jump_f, 
+                   mapping=aes(x=day, y=price, colour=Group), 
+                   geom="point", 
+                   stat="identity", 
+                   position="identity",
+                  )
+    g$layers[[count]]$aes_params$size <- 2
+    count <- count + 1
+    data_K_f <- data.frame(day=rep(day,company_number), K=K, Group= 1:company_number)
+    g <- g + layer(data=data_K_f, 
+                   mapping=aes(x=day, y=K, colour=factor(Group)), 
+                   geom="point", 
+                   stat="identity", 
+                   position="identity",
+    )
+    g$layers[[count]]$aes_params$shape <- 15
+    g$layers[[count]]$aes_params$size <- 3.5
+    plot(g)
+  }
+  call_price <- array(0,c(company_number));
+  put_price <- array(0,c(company_number));
+  for(i in 1 : company_number){
+    for(j in 1 : monte_carlo){
+      if((price_end[i, j] - K[i]) <= 0){
         call_price[i] <- call_price[i] + 0
       }
       else{
-        call_price[i] <- call_price[i] + (price_sim[i,count] - K[i])
+        call_price[i] <- call_price[i] + (price_end[i, j] - K[i])
       }
     }
     call_price[i] <- call_price[i] / monte_carlo;
   }
-  for(i in 1:companies){
-    for(count in 1 : monte_carlo){
-      if((K[i] - price_sim[i,count]) <= 0){
+  for(i in 1:company_number){
+    for(j in 1 : monte_carlo){
+      if((K[i] - price_end[i, j]) <= 0){
         put_price[i] <- put_price[i] + 0;
       }
       else{
-        put_price[i] <- put_price[i] + (K[i] - price_sim[i,count])
+        put_price[i] <- put_price[i] + (K[i] - price_end[i ,j])
       }
     }
     put_price[i] <- put_price[i] / monte_carlo;
   }
-  print("Call Option Price:")
+  name <- NULL
+  for(i in 1 : company_number){
+    name <- c(name, paste("option_", i))
+  }
+  names(call_price) <- name
+  names(put_price) <- name
   print(call_price)
   print("Put Option Price:")
   print(put_price)

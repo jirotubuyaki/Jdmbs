@@ -1,35 +1,30 @@
+library(ggplot2)
 #' A Normal Monte Carlo Option Pricing Algorithm
 #' @import utils
 #' @import graphics
 #' @import stats
+#' @import  ggplot2
+#' @import  png
 #' @importFrom igraph graph.data.frame reciprocity dyad.census is.mutual E
-#' @param  companies : an integer of a company number in order to simulate.
-#' @param  simulation.length : an integer of a time duration of simulation.
+#' @param  day : an integer of a time duration of simulation.
 #' @param  monte_carlo : an integer of an iteration number for monte carlo.
 #' @param  start_price : a vector of company's initial stock prices.
 #' @param  mu : a vector of drift parameters of geometric Brownian motion.
 #' @param  sigma : a vector of volatility parameters of geometric Brownian motion.
 #' @param  K : a vector of option strike prices.
-#' @param  color : a vector of colors in plot.
+#' @param plot : a logical type of whether plot a result or not.
 #' @return option prices : a list of (call_price, put_price)
 #' @examples
-#' price <- normal_bs(1, simulation.length=50, monte_carlo=100,1000, 0.007, 0.03, 1500, "blue")
+#' price <- normal_bs(100,10,c(300,500,850),c(0.1,0.2,0.05),c(0.05,0.1,0.09),c(600,700,1200),plot=TRUE)
 #' @export
-normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_price=start_price, mu=mu, sigma=sigma, K=K, color=color) {
-  if(is.numeric(companies) == FALSE){
-    print("Error: Input companies type is not numeric.")
+normal_bs<- function(day=100, monte_carlo=1000, start_price=start_price, mu=mu, sigma=sigma, K=K, plot=TRUE) {
+
+  if(is.numeric(day) == FALSE){
+    #print("Error: Input simulation.time type is not integer.")
     return(FALSE)
   }
-  if(companies <= 0){
-    print("Error: Input companies is less than or equal to zero.")
-    return(FALSE)
-  }
-  if(is.numeric(simulation.length) == FALSE){
-    print("Error: Input simulation.length type is not integer.")
-    return(FALSE)
-  }
-  if(simulation.length <= 0){
-    print("Error: Input simulation.length is less than or equal to zero.")
+  if(day <= 0){
+    #print("Error: Input simulation.time is less than or equal to zero.")
     return(FALSE)
   }
   if(is.numeric(monte_carlo) == FALSE){
@@ -40,81 +35,106 @@ normal_bs<- function(companies, simulation.length=180, monte_carlo=1000, start_p
     print("Error: Input monte_carlo is less than or equal to zero.")
     return(FALSE)
   }
-  price_sim <-array(0,c(companies, monte_carlo));
-  price <- array(0,c(monte_carlo, companies, simulation.length))
-  price_up_limit_graph <- 0
-  price_down_limit_graph <- 0
-  dW <- array(0,c(companies))
-  W <- array(0,c(companies))
+  if(is.logical(plot) == FALSE){
+    print("Error: Input plot type is not logical.")
+    return(FALSE)
+  }
+  
+  dt <- 1 / 365 #Now Thinking.
 
-  for(count in 1 : monte_carlo){
-    W <- array(0,c(companies))
-    for(i in 2 : simulation.length){
-      for(j in 1 : companies){
-        if(i == 2){
-          price[count, j, 1] <- start_price[j]
-        }
+  company_number <- length(start_price)
+  t <- seq(0, day * dt, dt)
+  price_end <-array(0,c(company_number, monte_carlo));
+  price <- array(0,c(company_number, monte_carlo, day + 1))
+  dW <- 0
+  W <- 0
+
+  for(i in 1 : company_number){
+    for(j in 1 : monte_carlo){
+      price[i, j, 1] <- start_price[i]
+      W <- 0
+      for(k in 1 : day + 1){
         # W2 - W1 = N(mean=0, sd = 2 - 1)
-        dW[j] <- rnorm(1, mean = 0, sd = 1)
-        W[j] <- W[j] + dW[j]
+        dW <- rnorm(1, mean = 0, sd = 1)
+        W <- W + dW
         # about Geometric Brownian Motion from Wikipedia ( https://en.wikipedia.org/wiki/Geometric_Brownian_motion )
-        price[count, j,i] <- start_price[j] * exp((mu[j] - (sigma[j] ^ 2) / 2) * (i - 1)  + sigma[j] * W[j])
-        if(price[count, j,i] > price_up_limit_graph){
-          price_up_limit_graph <- price[count, j, i]
-        }
-        if(price[count, j,i] < price_down_limit_graph){
-          price_down_limit_graph <- price[count, j, i]
-        }
+        price[i, j, k] <- start_price[i] * exp((mu[i] - ((sigma[i] ^ 2) / 2)) * (t[k] - dt)  + sigma[i] * W)
       }
     }
-    for (i in 1 : companies){
-      price_sim[i,count] <- price[count, i, simulation.length];
+    for (j in 1 : monte_carlo){
+      price_end[i, j] <- price[i, j, day + 1];
     }
   }
-  for(count in 1 : monte_carlo){
-    if(count == 1){
-      plot(price[count, 1, ], xlab="t", ylab="price", ylim = c(price_down_limit_graph, price_up_limit_graph), xlim=c(1, simulation.length), xaxp=c(0, simulation.length,simulation.length/10), type="l", col="black", lwd = 0.10, cex.axis = 0.6, cex.lab = 0.8)
-      par(new=T)
-      for (i in 1 : companies){
-        plot(price[count, i,], ylim=c(price_down_limit_graph, price_up_limit_graph), xlim=c(0,simulation.length), xlab="", ylab="", axes=FALSE, type="l", col=color[i], lwd = 0.20, cex.axis = 0.6)
-        par(new=T)
+if(plot == TRUE){
+  data_matrix <- matrix(0, nrow=day + 1, ncol = 1)
+    count <- 1
+    g <- ggplot()
+    for(i in 1 : company_number){
+      for(j in 1 : monte_carlo){
+        for(k in 1 : day + 1){
+          data_matrix[k, 1] <- price[i ,j ,k]
+        }
+        data_f <- data.frame(day= 0:day, price=price[i, j , ] ,Group=rep(i, day + 1))
+        g <- g + layer(data=data_f, 
+                       mapping=aes(x= day, y=price,colour=factor(Group)), 
+                       geom="line", 
+                       stat="identity", 
+                       position="identity",
+                      )
+        g$layers[[count]]$aes_params$size <- 0.1
+        count <- count + 1
+        g <- g + layer(data=data_f, 
+                       mapping=aes(x=day , y=price,colour=factor(Group)), 
+                       geom="point", 
+                       stat="identity", 
+                       position="identity",
+                      )
+        g$layers[[count]]$aes_params$size <- 0.1
+        count <- count + 1
       }
     }
-    else{
-      for (i in 1:companies){
-        plot(price[count, i,], ylim=c(price_down_limit_graph, price_up_limit_graph), xlim=c(0,simulation.length), xlab="", ylab="", axes=FALSE, type="l", col=color[i], lwd = 0.20, cex.axis = 0.6)
-        par(new=T)
-      }
-    }
-  }
-  par(new=T)
-  title(main = "Geometric Brownian Motion", col.main="black", font.main=1, cex.main = 0.8)
-  #legend(1,8000, c("mu = 0.7,  sigma = 0.5"), cex=0.8, col=c("black"), pch=1, lty=1);
-
-  call_price <- array(0,c(companies));
-  put_price <- array(0,c(companies));
-  for(i in 1 : companies){
-    for(count in 1 : monte_carlo){
-      if((price_sim[i,count] - K[i]) <= 0){
+    data_K_f <- data.frame(day=rep(day,company_number), K=K, Group= 1:company_number)
+    g <- g + layer(data=data_K_f, 
+                   mapping=aes(x=day, y=K, colour=factor(Group)), 
+                   geom="point", 
+                   stat="identity", 
+                   position="identity",
+    )
+    g$layers[[count]]$aes_params$shape <- 15
+    g$layers[[count]]$aes_params$size <- 3.5
+    plot(g)
+}
+  
+  call_price <- array(0,c(company_number));
+  put_price <- array(0,c(company_number));
+  for(i in 1 : company_number){
+    for(j in 1 : monte_carlo){
+      if((price_end[i, j] - K[i]) <= 0){
         call_price[i] <- call_price[i] + 0
       }
       else{
-        call_price[i] <- call_price[i] + (price_sim[i,count] - K[i])
+        call_price[i] <- call_price[i] + (price_end[i, j] - K[i])
       }
     }
     call_price[i] <- call_price[i] / monte_carlo;
   }
-  for(i in 1:companies){
-    for(count in 1 : monte_carlo){
-      if((K[i] - price_sim[i,count]) <= 0){
+  for(i in 1:company_number){
+    for(j in 1 : monte_carlo){
+      if((K[i] - price_end[i, j]) <= 0){
         put_price[i] <- put_price[i] + 0;
       }
       else{
-        put_price[i] <- put_price[i] + (K[i] - price_sim[i,count])
+        put_price[i] <- put_price[i] + (K[i] - price_end[i ,j])
       }
     }
     put_price[i] <- put_price[i] / monte_carlo;
   }
+  name <- NULL
+  for(i in 1 : company_number){
+    name <- c(name, paste("option_", i))
+  }
+  names(call_price) <- name
+  names(put_price) <- name
   print("Call Option Price:")
   print(call_price)
   print("Put Option Price:")

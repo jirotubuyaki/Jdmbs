@@ -4,14 +4,19 @@
 \alias{jdm_bs}
 \title{A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model}
 \usage{
-jdm_bs(companies, simulation.length = 180, monte_carlo = 1000,
-  start_price = start_price, mu = mu, sigma = sigma,
-  event_times = event_times, jump = jump, K = K, color = color)
+jdm_bs(
+  day = 180,
+  monte_carlo = 1000,
+  start_price = start_price,
+  mu = mu,
+  sigma = sigma,
+  lambda = lambda,
+  K = K,
+  plot = TRUE
+)
 }
 \arguments{
-\item{companies}{: an integer of a company number in order to simulate.}
-
-\item{simulation.length}{: an integer of a time duration of simulation.}
+\item{day}{: an integer of a time duration of simulation.}
 
 \item{monte_carlo}{: an integer of an iteration number for monte carlo.}
 
@@ -21,13 +26,11 @@ jdm_bs(companies, simulation.length = 180, monte_carlo = 1000,
 
 \item{sigma}{: a vector of volatility parameters of geometric Brownian motion.}
 
-\item{event_times}{: an integer of how many times jump in unit time.}
-
-\item{jump}{: a vector of jump parameter.}
+\item{lambda}{: an integer of how many times jump in unit time.}
 
 \item{K}{: a vector of option strike prices.}
 
-\item{color}{: a vector of colors in plot.}
+\item{plot}{: a logical type of whether plot a result or not.}
 }
 \value{
 option prices : a list of (call_price, put_price)
@@ -36,9 +39,5 @@ option prices : a list of (call_price, put_price)
 A Monte Carlo Option Pricing Algorithm for Jump Diffusion Model
 }
 \examples{
-price <- jdm_bs(3 ,simulation.length=100,monte_carlo=80,
-               c(1000,500,500), c(0.002, 0.015, 0.01),
-               c(0.08,0.04,0.06), 3, c(0.1,0.1,0.1),
-               c(1300,600,700), c("red","blue","green")
-               )
+jdm_bs(100,10,c(5500,6500,8000),c(0.1,0.2,0.05),c(0.11,0.115,0.1),2,c(6000,7000,12000),plot=TRUE)
 }
