@@ -53,7 +53,7 @@ Jump diffusion model is added jump phenomena into Geometric Brownian motion. Sol
 where N (t) denotes a number of jumps {t = 0 · · · }. λ is a number of jumps in unit time,
 {W (t) : t = 0 · · · } is a Brownian motion. (Y i + 1) is a jump percentage at jump i
 
-## Correlational Jumps Model
+### Correlational Jumps Model
 Standard jump diffusion model causes jumps in the one stock market and it does not affect other companies. In correlational Jumps model, one jump among companies affects other stock prices of companies obeying correlation coefficients. Therefore equations are given by
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_7.png "eque")
@@ -170,7 +170,7 @@ Jump Diffusion by monte carlo:
                    plot = TRUE
                   )
 ```
-It is a proposed method by monte carlo. companies_data must be required:
+It is a correlational method by monte carlo. companies_data must be required:
 ```
 
 > corr_matrix <- matrix (c (0.1 ,0.2 ,0.3 ,0.4 ,0.5 ,0.6 ,0.7 ,0.8 ,0.9) , nrow =3 , ncol =3)
