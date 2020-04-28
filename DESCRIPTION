@@ -9,7 +9,7 @@ Authors@R: c(
   )
 Author: Masashi Okada [aut, cre]
 Maintainer: Masashi Okada <okadaalgorithm@gmail.com>
-Depends: R (>= 3.6.3)
+Depends: R (>= 3.6.0)
 License: GPL (>= 2)
 Imports: igraph, graphics, stats, utils, png, ggplot2
 Suggests: R.rsp
