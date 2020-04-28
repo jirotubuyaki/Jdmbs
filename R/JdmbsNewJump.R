@@ -63,11 +63,13 @@ jdm_new_bs<- function(correlation_matrix, day=180, monte_carlo=1000, start_price
   for(j in 1 : monte_carlo){
     jump_count <- 1
     jump_time <- array(0, c(monte_carlo, monte_carlo * day))
+    jump_rate <- array(0, c(monte_carlo, monte_carlo * day))
     jump_company_id <- c(0)
     while(jump_time[j, jump_count] < t[length(t)]){
       # http://preshing.com/20111007/how-to-generate-random-timings-for-a-poisson-process/ from The Art of Computer Programming
       jump_company_id[jump_count] <- as.integer(runif(1,min=1,max=company_number+1))
       jump_time[j, jump_count + 1] <- jump_time[j, jump_count] - log(1 - runif(1,min=0,max=1)) / lambda
+      jump_rate[jump_count + 1] <- runif(1, min = -1, max = 1)
       jump_count <- jump_count + 1
     }
     for(i in 1 : company_number){
@@ -80,11 +82,7 @@ jdm_new_bs<- function(correlation_matrix, day=180, monte_carlo=1000, start_price
         dW <- rnorm(1, mean = 0, sd = 1)
         W <- W + dW
         if(jump_time[j, jump_count] <= t[k]){
-          jump_rate <- runif(1, min = -1, max = 1)
-          if(jump_rate == 0){
-            jump_rate <- 0.0001
-          }
-          J <- J * (jump_rate * correlation_matrix[jump_company_id[jump_count], i] + 1)
+          J <- J * (jump_rate[jump_count] * correlation_matrix[jump_company_id[jump_count], i] + 1)
           jump_flag <- "on"
         }
         # about Geometric Brownian Motion from Wikipedia ( https://en.wikipedia.org/wiki/Geometric_Brownian_motion )
