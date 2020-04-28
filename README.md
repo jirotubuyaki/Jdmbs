@@ -50,8 +50,8 @@ Jump diffusion model is added jump phenomena into Geometric Brownian motion. Sol
 
 ![equa](https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/equation_6.png "eque")
 
-where r is the risk-free interest rate, sigma is the volatility, {N(t) : t = 0 · · · } a Poisson process with rate lamda,
-{W(t) : t = 0 · · · } is a standard Brownian motion.
+where N (t) denotes a number of jumps {t = 0 · · · }. λ is a number of jumps in unit time,
+{W (t) : t = 0 · · · } is a Brownian motion. (Y i + 1) is a jump percentage at jump i
 
 ## Correlational Jumps Model
 Standard jump diffusion model causes jumps in the one stock market and it does not affect other companies. In correlational Jumps model, one jump among companies affects other stock prices of companies obeying correlation coefficients. Therefore equations are given by
