@@ -170,7 +170,7 @@ Jump Diffusion by monte carlo:
                    plot = TRUE
                   )
 ```
-It is a correlational method by monte carlo. companies_data must be required:
+It is a correlational method by monte carlo. companies_matrix must be required:
 ```
 
 > corr_matrix <- matrix (c (0.1 ,0.2 ,0.3 ,0.4 ,0.5 ,0.6 ,0.7 ,0.8 ,0.9) , nrow =3 , ncol =3)
