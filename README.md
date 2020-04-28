@@ -124,7 +124,7 @@ Jump diffusion model by monte carlo:
                     start_price , mu , sigma , lambda , K , plot = TRUE
                    )
 ```
-This is a proposed method for monte carlo. companies_data must be required:
+This is a correlational method by Monte Carlo. companies_matrix must be required:
 ```
 > price <- jdm_new_bs (companies_matrix , day =180 , monte_carlo =1000 ,
                         start_price , mu , sigma , lambda , K , plot = TRUE
