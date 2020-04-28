@@ -189,7 +189,7 @@ It is a correlational method by monte carlo. companies_matrix must be required:
 <img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/Rplot.png""><br>
 </div>
 
-Figure 2: three stock prices: day = 100, monte_carlo = 10, start_price = c(300, 500,850), mu = c(0.1, 0.2, 0.05), sigma = c(0.05, 0.1, 0.09), K = c(600, 700, 1200). Square points are strike prices.
+Figure 2: three stock prices: day = 100, monte_carlo = 10, start_price = c(3000, 5000,8500), mu = c(0.1, 0.2, 0.05), sigma = c(0.05, 0.1, 0.09), K = c(6000, 7000, 12000). Square points are strike prices.
 
 <div style="text-align: center;">
 <img src="https://github.com/jirotubuyaki/JDM-BS/blob/master/readme_images/Rplot01.png""><br>
